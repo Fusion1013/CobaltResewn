@@ -3,17 +3,14 @@ package se.fusion1013.items.trinket;
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.ItemSet;
 
 import java.util.List;
@@ -21,12 +18,12 @@ import java.util.UUID;
 
 public class CobaltTrinketItem extends TrinketItem {
 
-    private final CobaltItemConfiguration configuration;
     private final TrinketModifierProvider modifierProvider;
+    private final CobaltItem.Settings settings;
 
-    public CobaltTrinketItem(Settings settings, CobaltItemConfiguration configuration, TrinketModifierProvider modifierProvider) {
+    public CobaltTrinketItem(CobaltItem.Settings settings, TrinketModifierProvider modifierProvider) {
         super(settings.maxCount(1)); // Override stack size for all trinkets
-        this.configuration = configuration;
+        this.settings = settings;
         this.modifierProvider = modifierProvider;
     }
 
@@ -39,12 +36,7 @@ public class CobaltTrinketItem extends TrinketItem {
     @Override
     public Text getName(ItemStack stack) {
         Text text = super.getName(stack);
-        return configuration.applyNameFormatting(text);
-    }
-
-    @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        return configuration.getAttributeModifiers(super.getAttributeModifiers(stack, slot), stack, slot);
+        return settings.applyNameFormatting(text);
     }
 
     @Override
@@ -57,9 +49,9 @@ public class CobaltTrinketItem extends TrinketItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        configuration.appendTooltip(stack, world, tooltip, context);
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+        settings.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 
     public interface TrinketModifierProvider {

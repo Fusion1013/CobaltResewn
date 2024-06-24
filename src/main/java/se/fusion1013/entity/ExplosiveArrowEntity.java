@@ -1,5 +1,6 @@
 package se.fusion1013.entity;
 
+import net.minecraft.item.Items;
 import se.fusion1013.items.CobaltItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -25,36 +26,36 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
     private int explosionPower = 2;
 
     protected ExplosiveArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack) {
-        super(type, world, stack);
+        super(type, world);
         this.setFuse(DEFAULT_FUSE);
     }
 
     protected ExplosiveArrowEntity(EntityType<? extends PersistentProjectileEntity> type, double x, double y, double z, World world, ItemStack stack) {
-        super(type, x, y, z, world, stack);
+        super(type, x, y, z, world, stack, Items.BOW.getDefaultStack());
         this.setFuse(DEFAULT_FUSE);
     }
 
     protected ExplosiveArrowEntity(EntityType<? extends PersistentProjectileEntity> type, LivingEntity owner, World world, ItemStack stack) {
-        super(type, owner, world, stack);
+        super(type, owner, world, stack, owner.getWeaponStack());
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(CustomEntityRegistry.EXPLOSIVE_ARROW, owner, world, stack);
+        super(CustomEntityRegistry.EXPLOSIVE_ARROW, owner, world, stack, owner.getWeaponStack());
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(EntityType<? extends PersistentProjectileEntity> entityEntityType, World world) {
-        super(entityEntityType, world, new ItemStack(CobaltItems.ArrowItems.EXPLOSIVE_ARROW));
+        super(entityEntityType, world);
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(double x, double y, double z, World world, ItemStack stack) {
-        super(CustomEntityRegistry.EXPLOSIVE_ARROW, x, y, z, world, stack);
+        super(CustomEntityRegistry.EXPLOSIVE_ARROW, x, y, z, world, stack, Items.BOW.getDefaultStack());
         this.setFuse(DEFAULT_FUSE);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(FUSE, DEFAULT_FUSE);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(FUSE, DEFAULT_FUSE);
     }
 
     @Override
@@ -151,5 +152,10 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
     @Override
     protected ItemStack asItemStack() {
         return new ItemStack(CobaltItems.ArrowItems.EXPLOSIVE_ARROW);
+    }
+
+    @Override
+    protected ItemStack getDefaultItemStack() {
+        return asItemStack();
     }
 }

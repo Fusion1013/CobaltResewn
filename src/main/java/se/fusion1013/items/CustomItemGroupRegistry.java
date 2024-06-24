@@ -9,6 +9,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import se.fusion1013.Main;
 import se.fusion1013.block.CobaltBlocks;
 
 import static se.fusion1013.items.CobaltItems.WF_INSTRUCTION_MANUAL;
@@ -16,7 +17,7 @@ import static se.fusion1013.items.CobaltItems.WF_INSTRUCTION_MANUAL;
 public class CustomItemGroupRegistry {
 
 
-    public static final RegistryKey<ItemGroup> COBALT_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("cobalt", "item_group_all"));
+    public static final RegistryKey<ItemGroup> COBALT_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "item_group_all"));
     public static final ItemGroup COBALT_GROUP = register(COBALT_GROUP_KEY, FabricItemGroup.builder()
             .icon(() -> new ItemStack(CobaltItems.ICON_ITEM))
             .displayName(Text.translatable("item_group.cobalt.items"))
@@ -25,25 +26,25 @@ public class CustomItemGroupRegistry {
             })
             .build());
 
-    public static final RegistryKey<ItemGroup> COBALT_WEAPON_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("cobalt", "weapon_group"));
+    public static final RegistryKey<ItemGroup> COBALT_WEAPON_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "weapon_group"));
     public static final ItemGroup COBALT_WEAPON_GROUP = register(COBALT_WEAPON_GROUP_KEY, FabricItemGroup.builder()
             .icon(() -> new ItemStack(CobaltItems.SwordItems.ADVENTURE_SWORD))
             .displayName(Text.translatable("item_group.cobalt.weapons"))
             .build());
 
-    public static final RegistryKey<ItemGroup> COBALT_TRINKET_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("cobalt", "trinket_group"));
+    public static final RegistryKey<ItemGroup> COBALT_TRINKET_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "trinket_group"));
     public static final ItemGroup COBALT_TRINKET_GROUP = register(COBALT_TRINKET_GROUP_KEY, FabricItemGroup.builder()
             .icon(() -> new ItemStack(CobaltItems.TrinketItems.MECHANIC_GLOVES))
             .displayName(Text.translatable("item_group.cobalt.trinkets"))
             .build());
 
-    public static final RegistryKey<ItemGroup> COBALT_ARMOR_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("cobalt", "armor_group"));
+    public static final RegistryKey<ItemGroup> COBALT_ARMOR_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "armor_group"));
     public static final ItemGroup COBALT_ARMOR_GROUP = register(COBALT_ARMOR_GROUP_KEY, FabricItemGroup.builder()
-            .icon(() -> new ItemStack(CobaltItems.ArmorItems.TINKER_ARMOR_SET.registeredHelmet))
+            .icon(() -> new ItemStack(CobaltItems.ArmorItems.DIVING_ARMOR_SET.helmet))
             .displayName(Text.translatable("item_group.cobalt.armor"))
             .build());
 
-    public static final RegistryKey<ItemGroup> COBALT_BLOCK_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("cobalt", "block_group"));
+    public static final RegistryKey<ItemGroup> COBALT_BLOCK_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "block_group"));
     public static final ItemGroup COBALT_BLOCK_GROUP = register(COBALT_BLOCK_GROUP_KEY, FabricItemGroup.builder()
             .icon(() -> new ItemStack(CobaltBlocks.SCULK_STEM))
             .displayName(Text.translatable("item_group.cobalt.block"))

@@ -6,25 +6,30 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import se.fusion1013.block.entity.CobaltBlockEntityTypes;
 import se.fusion1013.block.entity.MultifaceGrowthBlockWithEntity;
 import se.fusion1013.block.entity.RuneBlockEntity;
 
-public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEntityProvider {
+public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEntityProvider, Waterloggable {
 
     public static final MapCodec<RuneBlock> CODEC = createCodec(RuneBlock::new);
 
@@ -37,7 +42,7 @@ public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEn
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!player.isCreative()) return ActionResult.FAIL;
 
         player.playSound(SoundEvents.BLOCK_BAMBOO_WOOD_BUTTON_CLICK_ON, 1, 1);
@@ -94,6 +99,7 @@ public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEn
         super.appendProperties(builder);
         builder.add(RUNE_TYPE);
         builder.add(VISIBLE);
+        // builder.add(WATERLOGGED);
     }
 
     @Override

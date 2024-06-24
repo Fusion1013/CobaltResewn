@@ -21,6 +21,7 @@ import se.fusion1013.gui.widget.ToggleImageButton;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.networking.CobaltNetworkingConstants;
 import se.fusion1013.networking.CobaltServerNetworking;
+import se.fusion1013.networking.payload.UpdateWalkieTalkiePayloadC2S;
 
 import static se.fusion1013.networking.CobaltNetworkingConstants.*;
 
@@ -41,9 +42,9 @@ public class WalkieTalkieScreen extends Screen {
     private ToggleImageButton activate;
     private Text canal;
 
-    private static final Identifier BG_TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/gui/gui_walkietalkie.png");
-    private static final Identifier MUTE_TEXTURE = new Identifier("voicechat", "textures/icons/microphone_button.png");
-    private static final Identifier ACTIVATE_TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/icons/activate.png");
+    private static final Identifier BG_TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/gui/gui_walkietalkie.png");
+    private static final Identifier MUTE_TEXTURE = Identifier.of("voicechat", "textures/icons/microphone_button.png");
+    private static final Identifier ACTIVATE_TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/icons/activate.png");
 
     public WalkieTalkieScreen(ItemStack stack) {
         super(Text.translatable("gui.cobalt.walkietalkie.title"));
@@ -73,10 +74,7 @@ public class WalkieTalkieScreen extends Screen {
     }
 
     private void sendUpdateWalkieTalkie(int index, boolean status) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-        buf.writeInt(index);
-        buf.writeBoolean(status);
-        ClientPlayNetworking.send(UPDATE_WALKIETALKIE_C2S, buf);
+        ClientPlayNetworking.send(new UpdateWalkieTalkiePayloadC2S(index, status));
     }
 
     @Override

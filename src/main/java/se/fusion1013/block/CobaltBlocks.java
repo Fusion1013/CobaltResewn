@@ -1,17 +1,17 @@
 package se.fusion1013.block;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
+import se.fusion1013.items.CobaltItem;
 
 import java.util.function.ToIntFunction;
 
@@ -138,11 +138,11 @@ public class CobaltBlocks {
 
     private static Block register(String name, Block block) {
         registerItem(name, block);
-        return Registry.register(Registries.BLOCK, new Identifier(Main.MOD_NAMESPACE, name), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(Main.MOD_NAMESPACE, name), block);
     }
 
     private static void registerItem(String name, Block block) {
-        var item = Registry.register(Registries.ITEM, new Identifier(Main.MOD_NAMESPACE, name), new BlockItem(block, new FabricItemSettings()));
+        var item = Registry.register(Registries.ITEM, Identifier.of(Main.MOD_NAMESPACE, name), new BlockItem(block, new Item.Settings()));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
             content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item);
         });

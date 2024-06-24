@@ -1,26 +1,23 @@
 package se.fusion1013.items.consumable;
 
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Items;
-import se.fusion1013.items.CobaltItem;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 
 public class CobaltHealingItem extends CobaltDrinkItem {
 
     private final int healAmount;
 
-    public CobaltHealingItem(CobaltItemConfiguration configuration, Settings settings, int amount) {
-        super(configuration, settings.food(new FoodComponent.Builder()
-                .hunger(0)
+    public CobaltHealingItem(CobaltItem.Settings settings, int amount) {
+        super((CobaltItem.Settings)settings.food(new FoodComponent.Builder()
+                .nutrition(0)
                 .saturationModifier(0f)
                 .snack()
                 .build())
@@ -53,6 +50,6 @@ public class CobaltHealingItem extends CobaltDrinkItem {
 
         // Heal the user
         user.heal(healAmount);
-        user.playSound(SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1, 1);
+        user.playSoundToPlayer(SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1, 1);
     }
 }

@@ -14,15 +14,15 @@ public class CobaltPredicateProviderRegister {
     }
 
     private static void registerCrossbow(Item item) {
-        ModelPredicateProviderRegistry.register(item, new Identifier("pulling"), (stack, world, entity, seed) -> {
+        ModelPredicateProviderRegistry.register(item, Identifier.of("pulling"), (stack, world, entity, seed) -> {
             if (entity == null) return 0;
             return entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
         });
-        ModelPredicateProviderRegistry.register(item, new Identifier("pull"), (stack, world, entity, seed) -> {
+        ModelPredicateProviderRegistry.register(item, Identifier.of("pull"), (stack, world, entity, seed) -> {
             if (entity == null) return 0;
-            return entity.getActiveItem() != stack ? 0.0F : (stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / 20.0F;
+            return entity.getActiveItem() != stack ? 0.0F : (stack.getMaxUseTime(entity) - entity.getItemUseTimeLeft()) / 20.0F;
         });
-        ModelPredicateProviderRegistry.register(item, new Identifier("charged"), (stack, world, entity, seed) -> {
+        ModelPredicateProviderRegistry.register(item, Identifier.of("charged"), (stack, world, entity, seed) -> {
             if (entity == null) return 0;
             return CobaltCrossbowItem.isCharged(stack) ? 1F : 0F;
         });

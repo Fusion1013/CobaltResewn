@@ -2,12 +2,15 @@ package se.fusion1013.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -20,6 +23,7 @@ import java.util.*;
 /***
  * Provides global item configuration for all cobalt items
  */
+@Deprecated(since = "Use CobaltItem.Settings instead")
 public class CobaltItemConfiguration {
 
     private Formatting nameFormatting = Formatting.WHITE;
@@ -48,7 +52,7 @@ public class CobaltItemConfiguration {
         return text.copy().formatted(nameFormatting);
     }
 
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
         var splitTooltip = TextUtil.splitText(tooltipText);
         tooltip.addAll(splitTooltip);
@@ -110,22 +114,6 @@ public class CobaltItemConfiguration {
      */
     public CobaltItemConfiguration tooltip(String... translatableStrings) {
         for (String s : translatableStrings) this.tooltip.add(Text.translatable(s).formatted(Formatting.DARK_GRAY));
-        return this;
-    }
-
-    /**
-     * Apply an attribute modifier to the item.
-     *
-     * @param attribute the attribute to apply.
-     * @param modifier the attribute modifier.
-     * @param slots the slots to apply the attribute to. If left empty the attribute will not be applied.
-     * @return builder.
-     */
-    public CobaltItemConfiguration attributeModifier(EntityAttribute attribute, EntityAttributeModifier modifier, EquipmentSlot... slots) {
-        for (EquipmentSlot slot : slots) {
-            List<AttributeModifierProvider> list = attributeModifiers.computeIfAbsent(slot, k -> new ArrayList<>());
-            list.add(new AttributeModifierProvider(attribute, modifier));
-        }
         return this;
     }
 }

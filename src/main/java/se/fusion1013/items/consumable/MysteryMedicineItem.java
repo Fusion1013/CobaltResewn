@@ -1,23 +1,25 @@
 package se.fusion1013.items.consumable;
 
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 
 import java.util.Random;
 
 public class MysteryMedicineItem extends CobaltDrinkItem {
 
-    private final static StatusEffect[] POSITIVE_POOL = new StatusEffect[] {
+    private final static RegistryEntry<StatusEffect>[] POSITIVE_POOL = new RegistryEntry[] {
             StatusEffects.REGENERATION,
             StatusEffects.STRENGTH,
             StatusEffects.ABSORPTION,
             StatusEffects.HASTE
     };
-    private final static StatusEffect[] NEGATIVE_POOL = new StatusEffect[] {
+    private final static RegistryEntry<StatusEffect>[] NEGATIVE_POOL = new RegistryEntry[] {
             StatusEffects.BLINDNESS,
             StatusEffects.DARKNESS,
             StatusEffects.HUNGER,
@@ -25,10 +27,10 @@ public class MysteryMedicineItem extends CobaltDrinkItem {
             StatusEffects.SLOWNESS,
     };
 
-    public MysteryMedicineItem(CobaltItemConfiguration configuration, Settings settings) {
+    public MysteryMedicineItem(CobaltItem.Settings settings) {
 
-        super(configuration, settings.food(new FoodComponent.Builder()
-                .hunger(4)
+        super((CobaltItem.Settings) settings.food(new FoodComponent.Builder()
+                .nutrition(4)
                 .saturationModifier(.5f)
                 .alwaysEdible()
                 .build())

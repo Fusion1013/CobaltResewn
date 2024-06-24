@@ -1,6 +1,5 @@
 package se.fusion1013;
 
-import dev.emi.trinkets.api.TrinketsApi;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
 import se.fusion1013.block.CobaltBlocks;

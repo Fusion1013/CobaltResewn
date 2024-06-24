@@ -5,7 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.util.Identifier;
 
 import java.util.UUID;
 
@@ -16,10 +16,11 @@ public class ImmovableEffect extends StatusEffect {
     public ImmovableEffect() {
         super(StatusEffectCategory.HARMFUL, 0x818da1);
 
-        addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, UUID.randomUUID().toString(), 0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, Identifier.of("effects.immovable.movement_speed"), 0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        return false;
     }
 }

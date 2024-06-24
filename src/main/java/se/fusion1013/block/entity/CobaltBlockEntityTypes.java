@@ -1,16 +1,13 @@
 package se.fusion1013.block.entity;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.block.CobaltBlocks;
-import se.fusion1013.screen.ItemDisplayScreenHandler;
 
 /**
  * Handles registering custom {@link BlockEntityType}s.
@@ -29,7 +26,7 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<ForgeBlockEntity>                         FORGE_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Main.MOD_NAMESPACE, id), builder.build());
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Main.MOD_NAMESPACE, id), builder.build());
     }
 
     public static void registerAll() {}

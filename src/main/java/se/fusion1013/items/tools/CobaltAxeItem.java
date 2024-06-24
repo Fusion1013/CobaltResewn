@@ -1,53 +1,32 @@
 package se.fusion1013.items.tools;
 
-import se.fusion1013.items.CobaltItemConfiguration;
-import se.fusion1013.util.item.AttributeModifierProvider;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import se.fusion1013.items.CobaltItem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CobaltAxeItem extends AxeItem {
 
-    private final CobaltItemConfiguration configuration;
+    private final CobaltItem.Settings settings;
 
-    public CobaltAxeItem(ToolMaterial material, float attackDamage, float attackSpeed, CobaltItemConfiguration configuration, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
-
-        this.configuration = configuration;
+    public CobaltAxeItem(float attackDamage, float attackSpeed, CobaltItem.Settings settings) {
+        super(ToolMaterials.STONE, settings);
+        settings.attributeModifiers(AxeItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4));
+        this.settings = settings;
     }
 
     @Override
     public Text getName(ItemStack stack) {
-        return configuration.applyNameFormatting(super.getName(stack));
+        return settings.applyNameFormatting(super.getName(stack));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        configuration.appendTooltip(stack, world, tooltip, context);
-    }
-
-    @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        return configuration.getAttributeModifiers(super.getAttributeModifiers(stack, slot), stack, slot);
-    }
-
-    @Override
-    public void postProcessNbt(NbtCompound nbt) {
-        super.postProcessNbt(nbt);
-        configuration.postProcessNbt(nbt);
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        settings.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

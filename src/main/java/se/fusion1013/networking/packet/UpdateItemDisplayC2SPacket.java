@@ -1,6 +1,7 @@
 package se.fusion1013.networking.packet;
 
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
@@ -9,24 +10,28 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import se.fusion1013.Main;
 import se.fusion1013.block.entity.ItemDisplayBlockEntity;
+import se.fusion1013.networking.payload.UpdateItemDisplayPayloadC2S;
 import se.fusion1013.screen.ItemDisplayScreenHandler;
 
 public class UpdateItemDisplayC2SPacket {
 
-    public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
+    public static void receive(UpdateItemDisplayPayloadC2S payload, ServerPlayNetworking.Context context) {
 
-        var blockPos = buffer.readBlockPos();
+        var player = context.player();
+        var server = player.server;
 
-        var offset = buffer.readVector3f();
-        var offsetFrequency = buffer.readVector3f();
-        var offsetAmplitude = buffer.readVector3f();
+        var blockPos = payload.blockPos();
 
-        var scale = buffer.readVector3f();
-        var scaleFrequency = buffer.readVector3f();
-        var scaleAmplitude = buffer.readVector3f();
+        var offset = payload.offset();
+        var offsetFrequency = payload.offsetFrequency();
+        var offsetAmplitude = payload.offsetAmplitude();
 
-        var rotation = buffer.readVector3f();
-        var rotationSpeed = buffer.readVector3f();
+        var scale = payload.scale();
+        var scaleFrequency = payload.scaleFrequency();
+        var scaleAmplitude = payload.scaleAmplitude();
+
+        var rotation = payload.rotation();
+        var rotationSpeed = payload.rotationSpeed();
 
         server.execute(() -> {
             var world = player.getWorld();

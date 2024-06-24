@@ -1,47 +1,30 @@
 package se.fusion1013.items.crossbow;
 
-import com.google.common.collect.Multimap;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 
 import java.util.List;
 
 public class CobaltCrossbowItem extends CrossbowItem {
 
-    private final CobaltItemConfiguration configuration;
+    private final CobaltItem.Settings settings;
 
-    public CobaltCrossbowItem(CobaltItemConfiguration configuration, Settings settings) {
+    public CobaltCrossbowItem(CobaltItem.Settings settings) {
         super(settings.maxCount(1));
-        this.configuration = configuration;
+        this.settings = settings;
     }
 
     @Override
     public Text getName(ItemStack stack) {
-        return configuration.applyNameFormatting(super.getName(stack));
+        return settings.applyNameFormatting(super.getName(stack));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        configuration.appendTooltip(stack, world, tooltip, context);
-    }
-
-    @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        return configuration.getAttributeModifiers(super.getAttributeModifiers(stack, slot), stack, slot);
-    }
-
-    @Override
-    public void postProcessNbt(NbtCompound nbt) {
-        super.postProcessNbt(nbt);
-        configuration.postProcessNbt(nbt);
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        settings.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

@@ -13,6 +13,6 @@ public class CobaltTags {
     /**
      * Contains {@link Item}s that reveal {@link se.fusion1013.block.RuneBlock}s.
      */
-    public static final TagKey<Item> REVEALS_RUNES = TagKey.of(RegistryKeys.ITEM, new Identifier("cobalt", "reveals_runes"));
+    public static final TagKey<Item> REVEALS_RUNES = TagKey.of(RegistryKeys.ITEM, Identifier.of("cobalt", "reveals_runes"));
 
 }

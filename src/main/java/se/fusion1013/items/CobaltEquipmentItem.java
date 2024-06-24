@@ -1,35 +1,27 @@
 package se.fusion1013.items;
 
-import se.fusion1013.Main;
-import se.fusion1013.items.armor.CobaltArmorItem;
-import se.fusion1013.items.materials.CobaltArmorMaterial;
-import se.fusion1013.util.item.ArmorUtil;
-import com.google.common.collect.Multimap;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Equipment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class CobaltEquipmentItem extends Item implements Equipment, ICobaltArmorItem {
 
-    private final CobaltItemConfiguration configuration;
     private final EquipmentSlot slotType;
-    public final CobaltArmorMaterial material;
+    private final CobaltItem.Settings settings;
+    public final RegistryEntry<ArmorMaterial> material;
 
-    public CobaltEquipmentItem(CobaltArmorMaterial material, CobaltItemConfiguration configuration, Settings settings, EquipmentSlot slotType) {
+    public CobaltEquipmentItem(RegistryEntry<ArmorMaterial> material, CobaltItem.Settings settings, EquipmentSlot slotType) {
         super(settings.maxCount(1));
 
-        this.configuration = configuration;
         this.slotType = slotType;
+        this.settings = settings;
         this.material = material;
     }
 
@@ -40,31 +32,13 @@ public class CobaltEquipmentItem extends Item implements Equipment, ICobaltArmor
 
     @Override
     public Text getName(ItemStack stack) {
-        return configuration.applyNameFormatting(super.getName(stack));
+        return settings.applyNameFormatting(super.getName(stack));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        configuration.appendTooltip(stack, world, tooltip, context);
-        super.appendTooltip(stack, world, tooltip, context);
-    }
-
-    @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        var map = configuration.getAttributeModifiers(super.getAttributeModifiers(stack, slot), stack, slot);
-        map = ArmorUtil.getAttributeModifiers(map, material, ArmorUtil.toArmorType(getSlotType()), slot);
-        return map;
-    }
-
-    @Override
-    public boolean isDamageable() {
-        return false;
-    }
-
-    @Override
-    public void postProcessNbt(NbtCompound nbt) {
-        super.postProcessNbt(nbt);
-
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        settings.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class ForgeBlock extends BlockWithEntity implements BlockEntityProvider {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         // Check if player is holding forge hammer
         ItemStack mainHandStack = player.getMainHandStack();
         if (mainHandStack.getItem() != CobaltItems.SwordItems.FORGE_HAMMER) return ActionResult.FAIL;
@@ -57,7 +57,7 @@ public class ForgeBlock extends BlockWithEntity implements BlockEntityProvider {
         world.spawnEntity(lightning);
 
         // Play sounds
-        player.playSound(SoundEvents.ITEM_TRIDENT_THUNDER, SoundCategory.BLOCKS, 1, 1);
+        player.playSoundToPlayer(SoundEvents.ITEM_TRIDENT_THUNDER.value(), SoundCategory.BLOCKS, 1, 1);
 
         // Throw nearby players back and up in the air
         // TODO

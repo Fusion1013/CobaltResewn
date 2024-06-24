@@ -11,14 +11,14 @@ import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ServerScoreboard;
 import net.minecraft.server.network.ServerPlayerEntity;
 import se.fusion1013.Main;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.networking.CobaltNetworkingConstants;
 
 public class MechanicSpectaclesTrinket extends CobaltTrinketItem {
 
 
-    public MechanicSpectaclesTrinket(Settings settings, CobaltItemConfiguration configuration, TrinketModifierProvider modifierProvider) {
-        super(settings, configuration, modifierProvider);
+    public MechanicSpectaclesTrinket(CobaltItem.Settings settings, TrinketModifierProvider modifierProvider) {
+        super(settings, modifierProvider);
     }
 
     @Override

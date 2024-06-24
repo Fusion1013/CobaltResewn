@@ -12,6 +12,7 @@ import org.joml.Vector3f;
 import se.fusion1013.Main;
 import se.fusion1013.block.entity.CobaltBlockEntityTypes;
 import se.fusion1013.block.entity.ItemDisplayBlockEntity;
+import se.fusion1013.networking.payload.ItemDisplayScreenHandlerPayloadS2C;
 
 public class ItemDisplayScreenHandler extends ScreenHandler {
 
@@ -28,19 +29,19 @@ public class ItemDisplayScreenHandler extends ScreenHandler {
     private Vector3f rotation;
     private Vector3f rotationSpeed;
 
-    public ItemDisplayScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buffer) {
+    public ItemDisplayScreenHandler(int syncId, PlayerInventory playerInventory, ItemDisplayScreenHandlerPayloadS2C payload) {
         this(syncId, playerInventory);
 
         // Load data from buffer
-        blockPos = buffer.readBlockPos();
-        offset = buffer.readVector3f();
-        offsetFrequency = buffer.readVector3f();
-        offsetAmplitude = buffer.readVector3f();
-        scale = buffer.readVector3f();
-        scaleFrequency = buffer.readVector3f();
-        scaleAmplitude = buffer.readVector3f();
-        rotation = buffer.readVector3f();
-        rotationSpeed = buffer.readVector3f();
+        blockPos = payload.blockPos();
+        offset = payload.offset();
+        offsetFrequency = payload.offsetFrequency();
+        offsetAmplitude = payload.offsetAmplitude();
+        scale = payload.scale();
+        scaleFrequency = payload.scaleFrequency();
+        scaleAmplitude = payload.scaleAmplitude();
+        rotation = payload.rotation();
+        rotationSpeed = payload.rotationSpeed();
     }
 
     public ItemDisplayScreenHandler(int syncId, PlayerInventory playerInventory) {

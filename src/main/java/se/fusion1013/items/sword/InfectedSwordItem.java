@@ -1,30 +1,30 @@
 package se.fusion1013.items.sword;
 
-import se.fusion1013.entity.damage.CobaltDamageTypes;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.entity.damage.CobaltDamageTypes;
+import se.fusion1013.items.CobaltItem;
 
 import java.util.List;
 
+@Deprecated(since = "Create custom Item Component for lifesteal")
 public class InfectedSwordItem extends CobaltSwordItem {
 
     private final float m_healthReduction;
     private final int m_cooldown;
     private final InfectedAction m_infectedAction;
 
-    public InfectedSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings, Formatting nameFormatting, float healthReduction, int cooldown, InfectedAction infectedAction) {
-        super(toolMaterial, attackDamage, attackSpeed, CobaltItemConfiguration.create(nameFormatting), settings);
+    public InfectedSwordItem(int attackDamage, float attackSpeed, CobaltItem.Settings settings, float healthReduction, int cooldown, InfectedAction infectedAction) {
+        super(attackDamage, attackSpeed, settings);
 
         this.m_healthReduction = healthReduction;
         this.m_cooldown = cooldown;
@@ -51,8 +51,8 @@ public class InfectedSwordItem extends CobaltSwordItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
         tooltip.add(Text.translatable("item.cobalt.infected_adventure_sword.ability").formatted(Formatting.GOLD));
     }
 

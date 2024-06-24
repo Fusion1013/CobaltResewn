@@ -1,9 +1,7 @@
 package se.fusion1013.entity;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.SculkSpreadManager;
-import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
@@ -23,6 +21,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -33,7 +32,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3d;
-import org.joml.Vector3f;
 import se.fusion1013.util.block.BlockSpreadManager;
 import se.fusion1013.util.math.MathUtil;
 
@@ -74,9 +72,9 @@ public class CorruptedCoreEntity extends HostileEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IS_DYING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(IS_DYING, false);
     }
 
     @Override
@@ -276,7 +274,7 @@ public class CorruptedCoreEntity extends HostileEntity {
 
     static {
         IS_DYING = DataTracker.registerData(CorruptedCoreEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-        CAN_BOOST_PREDICATE = hostileEntity -> !hostileEntity.isPlayer() && (hostileEntity.getGroup() == EntityGroup.UNDEAD || hostileEntity.getGroup() == EntityGroup.ARTHROPOD || hostileEntity.getGroup() == EntityGroup.ILLAGER);
+        CAN_BOOST_PREDICATE = hostileEntity -> !hostileEntity.isPlayer() && hostileEntity.getType().isIn(CobaltEntityTypeTags.CORRUPTED_CORE_FRIENDS);
         CAN_ATTACK_PREDICATE = TargetPredicate.createAttackable().setBaseMaxDistance(20).setPredicate(CAN_BOOST_PREDICATE);
     }
 

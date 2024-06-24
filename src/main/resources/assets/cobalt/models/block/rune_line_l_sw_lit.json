@@ -1,7 +1,7 @@
 {
   "parent": "cobalt:block/rune_base",
   "textures": {
-    "particle": "cobalt:block/rune_l_sw",
+    "particle": "cobalt:block/rune_line_l_sw",
     "rune": "cobalt:block/rune_line_l_sw"
   }
 }

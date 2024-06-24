@@ -14,11 +14,12 @@ public class ColdResistanceEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         // Remove cold-related effects on the entity
         entity.removeStatusEffect(CobaltEffects.FREEZING_EFFECT);
         entity.setInPowderSnow(false);
         entity.setFrozenTicks(0);
+        return true;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package se.fusion1013.entity;
 
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.item.Items;
 import se.fusion1013.items.CobaltItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
@@ -18,24 +20,24 @@ import net.minecraft.world.event.GameEvent;
 public class LightningArrowEntity extends PersistentProjectileEntity {
 
     protected LightningArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world, ItemStack stack) {
-        super(entityType, world, stack);
+        super(entityType, world);
     }
 
     public LightningArrowEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(CustomEntityRegistry.LIGHTNING_ARROW, owner, world, stack);
+        super(CustomEntityRegistry.LIGHTNING_ARROW, owner, world, stack, owner.getWeaponStack());
     }
 
     public LightningArrowEntity(EntityType<? extends PersistentProjectileEntity> entityEntityType, World world) {
-        super(entityEntityType, world, new ItemStack(CobaltItems.ArrowItems.LIGHTNING_ARROW));
+        super(entityEntityType, world);
     }
 
     public LightningArrowEntity(double x, double y, double z, World world, ItemStack stack) {
-        super(CustomEntityRegistry.LIGHTNING_ARROW, x, y, z, world, stack);
+        super(CustomEntityRegistry.LIGHTNING_ARROW, x, y, z, world, stack, Items.BOW.getDefaultStack());
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
     }
 
     @Override
@@ -102,5 +104,10 @@ public class LightningArrowEntity extends PersistentProjectileEntity {
     @Override
     protected ItemStack asItemStack() {
         return new ItemStack(CobaltItems.ArrowItems.LIGHTNING_ARROW);
+    }
+
+    @Override
+    protected ItemStack getDefaultItemStack() {
+        return asItemStack();
     }
 }

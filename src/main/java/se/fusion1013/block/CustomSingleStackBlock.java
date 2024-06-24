@@ -54,16 +54,16 @@ public abstract class CustomSingleStackBlock extends BlockWithEntity implements 
     /// region Insert / Extract Items
 
     @Override
-    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
+    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
         Inventory blockEntity = (Inventory) world.getBlockEntity(blockPos);
 
-        if (!player.getStackInHand(hand).isEmpty()) {
+        if (!player.getMainHandStack().isEmpty()) {
             // Check what is the first open slot and put an item from the player's hand there
             if (blockEntity.getStack(0).isEmpty()) {
                 // Insert the item into the inventory and remove it from the player
-                blockEntity.setStack(0, player.getStackInHand(hand).copy());
-                player.getStackInHand(hand).setCount(0);
+                blockEntity.setStack(0, player.getMainHandStack().copy());
+                player.getMainHandStack().setCount(0);
 
                 blockEntity.markDirty();
                 world.updateListeners(blockPos, blockState, world.getBlockState(blockPos), Block.NOTIFY_LISTENERS);

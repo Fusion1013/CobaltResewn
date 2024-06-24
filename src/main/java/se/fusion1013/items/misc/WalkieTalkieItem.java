@@ -1,6 +1,5 @@
 package se.fusion1013.items.misc;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import se.fusion1013.items.CobaltItem;
-import se.fusion1013.items.CobaltItemConfiguration;
 import se.fusion1013.networking.CobaltNetworkingConstants;
 
 import java.util.Objects;
@@ -27,7 +25,7 @@ public class WalkieTalkieItem extends CobaltItem {
     private static final String NBT_KEY_ACTIVATE = "cobalt.walkietalkie.activate";
 
     public WalkieTalkieItem(int maxRange) {
-        super(CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings().maxCount(1));
+        super((CobaltItem.Settings) new CobaltItem.Settings(Formatting.GOLD).maxCount(1));
         MAX_RANGE = maxRange;
     }
 

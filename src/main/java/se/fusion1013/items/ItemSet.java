@@ -2,7 +2,6 @@ package se.fusion1013.items;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -10,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -116,7 +116,7 @@ public class ItemSet {
 
     // -- Events
 
-    public static void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public static void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         var sets = ITEM_SET_MEMBERS.get(stack.getItem());
         if (sets == null) return;
 

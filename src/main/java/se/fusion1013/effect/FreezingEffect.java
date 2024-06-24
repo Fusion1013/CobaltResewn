@@ -1,12 +1,10 @@
 package se.fusion1013.effect;
 
-import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
 /**
  * Simulates the effect of powdered snow on the entity.
@@ -17,7 +15,7 @@ public class FreezingEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         var world = entity.getWorld();
         var pos = entity.getPos();
 
@@ -26,6 +24,7 @@ public class FreezingEffect extends StatusEffect {
             world.addParticle(ParticleTypes.SNOWFLAKE, entity.getX(), (double)(pos.getY() + 1), entity.getZ(), (double)(MathHelper.nextBetween(random, -1.0F, 1.0F) * 0.083333336F), 0.05000000074505806D, (double)(MathHelper.nextBetween(random, -1.0F, 1.0F) * 0.083333336F));
         }
         entity.setInPowderSnow(true);
+        return true;
     }
 
     @Override

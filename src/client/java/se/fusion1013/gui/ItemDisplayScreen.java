@@ -1,6 +1,5 @@
 package se.fusion1013.gui;
 
-import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -8,14 +7,11 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.SetCameraEntityS2CPacket;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import org.joml.Vector3f;
 import se.fusion1013.gui.widget.VectorWidget;
-import se.fusion1013.networking.CobaltNetworkingConstants;
+import se.fusion1013.networking.payload.UpdateItemDisplayPayloadC2S;
 import se.fusion1013.screen.ItemDisplayScreenHandler;
 
 @Environment(EnvType.CLIENT)
@@ -172,21 +168,16 @@ public class ItemDisplayScreen extends HandledScreen<ItemDisplayScreenHandler> {
     }
 
     private void sendUpdateItemDisplayBlock() {
-        PacketByteBuf buffer = new PacketByteBuf(Unpooled.buffer());
-
-        buffer.writeBlockPos(blockPos);
-
-        buffer.writeVector3f(offset);
-        buffer.writeVector3f(offsetFrequency);
-        buffer.writeVector3f(offsetAmplitude);
-
-        buffer.writeVector3f(scale);
-        buffer.writeVector3f(scaleFrequency);
-        buffer.writeVector3f(scaleAmplitude);
-
-        buffer.writeVector3f(rotation);
-        buffer.writeVector3f(rotationSpeed);
-
-        ClientPlayNetworking.send(CobaltNetworkingConstants.UPDATE_ITEM_DISPLAY_C2S, buffer);
+        ClientPlayNetworking.send(new UpdateItemDisplayPayloadC2S(
+                blockPos,
+                offset,
+                offsetFrequency,
+                offsetAmplitude,
+                scale,
+                scaleFrequency,
+                scaleAmplitude,
+                rotation,
+                rotationSpeed)
+        );
     }
 }

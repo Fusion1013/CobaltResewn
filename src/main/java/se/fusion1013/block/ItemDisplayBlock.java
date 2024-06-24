@@ -46,14 +46,14 @@ public class ItemDisplayBlock extends BlockWithEntity implements BlockEntityProv
     }
 
     @Override
-    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
+    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
 
         Inventory blockEntity = (Inventory) world.getBlockEntity(blockPos);
 
-        if (!player.getStackInHand(hand).isEmpty()) {
+        if (!player.getMainHandStack().isEmpty()) {
             // Player is holding something, set the item in the display block
-            blockEntity.setStack(0, player.getStackInHand(hand).copy());
+            blockEntity.setStack(0, player.getMainHandStack().copy());
             blockEntity.markDirty();
             world.updateListeners(blockPos, blockState, world.getBlockState(blockPos), Block.NOTIFY_LISTENERS);
 

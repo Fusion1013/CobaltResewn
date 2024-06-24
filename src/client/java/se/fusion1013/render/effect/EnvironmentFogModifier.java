@@ -4,12 +4,13 @@ import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.MathHelper;
 import se.fusion1013.effect.CobaltEffects;
 
 public class EnvironmentFogModifier implements BackgroundRenderer.StatusEffectFogModifier {
     @Override
-    public StatusEffect getStatusEffect() {
+    public RegistryEntry<StatusEffect> getStatusEffect() {
         return CobaltEffects.ENVIRONMENT_EFFECT;
     }
 

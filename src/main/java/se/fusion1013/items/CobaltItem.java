@@ -1,51 +1,97 @@
 package se.fusion1013.items;
 
-import com.google.common.collect.Multimap;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import se.fusion1013.util.TextUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CobaltItem extends Item {
 
-    private final CobaltItemConfiguration configuration;
+    private final Settings settings;
 
-    public CobaltItem(CobaltItemConfiguration configuration, Settings settings) {
+    public CobaltItem(Settings settings) {
         super(settings);
-        this.configuration = configuration;
+        this.settings = settings;
     }
 
     @Override
     public Text getName(ItemStack stack) {
-        return configuration.applyNameFormatting(super.getName(stack));
+        return settings.applyNameFormatting(super.getName(stack));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        configuration.appendTooltip(stack, world, tooltip, context);
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        settings.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 
-    @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        return configuration.getAttributeModifiers(super.getAttributeModifiers(stack, slot), stack, slot);
-    }
 
-    @Override
-    public void postProcessNbt(NbtCompound nbt) {
-        super.postProcessNbt(nbt);
-        configuration.postProcessNbt(nbt);
+
+    public static class Settings extends Item.Settings {
+
+        private final Formatting nameFormatting;
+        private final List<Text> tooltip = new ArrayList<>();
+
+        public Settings(Formatting nameFormatting) {
+            super();
+            this.nameFormatting = nameFormatting;
+
+            // Apply default components
+            component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
+        }
+
+        // Apply
+
+        public Text applyNameFormatting(Text text) {
+            return text.copy().formatted(nameFormatting);
+        }
+
+        public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+            var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
+            var splitTooltip = TextUtil.splitText(tooltipText);
+            tooltip.addAll(splitTooltip);
+            tooltip.addAll(this.tooltip);
+        }
+
+        // Builder
+
+        public Settings tooltip(Text... tooltip) {
+            this.tooltip.addAll(Arrays.asList(tooltip));
+            return this;
+        }
+
+        private Settings tooltip(String... translatableStrings) {
+            for (String s : translatableStrings) this.tooltip.add(Text.translatable(s).formatted(Formatting.DARK_GRAY));
+            return this;
+        }
+
+
+
+        public Settings attribute(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier, AttributeModifierSlot slot) {
+            component(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.builder()
+                    .add(attribute, modifier, slot)
+                    .build());
+            return this;
+        }
+
+        // Override
+
+        public Settings maxCount(int amount) {
+            super.maxCount(amount);
+            return this;
+        }
     }
 }

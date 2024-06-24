@@ -1,18 +1,18 @@
 package se.fusion1013.items.consumable;
 
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 
 public class LiquidCourageItem extends CobaltDrinkItem {
 
-    public LiquidCourageItem(CobaltItemConfiguration configuration, Settings settings) {
-        super(configuration, settings.food(new FoodComponent.Builder()
-                .hunger(0)
+    public LiquidCourageItem(CobaltItem.Settings settings) {
+        super((CobaltItem.Settings) settings.food(new FoodComponent.Builder()
+                .nutrition(0)
                 .saturationModifier(0f)
                 .alwaysEdible()
                 .build())

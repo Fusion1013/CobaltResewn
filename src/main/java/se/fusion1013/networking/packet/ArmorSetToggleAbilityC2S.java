@@ -15,17 +15,6 @@ public class ArmorSetToggleAbilityC2S extends ServerPacketBase {
 
     @Override
     public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
-
-        // Iterate over all armor sets and activate the ability if the player is wearing it
-
-        CobaltArmorSet.REGISTERED_ARMOR_SETS.forEach((key, set) -> {
-
-            // Check if player is wearing the armor set,
-            // If they are, activate the armor set ability
-
-            if (!ArmorUtil.isWearingArmorSet(player, set.material)) return;
-            // TODO
-        });
     }
 
 }

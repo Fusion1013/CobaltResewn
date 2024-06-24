@@ -1,9 +1,9 @@
 package se.fusion1013.mixin;
 
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -24,8 +24,8 @@ public class ItemMixin {
     }
 
     @Inject(method = "appendTooltip", at = @At("TAIL"))
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
-        ItemSet.appendTooltip(stack, world, tooltip, context); // Call item set method
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
+        ItemSet.appendTooltip(stack, context, tooltip, type); // Call item set method
     }
 
 }
