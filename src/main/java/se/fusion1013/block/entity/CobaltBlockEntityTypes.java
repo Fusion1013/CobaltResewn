@@ -27,6 +27,7 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<PedestalBlockEntity>                      PEDESTAL_BLOCK_ENTITY;
     public static final BlockEntityType<ItemDisplayBlockEntity>                   ITEM_DISPLAY_BLOCK_ENTITY;
     public static final BlockEntityType<ForgeBlockEntity>                         FORGE_BLOCK_ENTITY;
+    public static final BlockEntityType<ComputerBlockEntity>                      COMPUTER_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Main.MOD_NAMESPACE, id), builder.build());
@@ -45,6 +46,7 @@ public class CobaltBlockEntityTypes {
         PEDESTAL_BLOCK_ENTITY = register("pedestal_block_entity", FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, CobaltBlocks.PEDESTAL_BLOCK));
         ITEM_DISPLAY_BLOCK_ENTITY = register("item_display_entity", FabricBlockEntityTypeBuilder.create(ItemDisplayBlockEntity::new, CobaltBlocks.ITEM_DISPLAY));
         FORGE_BLOCK_ENTITY = register("forge_block_entity", FabricBlockEntityTypeBuilder.create(ForgeBlockEntity::new, CobaltBlocks.FORGE_BLOCK));
+        COMPUTER_BLOCK_ENTITY = register("computer_block_entity", FabricBlockEntityTypeBuilder.create(ComputerBlockEntity::new, CobaltBlocks.COMPUTER));
     }
 
 }

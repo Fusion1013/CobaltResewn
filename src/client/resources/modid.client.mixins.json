@@ -7,6 +7,8 @@
     "ExampleMixin",
     "InGameHudMixin",
     "render.BackgroundRendererMixin"
+    "render.entity.PlayerEntityRendererMixin",
+    "render.item.HeldItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

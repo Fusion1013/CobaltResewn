@@ -51,6 +51,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
+import se.fusion1013.items.tools.FlashlightItem;
 import se.fusion1013.items.trinket.CobaltTrinketItem;
 import se.fusion1013.items.trinket.MechanicSpectaclesTrinket;
 import se.fusion1013.util.item.ItemSetUtil;
@@ -412,6 +413,8 @@ public class CobaltItems {
 
         public static final Item FORGE_SIDE_CRYSTAL;
 
+        public static final Item FLASHLIGHT;
+
         static {
             // Healing
             PAINKILLERS = register("painkillers", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), 5));
@@ -438,6 +441,8 @@ public class CobaltItems {
             RUNE_MODIFIER = register("rune_modifier", new CobaltItem(CobaltItemConfiguration.create(Formatting.DARK_PURPLE), new FabricItemSettings()));
 
             FORGE_SIDE_CRYSTAL = register("forge_side_crystal", new CobaltItem(CobaltItemConfiguration.create(Formatting.LIGHT_PURPLE), new FabricItemSettings().maxCount(1)));
+
+            FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
         }
 
     }
