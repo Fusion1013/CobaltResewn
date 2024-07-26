@@ -6,9 +6,9 @@
     "ExampleClientMixin",
     "ExampleMixin",
     "InGameHudMixin",
-    "render.BackgroundRendererMixin"
-    "render.entity.PlayerEntityRendererMixin",
-    "render.item.HeldItemRendererMixin"
+    "render.BackgroundRendererMixin",
+    "render.GameRendererMixin",
+    "render.LightTextureMixin",
   ],
   "injectors": {
     "defaultRequire": 1

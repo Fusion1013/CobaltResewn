@@ -6,9 +6,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.network.PacketByteBuf;
@@ -21,6 +21,7 @@ import se.fusion1013.model.CobaltPredicateProviderRegister;
 import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.networking.CobaltNetworkingConstants;
 import se.fusion1013.render.block.CobaltBlockEntityRenderers;
+import se.fusion1013.render.block.DirectionalLightHolderBlockEntityRenderer;
 import se.fusion1013.render.entity.CorruptedCoreEntityModel;
 import se.fusion1013.render.entity.CorruptedCoreEntityRenderer;
 import se.fusion1013.render.entity.ExplosiveArrowEntityRenderer;
@@ -48,6 +49,8 @@ public class MainClient implements ClientModInitializer {
 
 	public static final EntityModelLayer MODEL_CORRUPTED_CORE_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_core"), "main");
 
+	public static final EntityModelLayer TEST_BLOCK_ENTITY_LAYER = new EntityModelLayer(new Identifier("cobalt", "empty_lens"), "main");
+
 	@Override
 	public void onInitializeClient() {
 		initializeKeybinds();
@@ -60,6 +63,8 @@ public class MainClient implements ClientModInitializer {
 		EntityRendererRegistry.register(CustomEntityRegistry.CORRUPTED_CORE, CorruptedCoreEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_CORRUPTED_CORE_LAYER, CorruptedCoreEntityModel::getTexturedModelData);
 
+		EntityModelLayerRegistry.registerModelLayer(TEST_BLOCK_ENTITY_LAYER, DirectionalLightHolderBlockEntityRenderer::getTestTexturedModelData);
+
 		// Block rendering
 		CobaltBlockEntityRenderers.registerAll();
 
@@ -67,12 +72,14 @@ public class MainClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				CobaltBlocks.SCULK_GRASS,
 				CobaltBlocks.SHORT_SCULK_GRASS,
-				CobaltBlocks.ITEM_DISPLAY
+				CobaltBlocks.ITEM_DISPLAY,
+				CobaltBlocks.ICICLE_BLOCK
 		);
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
 				CobaltBlocks.RUNE_BLOCK,
-				CobaltBlocks.SCULK_GROWTH
+				CobaltBlocks.SCULK_GROWTH,
+				CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER
 		);
 
 		// Screens

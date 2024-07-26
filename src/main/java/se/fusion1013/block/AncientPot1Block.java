@@ -23,6 +23,11 @@ public class AncientPot1Block extends CustomSingleStackBlock {
     }
 
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }

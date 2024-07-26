@@ -1,47 +1,24 @@
 package se.fusion1013.items;
 
 import dev.emi.trinkets.api.SlotAttributes;
-import dev.emi.trinkets.api.SlotReference;
 import io.wispforest.lavender.book.LavenderBookItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.datafixer.fix.StatusEffectFix;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Arm;
-import org.jetbrains.annotations.Nullable;
-import se.fusion1013.Main;
-import se.fusion1013.effect.CobaltEffects;
-import se.fusion1013.entity.ExplosiveArrowEntity;
-import se.fusion1013.entity.LightningArrowEntity;
-import se.fusion1013.items.armor.CobaltArmorItem;
-import se.fusion1013.items.armor.CobaltArmorSet;
-import se.fusion1013.items.consumable.CobaltHealingItem;
-import se.fusion1013.items.consumable.LiquidCourageItem;
-import se.fusion1013.items.consumable.MysteryMedicineItem;
-import se.fusion1013.items.crossbow.CobaltCrossbowItem;
-import se.fusion1013.items.materials.CobaltArmorMaterial;
-import se.fusion1013.items.misc.CorruptedPearlItem;
-import se.fusion1013.items.misc.WalkieTalkieItem;
-import se.fusion1013.items.sword.InfectedSwordItem;
-import se.fusion1013.items.sword.SampleDrillItem;
-import se.fusion1013.items.tools.BasicDrillItem;
-import se.fusion1013.items.tools.CobaltAxeItem;
-import se.fusion1013.items.sword.CobaltSwordItem;
-import se.fusion1013.items.tools.CobaltPickaxeItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundCategory;
@@ -50,6 +27,14 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+import se.fusion1013.effect.CobaltEffects;
+import se.fusion1013.entity.ExplosiveArrowEntity;
+import se.fusion1013.entity.LightningArrowEntity;
+import se.fusion1013.items.armor.CobaltArmorSet;
+import se.fusion1013.items.consumable.CobaltHealingItem;
+import se.fusion1013.items.consumable.LiquidCourageItem;
+import se.fusion1013.items.consumable.MysteryMedicineItem;
+import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
 import se.fusion1013.items.tools.FlashlightItem;
 import se.fusion1013.items.trinket.CobaltTrinketItem;
@@ -58,6 +43,16 @@ import se.fusion1013.util.item.ItemSetUtil;
 
 import java.text.Format;
 import java.util.List;
+import se.fusion1013.items.misc.CorruptedPearlItem;
+import se.fusion1013.items.misc.WalkieTalkieItem;
+import se.fusion1013.items.sword.CobaltSwordItem;
+import se.fusion1013.items.sword.InfectedSwordItem;
+import se.fusion1013.items.sword.SampleDrillItem;
+import se.fusion1013.items.sword.VoidRendSwordItem;
+import se.fusion1013.items.tools.BasicDrillItem;
+import se.fusion1013.items.tools.CobaltAxeItem;
+import se.fusion1013.items.tools.CobaltPickaxeItem;
+import se.fusion1013.items.trinket.*;
 
 import static se.fusion1013.Main.MOD_NAMESPACE;
 import static se.fusion1013.items.CustomItemGroupRegistry.*;
@@ -203,6 +198,7 @@ public class CobaltItems {
         public static final Item RATCHETING_SCREWDRIVER;
         public static final Item BIONIC_FIST;
         public static final Item FORGE_HAMMER;
+        public static final Item VOIDREND;
 
         static {
             DAGGER = register("dagger", new CobaltSwordItem(ToolMaterials.STONE, -2+1, -4+3,
@@ -228,6 +224,7 @@ public class CobaltItems {
             BIONIC_FIST = register("bionic_fist", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD)
                     .attributeModifier(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, new EntityAttributeModifier("cobalt.bionic_fist.knockback", 1.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
             FORGE_HAMMER = register("forge_hammer", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
+            VOIDREND = register("voidrend", new VoidRendSwordItem());
         }
 
     }
@@ -281,11 +278,17 @@ public class CobaltItems {
         public static final Item MECHANIC_SPECTACLES;
         public static final Item GEARSTRAP;
 
+        // Basic Runes
         public static final Item RUNE_GLOVE;
         public static final Item HEALTH_RUNE;
         public static final Item HEAVY_RUNE;
+        public static final Item FAST_RUNE;
 
+        // Advanced Runes
         public static final Item FIRE_RUNE;
+        public static final Item ICE_RUNE;
+        public static final Item LIGHTNING_RUNE;
+        public static final Item THICK_RUNE;
 
         static {
             HUNTER_GLOVE = register("hunter_gloves", new CobaltTrinketItem(
@@ -340,31 +343,15 @@ public class CobaltItems {
                     }
             ));
 
-            HEALTH_RUNE = register("health_rune", new CobaltTrinketItem(
-                    new Item.Settings(),
-                    new CobaltItemConfiguration()
-                            .nameFormatting(Formatting.RED),
-                    (modifiers, stack, slot, entity, uuid) -> {
-                        modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "cobalt.health_rune.health", 0.1f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                        return modifiers;
-                    }
-            ));
-            HEAVY_RUNE = register("heavy_rune", new CobaltTrinketItem(
-                    new Item.Settings(),
-                    new CobaltItemConfiguration()
-                            .nameFormatting(Formatting.GRAY),
-                    (modifiers, stack, slot, entity, uuid) -> {
-                        modifiers.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(uuid, "cobalt.heavy_rune.armor", 2, EntityAttributeModifier.Operation.ADDITION));
-                        return modifiers;
-                    }
-            ));
+            HEALTH_RUNE = register("health_rune", new HealthRuneItem());
+            HEAVY_RUNE = register("heavy_rune", new HeavyRuneItem());
+            FAST_RUNE = register("fast_rune", new FastRuneItem());
 
-            FIRE_RUNE = register("fire_rune", new CobaltTrinketItem(
-                    new Item.Settings(),
-                    new CobaltItemConfiguration()
-                            .nameFormatting(Formatting.RED),
-                    (modifiers, stack, slot, entity, uuid) -> modifiers
-            ));
+            FIRE_RUNE = register("fire_rune", new FireRuneItem());
+            ICE_RUNE = register("ice_rune", new IceRuneItem());
+            LIGHTNING_RUNE = register("lightning_rune", new LightningRuneItem());
+            THICK_RUNE = register("thick_rune", new ThickRuneItem());
+
         }
 
     }
@@ -414,6 +401,11 @@ public class CobaltItems {
         public static final Item FORGE_SIDE_CRYSTAL;
 
         public static final Item FLASHLIGHT;
+        public static final Item LIGHT_SOUL;
+        public static final Item LENS;
+        public static final Item RED_LENS;
+        public static final Item GREEN_LENS;
+        public static final Item BLUE_LENS;
 
         static {
             // Healing
@@ -443,6 +435,11 @@ public class CobaltItems {
             FORGE_SIDE_CRYSTAL = register("forge_side_crystal", new CobaltItem(CobaltItemConfiguration.create(Formatting.LIGHT_PURPLE), new FabricItemSettings().maxCount(1)));
 
             FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+            LIGHT_SOUL = register("light_soul", new CobaltItem(CobaltItemConfiguration.create(Formatting.AQUA), new FabricItemSettings().maxCount(1)));
+            LENS = register("lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+            RED_LENS = register("red_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+            GREEN_LENS = register("green_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+            BLUE_LENS = register("blue_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
         }
 
     }
@@ -452,51 +449,7 @@ public class CobaltItems {
     // --- ITEM SETS
 
     public static class ItemSets {
-
-        // Runes
-        public static final ItemSet FIRE_RUNE_HEALTH;
-        public static final ItemSet FIRE_RUNE_HEAVY;
-
-        static {
-            FIRE_RUNE_HEALTH = ItemSet.register(new Identifier("fire_rune_health"), new ItemSet.ItemSetItem[]{
-                    new ItemSet.ItemSetItem(TrinketItems.HEALTH_RUNE, ItemSet.ItemLocation.Trinket, false),
-                    new ItemSet.ItemSetItem(TrinketItems.FIRE_RUNE, ItemSet.ItemLocation.Trinket)
-            }, new IItemSetMethods() {
-                @Override
-                public void trinketTick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-                    IItemSetMethods.super.trinketTick(stack, slot, entity);
-                    if (!entity.hasStatusEffect(StatusEffects.REGENERATION)) ItemSetUtil.addSetBonusStatusEffect(entity, new StatusEffectInstance(StatusEffects.REGENERATION, 60, 0));
-                }
-                @Override
-                public Text[] appendTooltipText() {
-                    return new Text[] {
-                            Text.translatable("item_set.cobalt.fire_rune_health.tooltip.header").formatted(Formatting.GRAY),
-                            Text.translatable("item_set.cobalt.fire_rune_health.tooltip").formatted(Formatting.GRAY)
-                    };
-                }
-            });
-
-            FIRE_RUNE_HEAVY = ItemSet.register(new Identifier("fire_rune_heavy"), new ItemSet.ItemSetItem[]{
-                    new ItemSet.ItemSetItem(TrinketItems.HEAVY_RUNE, ItemSet.ItemLocation.Trinket, false),
-                    new ItemSet.ItemSetItem(TrinketItems.FIRE_RUNE, ItemSet.ItemLocation.Trinket)
-            }, new IItemSetMethods() {
-                @Override
-                public void trinketTick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-                    IItemSetMethods.super.trinketTick(stack, slot, entity);
-                    ItemSetUtil.addSetBonusStatusEffect(entity, new StatusEffectInstance(StatusEffects.RESISTANCE, 20, 0));
-                }
-                @Override
-                public Text[] appendTooltipText() {
-                    return new Text[] {
-                            Text.translatable("item_set.cobalt.fire_rune_heavy.tooltip.header").formatted(Formatting.GRAY),
-                            Text.translatable("item_set.cobalt.fire_rune_heavy.tooltip").formatted(Formatting.GRAY)
-                    };
-                }
-            });
-        }
-
         public static void registerAll() {}
-
     }
 
     // -- REGISTER

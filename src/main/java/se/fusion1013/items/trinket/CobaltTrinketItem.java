@@ -2,7 +2,9 @@ package se.fusion1013.items.trinket;
 
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketItem;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +36,14 @@ public class CobaltTrinketItem extends TrinketItem {
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         super.tick(stack, slot, entity);
         ItemSet.trinketTick(stack, slot, entity);
+
+        // Call tick with trinket component, if one exists
+        var trinketComponentOptional = TrinketsApi.getTrinketComponent(entity);
+        if (trinketComponentOptional.isEmpty()) return;
+        tick(stack, slot, entity, trinketComponentOptional.get());
     }
+
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity, TrinketComponent trinketComponent) {}
 
     @Override
     public Text getName(ItemStack stack) {

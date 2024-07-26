@@ -49,9 +49,12 @@ public class CobaltItemConfiguration {
     }
 
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        // General tooltip
         var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
         var splitTooltip = TextUtil.splitText(tooltipText);
         tooltip.addAll(splitTooltip);
+
+        // Extra tooltips
         tooltip.addAll(this.tooltip);
     }
 
@@ -110,6 +113,19 @@ public class CobaltItemConfiguration {
      */
     public CobaltItemConfiguration tooltip(String... translatableStrings) {
         for (String s : translatableStrings) this.tooltip.add(Text.translatable(s).formatted(Formatting.DARK_GRAY));
+        return this;
+    }
+
+    /**
+     * Apply a tooltip in the set bonus style.
+     *
+     * @param setBonusId the id of the set bonus
+     * @return builder.
+     */
+    public CobaltItemConfiguration setBonusTooltip(String setBonusId) {
+        this.tooltip.add(Text.empty());
+        this.tooltip.add(Text.translatable("item_set.cobalt." + setBonusId + ".tooltip.header").formatted(Formatting.GOLD));
+        this.tooltip.add(Text.translatable("item_set.cobalt." + setBonusId + ".tooltip").formatted(Formatting.DARK_GRAY));
         return this;
     }
 

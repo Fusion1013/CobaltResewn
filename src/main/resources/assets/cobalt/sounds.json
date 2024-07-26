@@ -1,0 +1,22 @@
+{
+  "block.light_holder.soul_insert": {
+    "sounds": [
+      "cobalt:light_holder_soul_insert"
+    ]
+  },
+  "block.light_holder.soul_remove": {
+    "sounds": [
+      "cobalt:light_holder_soul_remove"
+    ]
+  },
+  "block.light_holder.lens_insert": {
+    "sounds": [
+      "cobalt:light_holder_lens_insert"
+    ]
+  },
+  "block.light_holder.lens_remove": {
+    "sounds": [
+      "cobalt:light_holder_lens_remove"
+    ]
+  }
+}

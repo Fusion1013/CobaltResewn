@@ -21,6 +21,7 @@ public class CobaltEffects {
     public static final StatusEffect FREEZING_EFFECT = register("freezing", new FreezingEffect());
     public static final StatusEffect COLD_RESISTANCE_EFFECT = register("cold_resistance", new ColdResistanceEffect());
     public static final StatusEffect HEAVY = register("heavy", new HeavyEffect());
+    public static final StatusEffect INFECTED = register("infected", new InfectedEffect());
 
     public static StatusEffect register(String id, StatusEffect effect) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(Main.MOD_NAMESPACE, id), effect);

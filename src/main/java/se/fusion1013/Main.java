@@ -14,6 +14,9 @@ import se.fusion1013.items.CobaltItems;
 import se.fusion1013.items.CustomItemGroupRegistry;
 import se.fusion1013.networking.CobaltServerNetworking;
 import se.fusion1013.screen.CobaltScreenHandlers;
+import se.fusion1013.sounds.CobaltSoundEvents;
+
+import java.util.Random;
 
 public class Main implements ModInitializer {
 
@@ -23,11 +26,13 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		var random = new Random();
+		LOGGER.info(motd[random.nextInt(0, motd.length)]);
 
 		ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStart);
 
 		CobaltCommands.register();
+		CobaltSoundEvents.register();
 		CobaltItems.register();
 		CustomEntityRegistry.register();
 		CobaltBlocks.register();
@@ -36,9 +41,15 @@ public class Main implements ModInitializer {
 		CobaltEffects.registerAll();
 		CobaltServerNetworking.register();
 		CobaltScreenHandlers.registerAll();
+
 	}
 
 	private void onServerStart(MinecraftServer server) {
 		Main.server = server;
 	}
+
+	private static final String[] motd = new String[] {
+			"1.21 is a lie",
+			"why are you looking here?"
+	};
 }

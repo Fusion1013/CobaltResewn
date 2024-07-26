@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class CobaltDamageTypes {
 
-    public static final RegistryKey<DamageType> INFECTED = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("cobalt", "infected"));
+    public static final RegistryKey<DamageType> INFECTION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("cobalt", "infection"));
 
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
         return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(key));
