@@ -1,5 +1,6 @@
 package se.fusion1013.block;
 
+import foundry.veil.api.client.render.VeilRenderSystem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -107,8 +108,8 @@ public class CobaltBlocks {
 
     public static final Block ANCIENT_PEDESTAL = register("ancient_pedestal", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
     public static final Block ANCIENT_PILLAR = register("ancient_pillar", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
-    public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
-    public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
+    public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
+    public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
 
 
     // -- Sculk Blocks
