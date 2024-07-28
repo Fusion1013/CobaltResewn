@@ -37,7 +37,6 @@ public class EnvironmentFogModifier implements BackgroundRenderer.StatusEffectFo
     @Override
     public float applyColorModifier(LivingEntity entity, StatusEffectInstance effect, float f, float tickDelta) {
         var delta = effect.getFactorCalculationData().get().lerp(entity, tickDelta);
-        float value = MathHelper.lerp(delta, EnvironmentEffectValues.ColorLerpFrom, EnvironmentEffectValues.Color);
-        return value;
+        return MathHelper.lerp(delta, EnvironmentEffectValues.ColorLerpFrom, EnvironmentEffectValues.Color);
     }
 }

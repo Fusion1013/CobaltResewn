@@ -22,6 +22,10 @@ public class CobaltEffects {
     public static final StatusEffect COLD_RESISTANCE_EFFECT = register("cold_resistance", new ColdResistanceEffect());
     public static final StatusEffect HEAVY = register("heavy", new HeavyEffect());
     public static final StatusEffect INFECTED = register("infected", new InfectedEffect());
+    public static final StatusEffect DARK_SHADOWS = register("dark_shadows", new DarkShadowsEffect().setFactorCalculationDataSupplier(() -> new StatusEffectInstance.FactorCalculationData(100)));
+    public static final StatusEffect LIGHT_FOG = register("light_fog", new FogEffect().setFactorCalculationDataSupplier(() -> new StatusEffectInstance.FactorCalculationData(22)));
+    public static final StatusEffect MEDIUM_FOG = register("medium_fog", new FogEffect().setFactorCalculationDataSupplier(() -> new StatusEffectInstance.FactorCalculationData(22)));
+    public static final StatusEffect HEAVY_FOG = register("heavy_fog", new FogEffect().setFactorCalculationDataSupplier(() -> new StatusEffectInstance.FactorCalculationData(22)));
 
     public static StatusEffect register(String id, StatusEffect effect) {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(Main.MOD_NAMESPACE, id), effect);
