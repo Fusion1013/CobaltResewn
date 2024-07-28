@@ -32,7 +32,7 @@ public class GameRendererMixin {
         final LightmapAccess lightmap = (LightmapAccess) lightmapTextureManager;
 
         float darknessAmount = getTargetDarkness(tickDelta);
-        if (darknessAmount <= 0.0F) return;
+        // if (darknessAmount <= 0.0F) return;
 
         if (lightmap.darkness_isDirty()) {
             client.getProfiler().push("lightTex");
