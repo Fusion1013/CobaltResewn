@@ -9,6 +9,8 @@
     "render.BackgroundRendererMixin",
     "render.GameRendererMixin",
     "render.LightTextureMixin",
+    ,
+    "render.entity.PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
