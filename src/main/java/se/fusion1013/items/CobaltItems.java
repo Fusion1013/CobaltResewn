@@ -144,6 +144,7 @@ public class CobaltItems {
     public static final Item CORRUPTED_SKELETON_SPAWN_EGG;
     public static final Item CORRUPTED_SPIDER_SPAWN_EGG;
     public static final Item AUTOMATON_SPAWN_EGG;
+    public static final Item RAT_SPAWN_EGG;
 
 
     static {
@@ -279,6 +280,7 @@ public class CobaltItems {
         CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new FabricItemSettings()));
         CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new FabricItemSettings()));
         AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new FabricItemSettings()));
+        RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new FabricItemSettings()));
     }
 
     // -- REGISTER
@@ -289,16 +291,18 @@ public class CobaltItems {
         registerDispenserBlockBehaviour(LIGHTNING_ARROW);
         registerDispenserBlockBehaviour(EXPLOSIVE_ARROW);
 
+        // Add spawn eggs
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
             content.add(CORRUPTED_ZOMBIE_SPAWN_EGG);
             content.add(CORRUPTED_SKELETON_SPAWN_EGG);
+            content.add(CORRUPTED_SPIDER_SPAWN_EGG);
+            content.add(AUTOMATON_SPAWN_EGG);
+            content.add(RAT_SPAWN_EGG);
         });
     }
 
     private static Item register(String itemId, Item item) {
         Registry.register(Registries.ITEM, new Identifier(MOD_NAMESPACE, itemId), item);
-
-        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
 
         // Add to appropriate item group depending on item type
         if (item instanceof SwordItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.NETHERITE_SWORD, item));
@@ -307,6 +311,7 @@ public class CobaltItems {
         else if (item instanceof ArrowItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.TIPPED_ARROW, item));
         else if (item instanceof SpawnEggItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> content.add(item));
         else if (item instanceof CobaltDrinkItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> content.addAfter(Items.SPIDER_EYE, item));
+        else ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
 
         return item;
     }
@@ -314,14 +319,6 @@ public class CobaltItems {
     private static CobaltArmorSet registerSet(String setId, CobaltArmorSet set) {
         // Register the armor set
         set.register(setId, CobaltItems::register);
-
-        // Add to armor item group
-        ItemGroupEvents.modifyEntriesEvent(COBALT_ARMOR_GROUP_KEY).register(content -> {
-            content.add(set.registeredBoots);
-            content.add(set.registeredLeggings);
-            content.add(set.registeredChestplate);
-            content.add(set.registeredHelmet);
-        });
 
         // Add to vanilla combat item group
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {

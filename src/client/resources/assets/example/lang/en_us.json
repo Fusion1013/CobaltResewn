@@ -447,6 +447,7 @@
   "item.cobalt.corrupted_skeleton_spawn_egg": "Corrupted Skeleton Spawn Egg",
   "item.cobalt.corrupted_spider_spawn_egg": "Corrupted Spider Spawn Egg",
   "item.cobalt.automaton_spawn_egg": "Automaton Spawn Egg",
+  "item.cobalt.rat_spawn_egg": "Rat Spawn Egg",
 
 
 
@@ -477,6 +478,7 @@
   "entity.cobalt.corrupted_skeleton": "Corrupted Skeleton",
   "entity.cobalt.corrupted_spider": "Corrupted Spider",
   "entity.cobalt.automaton": "Automaton",
+  "entity.cobalt.rat": "Rat",
 
 
 
