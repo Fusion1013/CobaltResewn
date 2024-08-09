@@ -151,20 +151,48 @@ public class CobaltBlocks {
 
     private static void registerItem(String name, Block block) {
         var item = Registry.register(Registries.ITEM, new Identifier(Main.MOD_NAMESPACE, name), new BlockItem(block, new FabricItemSettings()));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
-            content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item);
-        });
-        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> {
-            content.add(item);
-        });
-        ItemGroupEvents.modifyEntriesEvent(COBALT_BLOCK_GROUP_KEY).register(content -> {
-            content.add(item);
-        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item));
+        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
+        ItemGroupEvents.modifyEntriesEvent(COBALT_BLOCK_GROUP_KEY).register(content -> content.add(item));
     }
 
     public static ToIntFunction<BlockState> createLightLevelFromBooleanProperty(int litLevel, BooleanProperty property) {
         return state -> state.get(property) ? litLevel : 0; // TODO: Move visible block state to custom thingy
     }
-    public static void register() {}
+    public static void register() {
+
+        // Add to functional blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(content -> {
+            content.add(ANCIENT_POT_1);
+            content.add(ANCIENT_POT_2);
+            content.add(ANCIENT_POT_3);
+            content.add(ANCIENT_POT_4_BOTTOM);
+            content.add(ANCIENT_POT_4_MIDDLE);
+            content.add(ANCIENT_POT_4_TOP);
+            content.add(ANCIENT_PEDESTAL);
+            content.add(ANCIENT_PILLAR);
+            content.add(PEDESTAL_BLOCK);
+            content.add(LIGHT_HOLDER);
+            content.add(DIRECTIONAL_LIGHT_HOLDER);
+            content.add(EXPOSED_COPPER_CRATE);
+            content.add(EXPOSED_COPPER_VENT);
+            content.add(COPPER_SPEAKER);
+            content.add(WEATHERED_COPPER_SPEAKER);
+            content.add(EXPOSED_COPPER_SPEAKER);
+            content.add(OXIDIZED_COPPER_SPEAKER);
+            content.add(RUNE_BLOCK);
+        });
+
+        // Add to natural blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(content -> {
+            content.addAfter(Items.SCULK_SENSOR, SCULK_SPREADER);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_SUMMONER);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_STEM);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_GROWTH);
+            content.addAfter(Items.SCULK_SENSOR, SHORT_SCULK_GRASS);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_GRASS);
+            content.addAfter(Items.BLUE_ICE, ICICLE_BLOCK);
+        });
+    }
 
 }
