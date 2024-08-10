@@ -87,6 +87,12 @@ public class AdvancedBionicFistItem extends CobaltSwordItem {
                     user.getZ() + MathHelper.sin(g) * ABILITY_RADIUS,
                     0, 0, 0
             );
+            world.addParticle(ParticleTypes.LARGE_SMOKE,
+                    user.getX() + MathHelper.cos(g) * ABILITY_RADIUS / 1.5f,
+                    user.getY() + 0.1f,
+                    user.getZ() + MathHelper.sin(g) * ABILITY_RADIUS / 1.5f,
+                    0, 0, 0
+            );
             for (int j = 0; j < 8; j++) {
                 world.addParticle(ParticleTypes.CRIT,
                         user.getX() + MathHelper.cos(g) * ABILITY_RADIUS + random.nextFloat() * 0.25f,
