@@ -279,6 +279,9 @@
   "item.cobalt.mystery_medicine": "Mystery Medicine",
   "item.cobalt.mystery_medicine.tooltip": "..maybe it'll be good?",
 
+  "item.cobalt.liquid_courage": "Liquid Courage",
+  "item.cobalt.liquid_courage.tooltip": "Drink the pain away",
+
 
 
 
@@ -345,6 +348,10 @@
   "item.cobalt.advanced_exoskeleton.trigger_ability.header": "Improved Fortify",
   "item.cobalt.advanced_exoskeleton.trigger_ability.cost": "-4 Coal",
   "item.cobalt.advanced_exoskeleton.trigger_ability.tooltip": "Become immovable for a short moment. Gain improved strength and resistance.",
+
+  "item.cobalt.advanced_bionic_fist": "Advanced Bionic Fist",
+  "item.cobalt.advanced_bionic_fist.tooltip": "",
+  "item.cobalt.advanced_bionic_fist.ability": "Use: Punch the ground, dealing damage in a radius and throwing you backwards. Consumes coal",
 
 
 

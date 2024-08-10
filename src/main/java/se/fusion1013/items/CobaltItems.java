@@ -43,10 +43,7 @@ import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
 import se.fusion1013.items.misc.CorruptedPearlItem;
 import se.fusion1013.items.misc.WalkieTalkieItem;
-import se.fusion1013.items.sword.CobaltSwordItem;
-import se.fusion1013.items.sword.InfectedSwordItem;
-import se.fusion1013.items.sword.SampleDrillItem;
-import se.fusion1013.items.sword.VoidRendSwordItem;
+import se.fusion1013.items.sword.*;
 import se.fusion1013.items.tools.BasicDrillItem;
 import se.fusion1013.items.tools.CobaltAxeItem;
 import se.fusion1013.items.tools.CobaltPickaxeItem;
@@ -90,6 +87,7 @@ public class CobaltItems {
     public static final Item CROWBAR;
     public static final Item RATCHETING_SCREWDRIVER;
     public static final Item BIONIC_FIST;
+    public static final Item ADVANCED_BIONIC_FIST;
     public static final Item FORGE_HAMMER;
     public static final Item VOIDREND;
 
@@ -181,6 +179,7 @@ public class CobaltItems {
         CROWBAR = register("crowbar", new CobaltSwordItem(ToolMaterials.STONE, -2+7, -4+0.9f, CobaltItemConfiguration.create(Formatting.DARK_GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.crowbar.speed", -.01, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
         RATCHETING_SCREWDRIVER = register("ratcheting_screwdriver", new CobaltSwordItem(ToolMaterials.STONE, -2+7, -4+2.3f, CobaltItemConfiguration.create(Formatting.GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.ratcheting_screwdriver.speed", 0.12f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
         BIONIC_FIST = register("bionic_fist", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD).attributeModifier(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, new EntityAttributeModifier("cobalt.bionic_fist.knockback", 1.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
+        ADVANCED_BIONIC_FIST = register("advanced_bionic_fist", new AdvancedBionicFistItem());
         FORGE_HAMMER = register("forge_hammer", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
         VOIDREND = register("voidrend", new VoidRendSwordItem());
 
