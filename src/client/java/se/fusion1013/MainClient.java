@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.network.PacketByteBuf;
@@ -73,6 +75,9 @@ public class MainClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(MODEL_RAT_LAYER, RatEntityModel::getTexturedModelData);
 
 		EntityRendererRegistry.register(CobaltEntities.AUTOMATON, AutomatonEntityRenderer::new);
+
+		EntityRendererRegistry.register(CobaltEntities.SMOKE_BOMB, FlyingItemEntityRenderer::new);
+		EntityRendererRegistry.register(CobaltEntities.SMOKE_CLOUD, EmptyEntityRenderer::new);
 
 		EntityModelLayerRegistry.registerModelLayer(TEST_BLOCK_ENTITY_LAYER, DirectionalLightHolderBlockEntityRenderer::getTestTexturedModelData);
 
