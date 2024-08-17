@@ -29,6 +29,7 @@ public class CobaltEntities {
 
     public static EntityType<SmokeBombEntity> SMOKE_BOMB;
     public static EntityType<SmokeCloudEntity> SMOKE_CLOUD;
+    public static EntityType<DynamiteEntity> DYNAMITE;
 
     public static EntityType<RatEntity> RAT;
 
@@ -61,9 +62,10 @@ public class CobaltEntities {
 
         SMOKE_BOMB = register("smoke_bomb", createThrownEntityType(SmokeBombEntity::new));
         SMOKE_CLOUD = register("smoke_cloud", FabricEntityTypeBuilder.<SmokeCloudEntity>create(SpawnGroup.MISC, SmokeCloudEntity::new).dimensions(EntityDimensions.fixed(6f, 0.5f)).trackRangeBlocks(120).trackedUpdateRate(Integer.MAX_VALUE).fireImmune().build());
+        DYNAMITE = register("dynamite", createThrownEntityType(DynamiteEntity::new));
 
 
-        RAT = register("rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).trackRangeBlocks(8).build());
+        RAT = register("rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).build());
         FabricDefaultAttributeRegistry.register(RAT, RatEntity.createSilverfishAttributes());
     }
 

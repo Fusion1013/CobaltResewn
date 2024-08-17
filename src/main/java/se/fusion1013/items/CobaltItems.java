@@ -1,21 +1,20 @@
 package se.fusion1013.items;
 
 import dev.emi.trinkets.api.SlotAttributes;
+import dev.emi.trinkets.api.TrinketItem;
 import io.wispforest.lavender.book.LavenderBookItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -25,11 +24,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
-import org.spongepowered.asm.launch.platform.container.IContainerHandle;
-import se.fusion1013.effect.CobaltEffects;
-import se.fusion1013.entity.CobaltEntities;
-import se.fusion1013.entity.ExplosiveArrowEntity;
-import se.fusion1013.entity.LightningArrowEntity;
+import se.fusion1013.entity.*;
 import se.fusion1013.items.armor.CobaltArmorSet;
 import se.fusion1013.items.armor.sets.AdvancedExoskeletonArmorSet;
 import se.fusion1013.items.armor.sets.DivingArmorSet;
@@ -137,6 +132,9 @@ public class CobaltItems {
     public static final Item GREEN_LENS;
     public static final Item BLUE_LENS;
     public static final Item PRESSURE_GAUGE;
+
+    public static final Item SMOKE_BOMB;
+    public static final Item DYNAMITE;
 
     public static final Item CORRUPTED_ZOMBIE_SPAWN_EGG;
     public static final Item CORRUPTED_SKELETON_SPAWN_EGG;
@@ -275,6 +273,9 @@ public class CobaltItems {
         BLUE_LENS = register("blue_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
         PRESSURE_GAUGE = register("pressure_gauge", new CobaltItem(CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
 
+        SMOKE_BOMB = register("smoke_bomb", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), SmokeBombEntity::new));
+        DYNAMITE = register("dynamite", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), DynamiteEntity::new));
+
         CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new FabricItemSettings()));
         CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new FabricItemSettings()));
         CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new FabricItemSettings()));
@@ -289,6 +290,13 @@ public class CobaltItems {
 
         registerDispenserBlockBehaviour(LIGHTNING_ARROW);
         registerDispenserBlockBehaviour(EXPLOSIVE_ARROW);
+
+        DispenserBlock.registerBehavior(SMOKE_BOMB, new ProjectileDispenserBehavior() {
+            @Override
+            protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+                return new SmokeBombEntity(world, position.getX(), position.getY(), position.getZ());
+            }
+        });
 
         // Add spawn eggs
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
@@ -310,7 +318,10 @@ public class CobaltItems {
         else if (item instanceof ArrowItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.TIPPED_ARROW, item));
         else if (item instanceof SpawnEggItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> content.add(item));
         else if (item instanceof CobaltDrinkItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> content.addAfter(Items.SPIDER_EYE, item));
-        else ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
+        else if (item instanceof ThrownItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.EGG, item));
+        else if (item instanceof TrinketItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.add(item));
+
+        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
 
         return item;
     }

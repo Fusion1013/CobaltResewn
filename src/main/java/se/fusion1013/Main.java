@@ -32,8 +32,8 @@ public class Main implements ModInitializer {
 		CobaltCommands.register();
 		CobaltSoundEvents.register();
 		CobaltEntities.register();
-		CobaltBlocks.register();
 		CobaltItems.register();
+		CobaltBlocks.register();
 		CustomItemGroupRegistry.register();
 		CobaltBlockEntityTypes.registerAll();
 		CobaltEffects.registerAll();

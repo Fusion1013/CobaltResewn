@@ -78,6 +78,7 @@ public class MainClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(CobaltEntities.SMOKE_BOMB, FlyingItemEntityRenderer::new);
 		EntityRendererRegistry.register(CobaltEntities.SMOKE_CLOUD, EmptyEntityRenderer::new);
+		EntityRendererRegistry.register(CobaltEntities.DYNAMITE, FlyingItemEntityRenderer::new);
 
 		EntityModelLayerRegistry.registerModelLayer(TEST_BLOCK_ENTITY_LAYER, DirectionalLightHolderBlockEntityRenderer::getTestTexturedModelData);
 

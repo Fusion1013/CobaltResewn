@@ -15,16 +15,23 @@ import se.fusion1013.entity.SmokeBombEntity;
 public class ThrownItem extends CobaltItem {
 
     private final ThrownEntityFactory thrownEntityFactory;
+    private final int cooldown;
 
     public ThrownItem(CobaltItemConfiguration configuration, Settings settings, ThrownEntityFactory thrownEntityFactory) {
+        this(configuration, settings, thrownEntityFactory, 20);
+    }
+
+    public ThrownItem(CobaltItemConfiguration configuration, Settings settings, ThrownEntityFactory thrownEntityFactory, int cooldown) {
         super(configuration, settings);
         this.thrownEntityFactory = thrownEntityFactory;
+        this.cooldown = cooldown;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack heldItem = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_LINGERING_POTION_THROW, SoundCategory.NEUTRAL, 0.5f, 1f);
+        user.getItemCooldownManager().set(this, cooldown);
         if (!world.isClient) {
             ThrownItemEntity thrownEntity = thrownEntityFactory.create(world, user);
             thrownEntity.setItem(heldItem);

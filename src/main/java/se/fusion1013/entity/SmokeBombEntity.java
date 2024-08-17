@@ -30,14 +30,6 @@ public class SmokeBombEntity extends ThrownItemEntity {
     }
 
     @Override
-    protected void onBlockHit(BlockHitResult blockHitResult) {
-        super.onBlockHit(blockHitResult);
-        if (this.getWorld().isClient) return;
-
-        // TODO: Spawn smoke effect
-    }
-
-    @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (this.getWorld().isClient) return;
