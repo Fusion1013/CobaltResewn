@@ -63,15 +63,11 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
-
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 
 	// Trinkets
 	// modImplementation "dev.emi:trinkets:${trinkets_version}"
 
+	// Wispforest Lavender
 	modImplementation "io.wispforest:lavender:${project.lavender_version}"
 	include "io.wispforest:owo-sentinel:${project.owo_version}" // check owo's page for this version
 
@@ -79,6 +75,7 @@ dependencies {
 	implementation "de.maxhenkel.voicechat:voicechat-api:${project.voicechat_api_version}"
 	modRuntimeOnly "maven.modrinth:simple-voice-chat:fabric-${project.voicechat_version}"
 
+	// Math utils
 	implementation include(group: 'org.apache.commons', name: 'commons-math3', version: '3.0')
 	implementation include('uk.me.berndporr:iirj:1.7')
 }
@@ -131,4 +128,8 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+fabricApi {
+	configureDataGeneration()
 }

@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:cobalt/adventure_journal/code_vaults",
+  "criteria": {
+    "visit_code_vault_2": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": "Visit Code Vault 2",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:copper_block"
+    },
+    "title": "Code Vault 2"
+  },
+  "requirements": [
+    [
+      "visit_code_vault_2"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

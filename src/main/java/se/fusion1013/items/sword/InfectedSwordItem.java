@@ -39,7 +39,7 @@ public class InfectedSwordItem extends CobaltSwordItem {
         if (user.hasStatusEffect(StatusEffects.STRENGTH)) return super.use(world, user, hand);
 
         // Reduce player health
-        user.damage(CobaltDamageTypes.of(world, CobaltDamageTypes.INFECTED), m_healthReduction);
+        user.damage(CobaltDamageTypes.of(world, CobaltDamageTypes.INFECTION), m_healthReduction);
 
         // Apply effect
         m_infectedAction.Perform(world, user, hand);

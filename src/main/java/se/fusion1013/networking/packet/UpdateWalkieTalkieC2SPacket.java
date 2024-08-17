@@ -22,7 +22,7 @@ public class UpdateWalkieTalkieC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
 
         // Gets the held walkie talkie item
-        ItemStack stack = ItemUtil.getHeldItemOfType(player, CobaltItems.MiscItems.WALKIE_TALKIE);
+        ItemStack stack = ItemUtil.getHeldItemOfType(player, CobaltItems.WALKIE_TALKIE);
 
         // If it is not a valid item, do not try to edit it
         if (!(stack.getItem() instanceof WalkieTalkieItem) && !stack.hasNbt()) return;

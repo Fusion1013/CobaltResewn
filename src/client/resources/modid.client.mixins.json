@@ -6,7 +6,9 @@
     "ExampleClientMixin",
     "ExampleMixin",
     "InGameHudMixin",
-    "render.BackgroundRendererMixin"
+    "render.BackgroundRendererMixin",
+    "render.GameRendererMixin",
+    "render.LightTextureMixin",
   ],
   "injectors": {
     "defaultRequire": 1

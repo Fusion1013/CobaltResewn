@@ -9,6 +9,8 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.items.CobaltItem;
@@ -96,14 +98,19 @@ public class CobaltBlocks {
     public static final Block EXPOSED_COPPER_VENT = register("exposed_copper_vent", new CopperVentBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
     public static final Block EXPOSED_COPPER_CRATE = register("exposed_copper_crate", new CopperCrateBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
 
-    // -- Pots
-    // TODO: Replace with custom class
+    // -- Ancient Blocks
     public static final Block ANCIENT_POT_1 = register("ancient_pot_1", new AncientPot1Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_2 = register("ancient_pot_2", new AncientPot1Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_3 = register("ancient_pot_3", new AncientPot1Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_4_BOTTOM = register("ancient_pot_4_bottom", new AncientPot4BottomBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_4_MIDDLE = register("tall_ancient_pot_middle", new AncientPot4BottomBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_4_TOP = register("ancient_pot_4_top", new AncientPot4TopBlock(AbstractBlock.Settings.create().strength(3, 6)));
+
+    public static final Block ANCIENT_PEDESTAL = register("ancient_pedestal", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block ANCIENT_PILLAR = register("ancient_pillar", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
+    public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
+
 
     // -- Sculk Blocks
     public static final Block SCULK_STEM = register("sculk_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM)));
@@ -124,11 +131,11 @@ public class CobaltBlocks {
     public static final Block PACKED_ICE_WALL = register("packed_ice_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).solid()));
 
     // -- Misc
+    public static final Block ICICLE_BLOCK = register("icicle_block", new IcicleBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE).slipperiness(0.98F).sounds(BlockSoundGroup.GLASS)));
+
     public static final Block PARTICLE_COMMAND_BLOCK = register("particle_command_block", new ParticleBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK)));
 
-    public static final Block RUNE_BLOCK = register("rune_block", new RuneBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque().luminance(createLightLevelFromVisibleBlockState(4))));
-
-    public static final Block FORGE_SIDE_CRYSTAL_BLOCK = register("forge_side_crystal_block", new ForgeSideCrystalBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block RUNE_BLOCK = register("rune_block", new RuneBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque().luminance(createLightLevelFromBooleanProperty(4, RuneBlock.VISIBLE))));
 
     public static final Block PEDESTAL_BLOCK = register("pedestal_block", new PedestalBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
 
@@ -136,28 +143,57 @@ public class CobaltBlocks {
 
     public static final Block FORGE_BLOCK = register("forge_block", new ForgeBlock(FabricBlockSettings.copyOf(Blocks.ANVIL)));
 
+
+
     private static Block register(String name, Block block) {
         registerItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(Main.MOD_NAMESPACE, name), block);
     }
 
     private static void registerItem(String name, Block block) {
-        var item = Registry.register(Registries.ITEM, Identifier.of(Main.MOD_NAMESPACE, name), new BlockItem(block, new Item.Settings()));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
-            content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item);
-        });
-        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> {
-            content.add(item);
-        });
-        ItemGroupEvents.modifyEntriesEvent(COBALT_BLOCK_GROUP_KEY).register(content -> {
-            content.add(item);
-        });
+        var item = Registry.register(Registries.ITEM, new Identifier(Main.MOD_NAMESPACE, name), new BlockItem(block, new FabricItemSettings()));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item));
+        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
+        ItemGroupEvents.modifyEntriesEvent(COBALT_BLOCK_GROUP_KEY).register(content -> content.add(item));
     }
 
-    public static ToIntFunction<BlockState> createLightLevelFromVisibleBlockState(int litLevel) {
-        return state -> state.get(RuneBlock.VISIBLE) ? litLevel : 0; // TODO: Move visible block state to custom thingy
+    public static ToIntFunction<BlockState> createLightLevelFromBooleanProperty(int litLevel, BooleanProperty property) {
+        return state -> state.get(property) ? litLevel : 0; // TODO: Move visible block state to custom thingy
     }
+    public static void register() {
 
-    public static void register() {}
+        // Add to functional blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(content -> {
+            content.add(ANCIENT_POT_1);
+            content.add(ANCIENT_POT_2);
+            content.add(ANCIENT_POT_3);
+            content.add(ANCIENT_POT_4_BOTTOM);
+            content.add(ANCIENT_POT_4_MIDDLE);
+            content.add(ANCIENT_POT_4_TOP);
+            content.add(ANCIENT_PEDESTAL);
+            content.add(ANCIENT_PILLAR);
+            content.add(PEDESTAL_BLOCK);
+            content.add(LIGHT_HOLDER);
+            content.add(DIRECTIONAL_LIGHT_HOLDER);
+            content.add(EXPOSED_COPPER_CRATE);
+            content.add(EXPOSED_COPPER_VENT);
+            content.add(COPPER_SPEAKER);
+            content.add(WEATHERED_COPPER_SPEAKER);
+            content.add(EXPOSED_COPPER_SPEAKER);
+            content.add(OXIDIZED_COPPER_SPEAKER);
+            content.add(RUNE_BLOCK);
+        });
+
+        // Add to natural blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(content -> {
+            content.addAfter(Items.SCULK_SENSOR, SCULK_SPREADER);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_SUMMONER);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_STEM);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_GROWTH);
+            content.addAfter(Items.SCULK_SENSOR, SHORT_SCULK_GRASS);
+            content.addAfter(Items.SCULK_SENSOR, SCULK_GRASS);
+            content.addAfter(Items.BLUE_ICE, ICICLE_BLOCK);
+        });
+    }
 
 }

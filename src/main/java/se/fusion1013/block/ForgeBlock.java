@@ -1,10 +1,7 @@
 package se.fusion1013.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
@@ -49,7 +46,7 @@ public class ForgeBlock extends BlockWithEntity implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         // Check if player is holding forge hammer
         ItemStack mainHandStack = player.getMainHandStack();
-        if (mainHandStack.getItem() != CobaltItems.SwordItems.FORGE_HAMMER) return ActionResult.FAIL;
+        if (mainHandStack.getItem() != CobaltItems.FORGE_HAMMER) return ActionResult.FAIL;
 
         // Summon lightning
         LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);

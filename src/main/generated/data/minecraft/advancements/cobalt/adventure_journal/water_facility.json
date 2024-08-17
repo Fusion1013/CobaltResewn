@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:cobalt/adventure_journal/grafwall_quagmire",
+  "criteria": {
+    "visit_water_facility": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": "Visit the Water Facility",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:copper_block"
+    },
+    "title": "Water Facility"
+  },
+  "requirements": [
+    [
+      "visit_water_facility"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

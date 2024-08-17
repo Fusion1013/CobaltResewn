@@ -4,12 +4,16 @@
   "key.cobalt.armor_toggle": "Toggle Active Armor Ability",
 
 
-  "item_group.cobalt.items": "Flickering Lights - All",
+  "item_group.cobalt.items": "Flickering Lights",
   "item_group.cobalt.weapons": "Flickering Lights - Weapons",
   "item_group.cobalt.trinkets": "Flickering Lights - Trinkets",
   "item_group.cobalt.armor": "Flickering Lights - Armor",
   "item_group.cobalt.block": "Flickering Lights - Blocks",
 
+
+  "item.cobalt.damage_prefix": "Damage: ",
+  "item.cobalt.attack_speed_prefix": "Attack Speed: ",
+  "item.cobalt.critical_damage_prefix": "Crit Damage: ",
 
 
   "item.cobalt.adventure_sword": "Adventurer's Sword",
@@ -279,6 +283,9 @@
   "item.cobalt.mystery_medicine": "Mystery Medicine",
   "item.cobalt.mystery_medicine.tooltip": "..maybe it'll be good?",
 
+  "item.cobalt.liquid_courage": "Liquid Courage",
+  "item.cobalt.liquid_courage.tooltip": "Drink the pain away",
+
 
 
 
@@ -346,6 +353,10 @@
   "item.cobalt.advanced_exoskeleton.trigger_ability.cost": "-4 Coal",
   "item.cobalt.advanced_exoskeleton.trigger_ability.tooltip": "Become immovable for a short moment. Gain improved strength and resistance.",
 
+  "item.cobalt.advanced_bionic_fist": "Advanced Bionic Fist",
+  "item.cobalt.advanced_bionic_fist.tooltip": "",
+  "item.cobalt.advanced_bionic_fist.ability": "Use: Punch the ground, dealing damage in a radius and throwing you backwards. Consumes coal",
+
 
 
 
@@ -363,8 +374,15 @@
 
 
 
+  "item.cobalt.smoke_bomb": "Smoke Bomb",
+  "item.cobalt.dynamite": "Dynamite",
+
+
+
+
 
   "item.cobalt.wf_instruction_manual": "Site EF002 Instructions",
+  "item.cobalt.adventurer_journal": "Adventurer's Journal",
 
 
 
@@ -405,16 +423,49 @@
 
 
   "item.cobalt.rune_glove": "Rune Glove",
-  "item.cobalt.rune_glove.tooltip": "TODO",
+  "item.cobalt.rune_glove.tooltip": "Used in ancient times to unlock the power of runes. Should be inert, yet it sparkles with magical power... Has 5 slots where runes can be inserted.",
 
   "item.cobalt.fire_rune": "Fire Rune",
   "item.cobalt.fire_rune.tooltip": "TODO",
 
   "item.cobalt.health_rune": "Health Rune",
-  "item.cobalt.health_rune.tooltip": "TODO",
+  "item.cobalt.health_rune.tooltip": "Provides a small amount of health regeneration after not getting hit for a while",
 
   "item.cobalt.heavy_rune": "Heavy Rune",
   "item.cobalt.heavy_rune.tooltip": "TODO",
+
+  "item.cobalt.thick_rune": "Thick Rune",
+  "item.cobalt.thick_rune.tooltip": "TODO",
+
+
+
+
+  "item.cobalt.voidrend": "Voidrend",
+  "item.cobalt.voidrend.tooltip": "A formidable weapon",
+
+
+
+
+  "item.cobalt.light_soul": "Light Soul",
+  "item.cobalt.light_soul.tooltip": "Mysterious orb of light. Emits a low hum.",
+
+
+
+
+  "item.cobalt.lens": "Lens",
+  "item.cobalt.blue_lens": "Blue Lens",
+  "item.cobalt.red_lens": "Red Lens",
+  "item.cobalt.green_lens": "Green Lens",
+
+
+
+
+  "item.cobalt.corrupted_zombie_spawn_egg": "Corrupted Zombie Spawn Egg",
+  "item.cobalt.corrupted_skeleton_spawn_egg": "Corrupted Skeleton Spawn Egg",
+  "item.cobalt.corrupted_spider_spawn_egg": "Corrupted Spider Spawn Egg",
+  "item.cobalt.automaton_spawn_egg": "Automaton Spawn Egg",
+  "item.cobalt.rat_spawn_egg": "Rat Spawn Egg",
+
 
 
 
@@ -423,18 +474,28 @@
   "item_set.cobalt.diving_armor.tooltip.breathing": "Allows the wearer to breathe underwater",
   "item_set.cobalt.diving_armor.tooltip.cold": "Protects from cold environments",
 
-
   "item_set.cobalt.fire_rune_health.tooltip.header": "With Health Rune:",
-  "item_set.cobalt.fire_rune_health.tooltip": "Provides a small amount of health regeneration",
+  "item_set.cobalt.fire_rune_health.tooltip": "Increases potency of Health Rune regeneration",
 
   "item_set.cobalt.fire_rune_heavy.tooltip.header": "With Heavy Rune:",
   "item_set.cobalt.fire_rune_heavy.tooltip": "Provides increased resistance",
+
+  "item_set.cobalt.ice_rune_fast.tooltip.header": "With Fast Rune:",
+  "item_set.cobalt.ice_rune_fast.tooltip": "Creates a frost aura that slows enemies",
+
+  "item_set.cobalt.thick_rune_health.tooltip.header": "With Health Rune:",
+  "item_set.cobalt.thick_rune_health.tooltip": "+40 Max Health",
 
 
 
 
 
   "entity.cobalt.corrupted_core": "Corrupted Core",
+  "entity.cobalt.corrupted_zombie": "Corrupted Zombie",
+  "entity.cobalt.corrupted_skeleton": "Corrupted Skeleton",
+  "entity.cobalt.corrupted_spider": "Corrupted Spider",
+  "entity.cobalt.automaton": "Automaton",
+  "entity.cobalt.rat": "Rat",
 
 
 
@@ -445,6 +506,13 @@
   "effect.cobalt.cursed_knowledge": "Cursed Insight",
   "effect.cobalt.freezing": "Freezing",
   "effect.cobalt.cold_resistance": "Cold Resistance",
+  "effect.cobalt.infected": "Infected",
+  "effect.cobalt.dark_shadows": "Dark Shadows",
+
+
+
+
+  "death.attack.infection": "%1$s succumbed to the infection",
 
 
 
@@ -555,5 +623,14 @@
 
   "block.cobalt.item_display": "Item Display",
 
+  "block.cobalt.icicle_block": "Icicle",
+
+  "block.cobalt.light_holder": "Ancient Light Container",
+  "block.cobalt.directional_light_holder": "Ancient Spotlight",
+  "block.cobalt.ancient_pedestal": "Ancient Pedestal",
+  "block.cobalt.ancient_pillar": "Ancient Pillar",
+
+
   "trinkets.slot.hand.rune": "Rune"
+
 }

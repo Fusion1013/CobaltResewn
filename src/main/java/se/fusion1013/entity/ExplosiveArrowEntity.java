@@ -151,7 +151,7 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected ItemStack asItemStack() {
-        return new ItemStack(CobaltItems.ArrowItems.EXPLOSIVE_ARROW);
+        return new ItemStack(CobaltItems.EXPLOSIVE_ARROW);
     }
 
     @Override

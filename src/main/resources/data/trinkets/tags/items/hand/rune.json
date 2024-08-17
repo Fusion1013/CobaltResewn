@@ -3,6 +3,10 @@
   "values": [
     "cobalt:health_rune",
     "cobalt:heavy_rune",
-    "cobalt:fire_rune"
+    "cobalt:fast_rune",
+    "cobalt:fire_rune",
+    "cobalt:ice_rune",
+    "cobalt:lightning_rune",
+    "cobalt:thick_rune"
   ]
 }

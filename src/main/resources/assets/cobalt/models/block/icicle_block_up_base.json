@@ -1,0 +1,6 @@
+{
+  "parent": "cobalt:block/icicle_block",
+  "textures": {
+    "cross": "cobalt:block/icicle_block_up_base"
+  }
+}

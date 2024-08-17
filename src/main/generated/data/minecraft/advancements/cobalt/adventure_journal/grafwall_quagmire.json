@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:cobalt/adventure_journal/root",
+  "criteria": {
+    "visit_grafwall_quagmire": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": "Visit the Grafwall Quagmire",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:mangrove_log"
+    },
+    "title": "Grafwall Quagmire"
+  },
+  "requirements": [
+    [
+      "visit_grafwall_quagmire"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

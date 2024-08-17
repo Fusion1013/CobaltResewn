@@ -12,6 +12,7 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -29,6 +30,7 @@ public class CobaltItemConfiguration {
     private Formatting nameFormatting = Formatting.WHITE;
     private final List<Text> tooltip = new ArrayList<>();
     private final Map<EquipmentSlot, List<AttributeModifierProvider>> attributeModifiers = new HashMap<>();
+    private IItemAbility itemAbility;
 
     public CobaltItemConfiguration() {}
 
@@ -52,10 +54,13 @@ public class CobaltItemConfiguration {
         return text.copy().formatted(nameFormatting);
     }
 
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        // General tooltip
         var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
         var splitTooltip = TextUtil.splitText(tooltipText);
         tooltip.addAll(splitTooltip);
+
+        // Extra tooltips
         tooltip.addAll(this.tooltip);
     }
 
@@ -114,6 +119,46 @@ public class CobaltItemConfiguration {
      */
     public CobaltItemConfiguration tooltip(String... translatableStrings) {
         for (String s : translatableStrings) this.tooltip.add(Text.translatable(s).formatted(Formatting.DARK_GRAY));
+        return this;
+    }
+
+    /**
+     * Apply a tooltip in the set bonus style.
+     *
+     * @param setBonusId the id of the set bonus
+     * @return builder.
+     */
+    public CobaltItemConfiguration setBonusTooltip(String setBonusId) {
+        this.tooltip.add(Text.empty());
+        this.tooltip.add(Text.translatable("item_set.cobalt." + setBonusId + ".tooltip.header").formatted(Formatting.GOLD));
+        this.tooltip.add(Text.translatable("item_set.cobalt." + setBonusId + ".tooltip").formatted(Formatting.DARK_GRAY));
+        return this;
+    }
+
+    /**
+     * Apply an attribute modifier to the item.
+     *
+     * @param attribute the attribute to apply.
+     * @param modifier the attribute modifier.
+     * @param slots the slots to apply the attribute to. If left empty the attribute will not be applied.
+     * @return builder.
+     */
+    public CobaltItemConfiguration attributeModifier(EntityAttribute attribute, EntityAttributeModifier modifier, EquipmentSlot... slots) {
+        for (EquipmentSlot slot : slots) {
+            List<AttributeModifierProvider> list = attributeModifiers.computeIfAbsent(slot, k -> new ArrayList<>());
+            list.add(new AttributeModifierProvider(attribute, modifier));
+        }
+        return this;
+    }
+
+    /**
+     * Sets the item ability of the item. Executed when a player right clicks with the item.
+     *
+     * @param ability the ability.
+     * @return builder.
+     */
+    public CobaltItemConfiguration ability(IItemAbility ability) {
+        this.itemAbility = ability;
         return this;
     }
 }

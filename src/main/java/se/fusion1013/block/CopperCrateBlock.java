@@ -31,6 +31,11 @@ public class CopperCrateBlock extends CustomSingleStackBlock implements Waterlog
     }
 
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }

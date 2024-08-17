@@ -103,7 +103,7 @@ public class LightningArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected ItemStack asItemStack() {
-        return new ItemStack(CobaltItems.ArrowItems.LIGHTNING_ARROW);
+        return new ItemStack(CobaltItems.LIGHTNING_ARROW);
     }
 
     @Override

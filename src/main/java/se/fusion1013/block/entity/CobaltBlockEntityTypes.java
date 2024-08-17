@@ -20,10 +20,11 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<SpeakerBlockEntity>                       SPEAKER;
     public static final BlockEntityType<ParticleBlockEntity>                      PARTICLE_BLOCK;
     public static final BlockEntityType<RuneBlockEntity>                          RUNE_BLOCK;
-    public static final BlockEntityType<ForgeSideCrystalBlockEntity>              FORGE_SIDE_CRYSTAL_BLOCK;
     public static final BlockEntityType<PedestalBlockEntity>                      PEDESTAL_BLOCK_ENTITY;
     public static final BlockEntityType<ItemDisplayBlockEntity>                   ITEM_DISPLAY_BLOCK_ENTITY;
     public static final BlockEntityType<ForgeBlockEntity>                         FORGE_BLOCK_ENTITY;
+    public static final BlockEntityType<LightHolderBlockEntity>                   LIGHT_HOLDER_BLOCK_ENTITY;
+    public static final BlockEntityType<DirectionalLightHolderBlockEntity>        DIRECTIONAL_LIGHT_HOLDER_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Main.MOD_NAMESPACE, id), builder.build());
@@ -38,10 +39,11 @@ public class CobaltBlockEntityTypes {
         SPEAKER = register("speaker_block_entity", FabricBlockEntityTypeBuilder.create(SpeakerBlockEntity::new, CobaltBlocks.OXIDIZED_COPPER_SPEAKER, CobaltBlocks.EXPOSED_COPPER_SPEAKER, CobaltBlocks.WEATHERED_COPPER_SPEAKER, CobaltBlocks.COPPER_SPEAKER));
         PARTICLE_BLOCK = register("particle_block_entity", FabricBlockEntityTypeBuilder.create(ParticleBlockEntity::new, CobaltBlocks.PARTICLE_COMMAND_BLOCK));
         RUNE_BLOCK = register("rune_block_entity", FabricBlockEntityTypeBuilder.create(RuneBlockEntity::new, CobaltBlocks.RUNE_BLOCK));
-        FORGE_SIDE_CRYSTAL_BLOCK = register("forge_side_crystal_block_entity", FabricBlockEntityTypeBuilder.create(ForgeSideCrystalBlockEntity::new, CobaltBlocks.FORGE_SIDE_CRYSTAL_BLOCK));
         PEDESTAL_BLOCK_ENTITY = register("pedestal_block_entity", FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, CobaltBlocks.PEDESTAL_BLOCK));
         ITEM_DISPLAY_BLOCK_ENTITY = register("item_display_entity", FabricBlockEntityTypeBuilder.create(ItemDisplayBlockEntity::new, CobaltBlocks.ITEM_DISPLAY));
         FORGE_BLOCK_ENTITY = register("forge_block_entity", FabricBlockEntityTypeBuilder.create(ForgeBlockEntity::new, CobaltBlocks.FORGE_BLOCK));
+        LIGHT_HOLDER_BLOCK_ENTITY = register("light_holder_block_entity", FabricBlockEntityTypeBuilder.create(LightHolderBlockEntity::new, CobaltBlocks.LIGHT_HOLDER));
+        DIRECTIONAL_LIGHT_HOLDER_BLOCK_ENTITY = register("directional_light_holder_block_entity", FabricBlockEntityTypeBuilder.create(DirectionalLightHolderBlockEntity::new, CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER));
     }
 
 }
