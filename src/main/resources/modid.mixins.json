@@ -6,7 +6,8 @@
     "EntityMixin",
     "ExampleMixin",
     "ItemMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "item.ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

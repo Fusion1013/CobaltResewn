@@ -11,6 +11,10 @@
   "item_group.cobalt.block": "Flickering Lights - Blocks",
 
 
+  "item.cobalt.damage_prefix": "Damage: ",
+  "item.cobalt.attack_speed_prefix": "Attack Speed: ",
+  "item.cobalt.critical_damage_prefix": "Crit Damage: ",
+
 
   "item.cobalt.adventure_sword": "Adventurer's Sword",
   "item.cobalt.adventure_sword.tooltip": "Perfect for a fledgling adventurer",
