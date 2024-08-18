@@ -16,6 +16,7 @@ public class EnvironmentFogModifier implements BackgroundRenderer.StatusEffectFo
 
     @Override
     public void applyStartEndModifier(BackgroundRenderer.FogData fogData, LivingEntity entity, StatusEffectInstance effect, float viewDistance, float tickDelta) {
+        /*
         if (effect.getFactorCalculationData().isEmpty()) return;
 
         if (EnvironmentEffectValues.ResetTimer) {
@@ -33,11 +34,15 @@ public class EnvironmentFogModifier implements BackgroundRenderer.StatusEffectFo
         float end = MathHelper.lerp(delta, EnvironmentEffectValues.EndLerpFrom, EnvironmentEffectValues.FogEnd);
         fogData.fogStart = start;
         fogData.fogEnd = end;
+         */
     }
 
     @Override
     public float applyColorModifier(LivingEntity entity, StatusEffectInstance effect, float f, float tickDelta) {
+        /*
         var delta = effect.getFactorCalculationData().get().lerp(entity, tickDelta);
         return MathHelper.lerp(delta, EnvironmentEffectValues.ColorLerpFrom, EnvironmentEffectValues.Color);
+         */
+        return 0;
     }
 }

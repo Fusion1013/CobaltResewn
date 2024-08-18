@@ -12,6 +12,7 @@ import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
+import se.fusion1013.Main;
 import se.fusion1013.block.entity.PedestalBlockEntity;
 
 @Environment(EnvType.CLIENT)
@@ -29,7 +30,7 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
 
         var stack = entity.getStack(0);
 
-        if (!entity.getStack(0).isEmpty()) {
+        if (!stack.isEmpty()) {
 
             double offset = Math.sin(MathHelper.lerp(tickDelta, (float)PedestalBlockEntity.getLastTick(), (float)PedestalBlockEntity.getTick()) / 32f) / 8.0;
 

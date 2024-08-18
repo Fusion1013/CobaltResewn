@@ -10,7 +10,7 @@ import se.fusion1013.entity.CorruptedZombieEntity;
 
 public class CorruptedZombieEntityRenderer extends ZombieEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/entity/corrupted_zombie.png");
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/entity/corrupted_zombie.png");
 
     public CorruptedZombieEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

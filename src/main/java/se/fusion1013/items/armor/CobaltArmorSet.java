@@ -31,8 +31,6 @@ public class CobaltArmorSet {
 
         private IItemSetMethods setMethods;
 
-        // TODO: Set bonus
-
         public Builder(CobaltArmorItem helmet, CobaltArmorItem chestplate, CobaltArmorItem leggings, CobaltArmorItem boots) {
             this.helmet = helmet;
             this.chestplate = chestplate;
@@ -47,10 +45,10 @@ public class CobaltArmorSet {
 
         public CobaltArmorSet register(String setId, BiFunction<String, CobaltArmorItem, CobaltArmorItem> registerFunction) {
             // Register the parts
-            var registeredHelmet = registerFunction.apply(setId + "_helmet", helmet);
-            var registeredChestplate = registerFunction.apply(setId + "_chestplate", chestplate);
-            var registeredLeggings = registerFunction.apply(setId + "_leggings", leggings);
             var registeredBoots = registerFunction.apply(setId + "_boots", boots);
+            var registeredLeggings = registerFunction.apply(setId + "_leggings", leggings);
+            var registeredChestplate = registerFunction.apply(setId + "_chestplate", chestplate);
+            var registeredHelmet = registerFunction.apply(setId + "_helmet", helmet);
 
             // Create armor set
             var armorSet = new CobaltArmorSet(registeredHelmet, registeredChestplate, registeredLeggings, registeredBoots);

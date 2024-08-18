@@ -10,6 +10,7 @@ import se.fusion1013.block.entity.CobaltBlockEntityTypes;
 import se.fusion1013.commands.CobaltCommands;
 import se.fusion1013.effect.CobaltEffects;
 import se.fusion1013.entity.CobaltEntities;
+import se.fusion1013.entity.attribute.CobaltAttributes;
 import se.fusion1013.items.CobaltItems;
 import se.fusion1013.items.CustomItemGroupRegistry;
 import se.fusion1013.networking.CobaltServerNetworking;
@@ -29,6 +30,7 @@ public class Main implements ModInitializer {
 
 		ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStart);
 
+		CobaltAttributes.register();
 		CobaltCommands.register();
 		CobaltSoundEvents.register();
 		CobaltEntities.register();

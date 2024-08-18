@@ -14,8 +14,9 @@ public class CobaltAxeItem extends AxeItem {
     private final CobaltItem.Settings settings;
 
     public CobaltAxeItem(float attackDamage, float attackSpeed, CobaltItem.Settings settings) {
-        super(ToolMaterials.STONE, settings);
-        settings.attributeModifiers(AxeItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4));
+        super(ToolMaterials.STONE, settings
+                .attributeModifiers(AxeItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4))
+        );
         this.settings = settings;
     }
 

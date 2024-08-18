@@ -14,8 +14,8 @@ public class CobaltSwordItem extends SwordItem {
     private final CobaltItem.Settings settings;
 
     public CobaltSwordItem(int attackDamage, float attackSpeed, CobaltItem.Settings settings) {
-        super(ToolMaterials.STONE, settings);
-        settings.attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4));
+        super(ToolMaterials.STONE, settings
+                .attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4)));
         this.settings = settings;
     }
 

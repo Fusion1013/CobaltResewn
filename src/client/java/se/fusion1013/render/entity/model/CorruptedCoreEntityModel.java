@@ -27,12 +27,12 @@ public class CorruptedCoreEntityModel extends EntityModel<CorruptedCoreEntity> {
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-        bb_main.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+    public void setAngles(CorruptedCoreEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+
     }
 
     @Override
-    public void setAngles(CorruptedCoreEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+        bb_main.render(matrices, vertices, light, overlay, color);
     }
 }

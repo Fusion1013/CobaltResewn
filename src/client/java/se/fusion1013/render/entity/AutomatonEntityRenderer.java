@@ -8,7 +8,7 @@ import se.fusion1013.Main;
 
 public class AutomatonEntityRenderer extends VindicatorEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/entity/automaton.png");
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/entity/automaton.png");
 
     public AutomatonEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

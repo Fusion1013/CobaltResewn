@@ -17,6 +17,7 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -76,9 +77,9 @@ public class DirectionalLightContainerBlock extends AbstractLightContainerBlock 
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (hand == Hand.OFF_HAND) return super.onUse(state, world, pos, player, hand, hit);
-        if (player.isSneaking()) return super.onUse(state, world, pos, player, hand, hit);
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (hand == Hand.OFF_HAND) return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+        if (player.isSneaking()) return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
 
         // Try to insert a lens
         ItemStack heldItem = player.getStackInHand(hand);
@@ -87,7 +88,7 @@ public class DirectionalLightContainerBlock extends AbstractLightContainerBlock 
 
             if (heldItem.getItem() == lensType.item) {
                 insertLens(lensType, world, pos, state, player, hand);
-                return ActionResult.SUCCESS;
+                return ItemActionResult.SUCCESS;
             }
         }
 
@@ -102,10 +103,10 @@ public class DirectionalLightContainerBlock extends AbstractLightContainerBlock 
                 world.playSound(null, pos, CobaltSoundEvents.LIGHT_HOLDER_LENS_REMOVE, SoundCategory.BLOCKS, 1, 1);
             }
 
-            return ActionResult.SUCCESS;
+            return ItemActionResult.SUCCESS;
         }
 
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
     }
 
     private void insertLens(LensType lensType, World world, BlockPos pos, BlockState state, PlayerEntity player, Hand hand) {

@@ -22,7 +22,7 @@ public class CobaltSoundEvents {
     public static final SoundEvent RAT_DEATH = register("entity.rat.death");
 
     public static SoundEvent register(String id) {
-        Identifier identifier = new Identifier(Main.MOD_NAMESPACE + ":" + id);
+        Identifier identifier = Identifier.of(Main.MOD_NAMESPACE, id);
         return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
     }
 

@@ -5,9 +5,3 @@ accessible class net/minecraft/client/render/BackgroundRenderer$BlindnessFogModi
 accessible class net/minecraft/client/render/BackgroundRenderer$DarknessFogModifier
 accessible method net/minecraft/client/render/BackgroundRenderer$BlindnessFogModifier <init> ()V
 accessible method net/minecraft/client/render/BackgroundRenderer$DarknessFogModifier <init> ()V
-accessible field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData factorCurrent F
-accessible field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData factorStart F
-accessible field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData factorPreviousFrame F
-mutable field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData paddingDuration I
-accessible field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData paddingDuration I
-accessible field net/minecraft/entity/effect/StatusEffectInstance$FactorCalculationData effectChangedTimestamp I

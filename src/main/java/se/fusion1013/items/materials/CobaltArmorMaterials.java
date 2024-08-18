@@ -10,49 +10,56 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import se.fusion1013.Main;
 
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class CobaltArmorMaterials {
 
     // POST-1.21
 
-    public static final RegistryEntry<ArmorMaterial> ADVENTURE = register("adventure", Util.make(new EnumMap(ArmorItem.Type.class), map -> {
-        map.put(ArmorItem.Type.BOOTS, 1);
-        map.put(ArmorItem.Type.LEGGINGS, 1);
-        map.put(ArmorItem.Type.CHESTPLATE, 1);
-        map.put(ArmorItem.Type.HELMET, 1);
-        map.put(ArmorItem.Type.BODY, 1);
-    }), 15, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.ofItems(Items.IRON_INGOT));
+    public static final int GLOBAL_DURABILITY_MULTIPLIER = 15;
 
-    public static final RegistryEntry<ArmorMaterial> DIVE = register("dive", Util.make(new EnumMap(ArmorItem.Type.class), map -> {
-        map.put(ArmorItem.Type.BOOTS, 1);
-        map.put(ArmorItem.Type.LEGGINGS, 1);
-        map.put(ArmorItem.Type.CHESTPLATE, 1);
-        map.put(ArmorItem.Type.HELMET, 1);
-        map.put(ArmorItem.Type.BODY, 1);
-    }), 15, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.ofItems(Items.IRON_INGOT));
+    public static final RegistryEntry<ArmorMaterial> ADVENTURE = registerMaterial("adventure", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> GUARD = registerMaterial("guard", 2, 3, 5, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> HUNTER = registerMaterial("hunter", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> MECHANIC = registerMaterial("mechanic", 2, 3, 4, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> REINFORCED_MECHANIC = registerMaterial("reinforced_mechanic", 2, 3, 4, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> TINKER = registerMaterial("tinker", 2, 4, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> REINFORCED_TINKER = registerMaterial("reinforced_tinker", 2, 4, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> LUMBERJACK = registerMaterial("lumberjack", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> MINER = registerMaterial("miner", 1, 2, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> PROSPECTOR = registerMaterial("prospector", 1, 2, 3, 2, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> DIVE = registerMaterial("dive", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> CORRUPTED = registerMaterial("corrupted", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> EXOSKELETON = registerMaterial("exoskeleton", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> ADVANCED_EXOSKELETON = registerMaterial("advanced_exoskeleton", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> THERMAL_GEAR = registerMaterial("thermal_gear", 2, 5, 6, 2, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
 
 
-
-    private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
-        List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(Identifier.of(Main.MOD_NAMESPACE, id)));
-        return register(id, defense, enchantability, equipSound, toughness, knockbackResistance, repairIngredient, layers);
+    public static RegistryEntry<ArmorMaterial> registerMaterial(String id, int defenseHelmet, int defenseChestplate, int defenseLeggings, int defenseBoots, RegistryEntry<SoundEvent> equipSound) {
+        return registerMaterial(id, defenseHelmet, defenseChestplate, defenseLeggings, defenseBoots, 0, equipSound);
     }
 
-    private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient, List<ArmorMaterial.Layer> layers) {
-        EnumMap<ArmorItem.Type, Integer> enumMap = new EnumMap<>(ArmorItem.Type.class);
-        ArmorItem.Type[] types = ArmorItem.Type.values();
+    public static RegistryEntry<ArmorMaterial> registerMaterial(String id, int defenseHelmet, int defenseChestplate, int defenseLeggings, int defenseBoots, int toughness, RegistryEntry<SoundEvent> equipSound) {
+        return registerMaterial(id, Map.of(
+                ArmorItem.Type.HELMET, defenseHelmet,
+                ArmorItem.Type.CHESTPLATE, defenseChestplate,
+                ArmorItem.Type.LEGGINGS, defenseLeggings,
+                ArmorItem.Type.BOOTS, defenseBoots
+        ), 0, equipSound, () -> Ingredient.ofItems(Items.BEDROCK), 0.0f, 0.0f, false);
+    }
 
-        for (ArmorItem.Type t : types) {
-            enumMap.put(t, defense.get(t));
-        }
+    public static RegistryEntry<ArmorMaterial> registerMaterial(String id, Map<ArmorItem.Type, Integer> defensePoints, int enchantability, RegistryEntry<SoundEvent> equipSound, Supplier<Ingredient> repairIngredientSupplier, float toughness, float knockbackResistance, boolean dyeable) {
+        List<ArmorMaterial.Layer> layers = List.of(
+                new ArmorMaterial.Layer(Identifier.of(Main.MOD_NAMESPACE, id), "", dyeable)
+        );
 
-        return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(Main.MOD_NAMESPACE, id), new ArmorMaterial(enumMap, enchantability, equipSound, repairIngredient, layers, toughness, knockbackResistance));
+        ArmorMaterial material = new ArmorMaterial(defensePoints, enchantability, equipSound, repairIngredientSupplier, layers, toughness, knockbackResistance);
+        material = Registry.register(Registries.ARMOR_MATERIAL, Identifier.of(Main.MOD_NAMESPACE, id), material);
+        return RegistryEntry.of(material);
     }
 
     // PRE-1.21

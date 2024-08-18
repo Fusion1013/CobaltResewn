@@ -9,9 +9,14 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import se.fusion1013.Main;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItemConfiguration;
 import se.fusion1013.items.CobaltItems;
+import se.fusion1013.items.CobaltRarity;
 
 import java.util.UUID;
 
@@ -26,16 +31,13 @@ public class HealthRuneItem extends CobaltTrinketItem {
     private int cooldown;
 
     public HealthRuneItem() {
-        super(new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.RED),
-                (modifiers, stack, slot, entity, uuid) -> modifiers);
+        super(new CobaltItem.Settings().rarity(CobaltRarity.Perfect), (modifiers, stack, slot, entity, uuid) -> modifiers);
     }
 
     @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
-        var modifiers = super.getModifiers(stack, slot, entity, uuid);
-        modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "cobalt.health_rune.health", 0.1f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+    public Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier slotIdentifier) {
+        var modifiers = super.getModifiers(stack, slot, entity, slotIdentifier);
+        modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(Identifier.of(Main.MOD_NAMESPACE, "health_rune.health"), 0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         return modifiers;
     }
 

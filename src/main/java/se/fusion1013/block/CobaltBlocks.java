@@ -151,7 +151,7 @@ public class CobaltBlocks {
     }
 
     private static void registerItem(String name, Block block) {
-        var item = Registry.register(Registries.ITEM, new Identifier(Main.MOD_NAMESPACE, name), new BlockItem(block, new FabricItemSettings()));
+        var item = Registry.register(Registries.ITEM, Identifier.of(Main.MOD_NAMESPACE, name), new BlockItem(block, new CobaltItem.Settings()));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> content.addAfter(Items.WAXED_OXIDIZED_CHISELED_COPPER, item));
         ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
         ItemGroupEvents.modifyEntriesEvent(COBALT_BLOCK_GROUP_KEY).register(content -> content.add(item));

@@ -4,27 +4,29 @@ import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.MathHelper;
 
 public class FogModifier implements BackgroundRenderer.StatusEffectFogModifier {
 
-    private final StatusEffect effect;
+    private final RegistryEntry<StatusEffect> effect;
     private final float start;
     private final float end;
 
-    public FogModifier(StatusEffect effect, float start, float end) {
+    public FogModifier(RegistryEntry<StatusEffect> effect, float start, float end) {
         this.effect = effect;
         this.start = start;
         this.end = end;
     }
 
     @Override
-    public StatusEffect getStatusEffect() {
+    public RegistryEntry<StatusEffect> getStatusEffect() {
         return effect;
     }
 
     @Override
     public void applyStartEndModifier(BackgroundRenderer.FogData fogData, LivingEntity entity, StatusEffectInstance effect, float viewDistance, float tickDelta) {
+        /*
         if (effect.getFactorCalculationData().isEmpty()) return;
 
         var delta = effect.getFactorCalculationData().get().lerp(entity, tickDelta);
@@ -33,6 +35,7 @@ public class FogModifier implements BackgroundRenderer.StatusEffectFogModifier {
         float end = MathHelper.lerp(delta, viewDistance, this.end);
         fogData.fogStart = start;
         fogData.fogEnd = end;
+         */
     }
 
     @Override

@@ -11,7 +11,7 @@ import se.fusion1013.gui.WalkieTalkieScreen;
 public class UpdateWalkieTalkieS2CPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
 
-        ItemStack stack = buffer.readItemStack();
-        WalkieTalkieScreen.getInstance().updateButtons(stack);
+        // ItemStack stack = buffer.readItemStack();
+        // WalkieTalkieScreen.getInstance().updateButtons(stack);
     }
 }

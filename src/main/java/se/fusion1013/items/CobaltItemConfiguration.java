@@ -54,7 +54,7 @@ public class CobaltItemConfiguration {
         return text.copy().formatted(nameFormatting);
     }
 
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip) {
         // General tooltip
         var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
         var splitTooltip = TextUtil.splitText(tooltipText);

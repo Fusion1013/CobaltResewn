@@ -17,9 +17,9 @@ public class CobaltServerNetworking {
 
     public static void register() {
         // Register global receivers
-        ServerPlayNetworking.registerGlobalReceiver(ITEM_SET_TRIGGER_ABILITY_C2S, new ItemSetTriggerAbilityC2S()::receive);
-        ServerPlayNetworking.registerGlobalReceiver(UPDATE_WALKIETALKIE_C2S, UpdateWalkieTalkieC2SPacket::receive);
-        ServerPlayNetworking.registerGlobalReceiver(UPDATE_SPEAKER_C2S, UpdateSpeakerC2SPacket::receive);
+        // TODO: ServerPlayNetworking.registerGlobalReceiver(ITEM_SET_TRIGGER_ABILITY_C2S, new ItemSetTriggerAbilityC2S()::receive);
+        // TODO: ServerPlayNetworking.registerGlobalReceiver(UPDATE_WALKIETALKIE_C2S, UpdateWalkieTalkieC2SPacket::receive);
+        // TODO: ServerPlayNetworking.registerGlobalReceiver(UPDATE_SPEAKER_C2S, UpdateSpeakerC2SPacket::receive);
 
 
         PayloadTypeRegistry.playC2S().register(UpdateItemDisplayPayloadC2S.ID, UpdateItemDisplayPayloadC2S.CODEC);

@@ -9,6 +9,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -70,19 +71,19 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
 
     // --- USE (Light Soul Insert)
 
+
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack stack = player.getStackInHand(hand);
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() == CobaltItems.LIGHT_SOUL) return tryInsertSoul(world, pos, player, hand);
         else return tryTakeSoul(world, pos, player, hand);
     }
 
-    private ActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
+    private ItemActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
-        if (stack.getItem() != CobaltItems.LIGHT_SOUL) return ActionResult.FAIL;
-        if (state.get(LIT).booleanValue()) return ActionResult.FAIL;
+        if (stack.getItem() != CobaltItems.LIGHT_SOUL) return ItemActionResult.FAIL;
+        if (state.get(LIT).booleanValue()) return ItemActionResult.FAIL;
 
         world.setBlockState(pos, state.with(LIT, true));
         player.getStackInHand(hand).setCount(0);
@@ -91,15 +92,15 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
             world.playSound(null, pos, CobaltSoundEvents.LIGHT_HOLDER_SOUL_INSERT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
 
-        return ActionResult.SUCCESS;
+        return ItemActionResult.SUCCESS;
     }
 
-    private ActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
+    private ItemActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
-        if (!stack.isEmpty()) return ActionResult.FAIL;
-        if (!state.get(LIT).booleanValue()) return ActionResult.FAIL;
+        if (!stack.isEmpty()) return ItemActionResult.FAIL;
+        if (!state.get(LIT).booleanValue()) return ItemActionResult.FAIL;
 
         world.setBlockState(pos, state.with(LIT, false));
         player.setStackInHand(hand, CobaltItems.LIGHT_SOUL.getDefaultStack());
@@ -113,7 +114,7 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
             world.playSound(null, pos, CobaltSoundEvents.LIGHT_HOLDER_SOUL_REMOVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
 
-        return ActionResult.SUCCESS;
+        return ItemActionResult.SUCCESS;
     }
 
     // ---

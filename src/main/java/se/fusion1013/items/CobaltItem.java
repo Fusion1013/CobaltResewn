@@ -1,5 +1,6 @@
 package se.fusion1013.items;
 
+import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
@@ -44,19 +45,25 @@ public class CobaltItem extends Item {
 
         private final Formatting nameFormatting;
         private final List<Text> tooltip = new ArrayList<>();
+        private CobaltRarity rarity = CobaltRarity.Average;
+
+        public Settings() {
+            this(Formatting.WHITE);
+        }
 
         public Settings(Formatting nameFormatting) {
             super();
             this.nameFormatting = nameFormatting;
 
             // Apply default components
-            component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
+            component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(false));
         }
 
         // Apply
 
         public Text applyNameFormatting(Text text) {
-            return text.copy().formatted(nameFormatting);
+            if (nameFormatting == Formatting.WHITE) return text.copy().formatted(rarity.formatting);
+            else return text.copy().formatted(nameFormatting);
         }
 
         public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
@@ -67,6 +74,11 @@ public class CobaltItem extends Item {
         }
 
         // Builder
+
+        public Settings rarity(CobaltRarity rarity) {
+            this.rarity = rarity;
+            return this;
+        }
 
         public Settings tooltip(Text... tooltip) {
             this.tooltip.addAll(Arrays.asList(tooltip));

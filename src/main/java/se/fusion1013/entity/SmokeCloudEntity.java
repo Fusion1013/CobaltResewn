@@ -107,8 +107,8 @@ public class SmokeCloudEntity extends Entity implements Ownable {
     }
 
     @Override
-    protected void initDataTracker() {
-        this.getDataTracker().startTracking(RADIUS, 3.0f);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        builder.add(RADIUS, 3.0f);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class CustomItemGroupRegistry {
 
     public static final RegistryKey<ItemGroup> COBALT_ARMOR_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Main.MOD_NAMESPACE, "armor_group"));
     public static final ItemGroup COBALT_ARMOR_GROUP = register(COBALT_ARMOR_GROUP_KEY, FabricItemGroup.builder()
-            .icon(() -> new ItemStack(CobaltItems.TINKER_ARMOR_SET.registeredHelmet))
+            .icon(() -> new ItemStack(CobaltItems.PROSPECTOR_ARMOR_SET.helmet))
             .displayName(Text.translatable("item_group.cobalt.armor"))
             .build());
 

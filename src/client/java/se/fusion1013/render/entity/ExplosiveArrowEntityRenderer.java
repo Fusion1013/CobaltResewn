@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 public class ExplosiveArrowEntityRenderer extends ProjectileEntityRenderer<ExplosiveArrowEntity> {
 
-    public static final Identifier TEXTURE = new Identifier("cobalt:textures/entity/explosive_arrow.png");
+    public static final Identifier TEXTURE = Identifier.of("cobalt:textures/entity/explosive_arrow.png");
 
     public ExplosiveArrowEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

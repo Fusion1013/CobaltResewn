@@ -13,13 +13,14 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import se.fusion1013.effect.CobaltEffects;
 import se.fusion1013.items.CobaltItem;
+import se.fusion1013.items.CobaltRarity;
 
 import java.util.List;
 
 public class CorruptedPearlItem extends CobaltItem {
 
     public CorruptedPearlItem() {
-        super(new CobaltItem.Settings(Formatting.DARK_PURPLE));
+        super(new CobaltItem.Settings().rarity(CobaltRarity.Great));
     }
 
     @Override

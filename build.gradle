@@ -65,7 +65,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Trinkets
-	// modImplementation "dev.emi:trinkets:${trinkets_version}"
+	modImplementation "dev.emi:trinkets:${trinkets_version}"
 
 	// Wispforest Lavender
 	modImplementation "io.wispforest:lavender:${project.lavender_version}"

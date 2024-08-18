@@ -80,13 +80,14 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotation));
 
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(getRenderLayer());
-        testPart.render(matrices, vertexConsumer, light, overlay, color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 1);
+        // testPart.render(matrices, vertexConsumer, light, overlay, color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 1);
+        testPart.render(matrices, vertexConsumer, light, overlay, color.getRGB());
 
         matrices.pop();
     }
 
     private RenderLayer getRenderLayer() {
         String texturePath = "textures/entity/lens.png";
-        return RenderLayer.getEntityTranslucent(new Identifier(Main.MOD_NAMESPACE, texturePath));
+        return RenderLayer.getEntityTranslucent(Identifier.of(Main.MOD_NAMESPACE, texturePath));
     }
 }

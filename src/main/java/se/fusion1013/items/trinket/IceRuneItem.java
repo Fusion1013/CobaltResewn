@@ -16,8 +16,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import se.fusion1013.effect.CobaltEffects;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItemConfiguration;
 import se.fusion1013.items.CobaltItems;
+import se.fusion1013.items.CobaltRarity;
 import se.fusion1013.util.item.ItemSetUtil;
 
 import java.util.List;
@@ -27,13 +29,7 @@ public class IceRuneItem extends CobaltTrinketItem {
     private static final float ICE_RADIUS = 8;
 
     public IceRuneItem() {
-        super(new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.AQUA)
-                        .setBonusTooltip("ice_rune_health")
-                        .setBonusTooltip("ice_rune_heavy")
-                        .setBonusTooltip("ice_rune_fast"),
-                (modifiers, stack, slot, entity, uuid) -> modifiers);
+        super(new CobaltItem.Settings().rarity(CobaltRarity.Perfect), (modifiers, stack, slot, entity, uuid) -> modifiers);
     }
 
     @Override

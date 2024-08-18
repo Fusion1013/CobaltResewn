@@ -17,9 +17,9 @@ public class BackgroundRendererMixin {
 
     @Shadow @Final private static final List<BackgroundRenderer.StatusEffectFogModifier> FOG_MODIFIERS = Lists.newArrayList(
             new EnvironmentFogModifier(),
-            new FogModifier(CobaltEffects.LIGHT_FOG, 80, 160),
-            new FogModifier(CobaltEffects.MEDIUM_FOG, 50, 100),
-            new FogModifier(CobaltEffects.HEAVY_FOG, 10, 50),
+            // new FogModifier(CobaltEffects.LIGHT_FOG, 80, 160),
+            // new FogModifier(CobaltEffects.MEDIUM_FOG, 50, 100),
+            // new FogModifier(CobaltEffects.HEAVY_FOG, 10, 50),
             new BackgroundRenderer.DarknessFogModifier(),
             new BackgroundRenderer.BlindnessFogModifier()
     );

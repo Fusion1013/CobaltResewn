@@ -110,16 +110,16 @@ public class RatEntityModel extends EntityModel<RatEntity> {
 	}
 
 	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		body1.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body2.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body3.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body4.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body5.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body6.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body7.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		wing1.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		wing2.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		wing3.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+		body1.render(matrices, vertices, light, overlay, color);
+		body2.render(matrices, vertices, light, overlay, color);
+		body3.render(matrices, vertices, light, overlay, color);
+		body4.render(matrices, vertices, light, overlay, color);
+		body5.render(matrices, vertices, light, overlay, color);
+		body6.render(matrices, vertices, light, overlay, color);
+		body7.render(matrices, vertices, light, overlay, color);
+		wing1.render(matrices, vertices, light, overlay, color);
+		wing2.render(matrices, vertices, light, overlay, color);
+		wing3.render(matrices, vertices, light, overlay, color);
 	}
 }

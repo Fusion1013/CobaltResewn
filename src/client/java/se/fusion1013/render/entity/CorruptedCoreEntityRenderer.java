@@ -24,6 +24,6 @@ public class CorruptedCoreEntityRenderer extends MobEntityRenderer<CorruptedCore
 
     @Override
     public Identifier getTexture(CorruptedCoreEntity entity) {
-        return new Identifier("cobalt", "textures/entity/corrupted_core.png");
+        return Identifier.of("cobalt", "textures/entity/corrupted_core.png");
     }
 }

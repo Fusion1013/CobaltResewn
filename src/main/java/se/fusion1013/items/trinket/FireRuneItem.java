@@ -2,37 +2,21 @@ package se.fusion1013.items.trinket;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItems;
+import se.fusion1013.items.CobaltRarity;
 import se.fusion1013.util.item.ItemSetUtil;
-
-import java.util.List;
 
 public class FireRuneItem extends CobaltTrinketItem {
 
     private int healCooldown;
 
     public FireRuneItem() {
-        super(new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.RED)
-                        .setBonusTooltip("fire_rune_health")
-                        .setBonusTooltip("fire_rune_heavy")
-                        .setBonusTooltip("fire_rune_fast"),
-        (modifiers, stack, slot, entity, uuid) -> modifiers);
+        super(new CobaltItem.Settings().rarity(CobaltRarity.Perfect), (modifiers, stack, slot, entity, uuid) -> modifiers);
     }
 
     @Override

@@ -6,7 +6,7 @@
     "EntityMixin",
     "ItemMixin",
     "LivingEntityMixin",
-    "item.ItemStackMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

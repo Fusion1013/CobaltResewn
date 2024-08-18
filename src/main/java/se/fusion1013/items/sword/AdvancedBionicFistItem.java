@@ -1,6 +1,5 @@
 package se.fusion1013.items.sword;
 
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -11,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -24,7 +24,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltRarity;
 import se.fusion1013.util.TextUtil;
 
 import java.util.List;
@@ -36,12 +38,12 @@ public class AdvancedBionicFistItem extends CobaltSwordItem {
     private static final float AOE_DAMAGE = 5;
 
     public AdvancedBionicFistItem() {
-        super(ToolMaterials.STONE, -2+9, -4+2.3f, CobaltItemConfiguration.create(Formatting.GOLD).attributeModifier(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, new EntityAttributeModifier("cobalt.bionic_fist.knockback", 1.8f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new Item.Settings());
+        super(9, 2.3f, new CobaltItem.Settings().rarity(CobaltRarity.Perfect));
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
         tooltip.addAll(TextUtil.splitText(Text.translatable("item.cobalt.advanced_bionic_fist.ability").formatted(Formatting.GOLD)));
     }
 
@@ -58,7 +60,7 @@ public class AdvancedBionicFistItem extends CobaltSwordItem {
             lunge(world, user);
             triggerAoeAbility(world, user);
 
-            user.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
+            user.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, 1, 1);
             user.getItemCooldownManager().set(this, ABILITY_COOLDOWN);
         }
     }

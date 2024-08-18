@@ -18,7 +18,7 @@ public class AdvancedExoskeletonArmorSet implements IItemSetMethods {
             if (playerEntity.getInventory().containsAny(itemStack -> itemStack.getItem() == Items.COAL) && !playerEntity.hasStatusEffect(CobaltEffects.IMMOVABLE_EFFECT)) {
                 // Remove coal
                 playerEntity.getInventory().remove(itemStack -> itemStack.getItem() == Items.COAL, 4, playerEntity.getInventory());
-                playerEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1, 1);
+                playerEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, 1, 1);
 
                 playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 10*20, 2));
                 playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10*20, 2));

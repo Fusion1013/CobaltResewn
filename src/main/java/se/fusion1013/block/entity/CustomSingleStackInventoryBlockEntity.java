@@ -10,6 +10,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
@@ -30,24 +31,26 @@ public class CustomSingleStackInventoryBlockEntity extends BlockEntity implement
 
     /// Save / Load Inventory
 
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, items);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, items, registryLookup);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         NbtList nbtList = new NbtList();
-        for (int i = 0; i < items.size(); ++i) {
+
+        for(int i = 0; i < items.size(); ++i) {
             ItemStack itemStack = items.get(i);
             NbtCompound nbtCompound = new NbtCompound();
             nbtCompound.putByte("Slot", (byte)i);
-            itemStack.writeNbt(nbtCompound);
-            nbtList.add(nbtCompound);
+            if (itemStack.isEmpty()) nbtList.add(nbtCompound);
+            else nbtList.add(itemStack.encode(registryLookup));
         }
         nbt.put("Items", nbtList);
-        super.writeNbt(nbt);
+        super.writeNbt(nbt, registryLookup);
     }
 
     @Nullable
@@ -57,8 +60,8 @@ public class CustomSingleStackInventoryBlockEntity extends BlockEntity implement
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     ///

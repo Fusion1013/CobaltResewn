@@ -25,7 +25,7 @@ public class UpdateWalkieTalkieC2SPacket {
         ItemStack stack = ItemUtil.getHeldItemOfType(player, CobaltItems.WALKIE_TALKIE);
 
         // If it is not a valid item, do not try to edit it
-        if (!(stack.getItem() instanceof WalkieTalkieItem) && !stack.hasNbt()) return;
+        // TODO: if (!(stack.getItem() instanceof WalkieTalkieItem) && !stack.hasNbt()) return;
 
         // Read the buffer. Index is the id of the value changed
         int index = buffer.readInt();
@@ -53,7 +53,7 @@ public class UpdateWalkieTalkieC2SPacket {
 
         // Send the updated item stack to the client
         PacketByteBuf packet = new PacketByteBuf(Unpooled.buffer());
-        packet.writeItemStack(stack);
-        ServerPlayNetworking.send(player, CobaltNetworkingConstants.UPDATE_WALKIETALKIE_S2C, packet);
+        // TODO: packet.writeItemStack(stack);
+        // TODO: ServerPlayNetworking.send(player, CobaltNetworkingConstants.UPDATE_WALKIETALKIE_S2C, packet);
     }
 }

@@ -34,7 +34,7 @@ public class FogCommand {
                             buffer.writeString("start");
                             buffer.writeFloat(start);
 
-                            ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
+                            // ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
 
                             context.getSource().sendFeedback(() -> Text.literal("Set fog start to %s".formatted(start)), false);
                             return 0;
@@ -48,7 +48,7 @@ public class FogCommand {
                             buffer.writeString("end");
                             buffer.writeFloat(end);
 
-                            ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
+                            // ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
 
                             context.getSource().sendFeedback(() -> Text.literal("Set fog end to %s".formatted(end)), false);
                             return 0;
@@ -62,7 +62,7 @@ public class FogCommand {
                             buffer.writeString("color");
                             buffer.writeFloat(color);
 
-                            ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
+                            // ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
 
                             context.getSource().sendFeedback(() -> Text.literal("Set fog color to %s".formatted(color)), false);
                             return 0;
@@ -76,7 +76,7 @@ public class FogCommand {
                             buffer.writeString("padding");
                             buffer.writeInt(padding);
 
-                            ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
+                            // ServerPlayNetworking.send(context.getSource().getPlayer(), CobaltNetworkingConstants.SET_FOG_VALUE_S2C, buffer);
 
                             context.getSource().sendFeedback(() -> Text.literal("Set fog padding to %s".formatted(padding)), false);
                             return 0;

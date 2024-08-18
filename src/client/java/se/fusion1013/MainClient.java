@@ -17,7 +17,6 @@ import org.lwjgl.glfw.GLFW;
 import se.fusion1013.block.CobaltBlocks;
 import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.gui.ItemDisplayScreen;
-import se.fusion1013.items.trinkets.BackpackItem;
 import se.fusion1013.model.CobaltPredicateProviderRegister;
 import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.networking.CobaltNetworkingConstants;
@@ -28,7 +27,6 @@ import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -46,13 +44,11 @@ public class MainClient implements ClientModInitializer {
 	private static KeyBinding itemSetTriggerKeyBinding;
 	private static KeyBinding armorToggleKeyBinding;
 
-	public static final Item BACKPACK = new BackpackItem(new FabricItemSettings());
+	public static final EntityModelLayer MODEL_CORRUPTED_CORE_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "corrupted_core"), "main");
+	public static final EntityModelLayer MODEL_CORRUPTED_SPIDER_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "corrupted_spider"), "main");
+	public static final EntityModelLayer MODEL_RAT_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "rat"), "main");
 
-	public static final EntityModelLayer MODEL_CORRUPTED_CORE_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_core"), "main");
-	public static final EntityModelLayer MODEL_CORRUPTED_SPIDER_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_spider"), "main");
-	public static final EntityModelLayer MODEL_RAT_LAYER = new EntityModelLayer(new Identifier("cobalt", "rat"), "main");
-
-	public static final EntityModelLayer TEST_BLOCK_ENTITY_LAYER = new EntityModelLayer(new Identifier("cobalt", "empty_lens"), "main");
+	public static final EntityModelLayer TEST_BLOCK_ENTITY_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "empty_lens"), "main");
 
 	@Override
 	public void onInitializeClient() {
@@ -109,8 +105,6 @@ public class MainClient implements ClientModInitializer {
 	}
 
 	private void registerItems() {
-		Registry.register(Registries.ITEM, new Identifier("cobalt", "backpack"), BACKPACK);
-		TrinketRendererRegistry.registerRenderer(BACKPACK, (TrinketRenderer) BACKPACK);
 		CobaltPredicateProviderRegister.register();
 	}
 
@@ -126,7 +120,7 @@ public class MainClient implements ClientModInitializer {
 				if (client.player == null) continue;
 
 				PacketByteBuf buf = PacketByteBufs.create();
-				ClientPlayNetworking.send(ITEM_SET_TRIGGER_ABILITY_C2S, buf);
+				// TODO: ClientPlayNetworking.send(ITEM_SET_TRIGGER_ABILITY_C2S, buf);
 			}
 		});
 
@@ -141,7 +135,7 @@ public class MainClient implements ClientModInitializer {
 				if (client.player == null) continue;
 
 				PacketByteBuf buf = PacketByteBufs.create();
-				ClientPlayNetworking.send(CobaltNetworkingConstants.ARMOR_SET_TOGGLE_ABILITY_C2S, buf);
+				// TODO: ClientPlayNetworking.send(CobaltNetworkingConstants.ARMOR_SET_TOGGLE_ABILITY_C2S, buf);
 			}
 		});
 	}

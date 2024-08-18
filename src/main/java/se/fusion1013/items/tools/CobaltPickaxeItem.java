@@ -14,7 +14,9 @@ public class CobaltPickaxeItem extends PickaxeItem {
     private final CobaltItem.Settings settings;
 
     public CobaltPickaxeItem(int attackDamage, float attackSpeed, CobaltItem.Settings settings) {
-        super(ToolMaterials.STONE, settings);
+        super(ToolMaterials.STONE, settings
+                .attributeModifiers(PickaxeItem.createAttributeModifiers(ToolMaterials.STONE, attackDamage-2, attackSpeed-4))
+        );
         this.settings = settings;
     }
 

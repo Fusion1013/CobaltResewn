@@ -29,7 +29,7 @@ public class MechanicSpectaclesTrinket extends CobaltTrinketItem {
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeInt(getScoreboardValue("wf_power", "power"));
             buf.writeInt(getScoreboardValue("wf_pressure", "pressure"));
-            ServerPlayNetworking.send(user, CobaltNetworkingConstants.UPDATE_WF_STATUS_S2C, buf);
+            // TODO: ServerPlayNetworking.send(user, CobaltNetworkingConstants.UPDATE_WF_STATUS_S2C, buf);
         }
     }
 

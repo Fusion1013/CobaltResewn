@@ -5,6 +5,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
+import se.fusion1013.Main;
 
 /**
  * A simple {@code Inventory} implementation with only default methods + an item list getter.

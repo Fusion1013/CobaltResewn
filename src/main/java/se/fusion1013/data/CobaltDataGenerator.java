@@ -11,12 +11,14 @@ import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.advancement.criterion.ImpossibleCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItems;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class CobaltDataGenerator implements DataGeneratorEntrypoint {
@@ -30,18 +32,18 @@ public class CobaltDataGenerator implements DataGeneratorEntrypoint {
 
     static class AdvancementProvider extends FabricAdvancementProvider {
 
-        protected AdvancementProvider(FabricDataOutput dataGenerator) {
-            super(dataGenerator);
+        protected AdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(output, registryLookup);
         }
 
         @Override
-        public void generateAdvancement(Consumer<AdvancementEntry> consumer) {
+        public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
             AdvancementEntry rootAdvancement = Advancement.Builder.create()
                     .display(
                             CobaltItems.ADVENTURER_JOURNAL,
                             Text.literal("Adventurer's Journal"),
                             Text.literal("Acquire an Adventurer's Journal"),
-                            new Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                            Identifier.of("textures/gui/advancements/backgrounds/adventure.png"),
                             AdvancementFrame.TASK,
                             true,
                             false,
@@ -128,6 +130,5 @@ public class CobaltDataGenerator implements DataGeneratorEntrypoint {
                     .criterion("visit_ravenfell", Criteria.IMPOSSIBLE.create(new ImpossibleCriterion.Conditions()))
                     .build(consumer, Main.MOD_NAMESPACE + "/adventure_journal/ravenfell");
         }
-
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.LightmapTextureManager;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.util.math.MathHelper;
@@ -28,15 +29,15 @@ public class GameRendererMixin {
     private static final int OUT_DURATION = 100;
 
     @Inject(method = "renderWorld", at = @At("HEAD"))
-    public void renderWorld(float tickDelta, long limitTime, MatrixStack matrices, CallbackInfo ci) {
+    public void renderWorld(RenderTickCounter tickCounter, CallbackInfo ci) {
         final LightmapAccess lightmap = (LightmapAccess) lightmapTextureManager;
 
-        float darknessAmount = getTargetDarkness(tickDelta);
+        float darknessAmount = getTargetDarkness(tickCounter.getTickDelta(false));
         if (darknessAmount <= 0.0F) return;
 
         if (lightmap.darkness_isDirty()) {
             client.getProfiler().push("lightTex");
-            Darkness.updateLuminance(tickDelta, client, (GameRenderer) (Object) this, lightmap.darkness_prevFlicker(), darknessAmount);
+            Darkness.updateLuminance(tickCounter.getTickDelta(false), client, (GameRenderer) (Object) this, lightmap.darkness_prevFlicker(), darknessAmount);
             client.getProfiler().pop();
         }
     }
@@ -52,8 +53,10 @@ public class GameRendererMixin {
 
         if (effect.isDurationBelow(OUT_DURATION)) return effect.getDuration() / (float)OUT_DURATION;
         else {
-            float delta = effect.getFactorCalculationData().get().lerp(player, tickDelta);
-            return MathHelper.lerp(delta, 0f, 1f);
+            // TODO:
+            // float delta = effect.getFactorCalculationData().get().lerp(player, tickDelta);
+            // return MathHelper.lerp(delta, 0f, 1f);
+            return 0;
         }
     }
 

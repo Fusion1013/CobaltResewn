@@ -3,7 +3,6 @@ package se.fusion1013.items;
 import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.TrinketItem;
 import io.wispforest.lavender.book.LavenderBookItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -11,19 +10,21 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+import se.fusion1013.Main;
 import se.fusion1013.entity.*;
+import se.fusion1013.items.armor.CobaltArmorItem;
 import se.fusion1013.items.armor.CobaltArmorSet;
 import se.fusion1013.items.armor.sets.AdvancedExoskeletonArmorSet;
 import se.fusion1013.items.armor.sets.DivingArmorSet;
@@ -43,8 +44,10 @@ import se.fusion1013.items.tools.CobaltAxeItem;
 import se.fusion1013.items.tools.CobaltPickaxeItem;
 import se.fusion1013.items.trinket.*;
 
+import java.text.Format;
+
 import static se.fusion1013.Main.MOD_NAMESPACE;
-import static se.fusion1013.items.CustomItemGroupRegistry.*;
+import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP_KEY;
 
 public class CobaltItems {
 
@@ -54,6 +57,7 @@ public class CobaltItems {
     public static final LavenderBookItem WF_INSTRUCTION_MANUAL;
     public static final LavenderBookItem ADVENTURER_JOURNAL;
 
+    // -- ARMOR
     public static final CobaltArmorSet ADVENTURE_ARMOR_SET;
     public static final CobaltArmorSet DIVING_ARMOR_SET;
     public static final CobaltArmorSet LUMBERJACK_ARMOR_SET;
@@ -70,7 +74,7 @@ public class CobaltItems {
     public static final CobaltArmorSet ADVANCED_EXOSKELETON;
 
     public static final Item ADVENTURE_SWORD;
-    public static final Item INFECTED_ADVENTURE_SWORD;
+    // public static final Item INFECTED_ADVENTURE_SWORD;
     public static final Item HEAVY_WRENCH;
     public static final Item BASIC_DRILL;
     public static final Item SAMPLE_DRILL;
@@ -143,98 +147,84 @@ public class CobaltItems {
 
 
     static {
-        WF_INSTRUCTION_MANUAL = LavenderBookItem.registerForBook(new Identifier("cobalt", "wf_instruction_manual"), new FabricItemSettings());
-        ADVENTURER_JOURNAL = LavenderBookItem.registerForBook(new Identifier("cobalt", "adventure_journal"), new FabricItemSettings());
+        WF_INSTRUCTION_MANUAL = LavenderBookItem.registerForBook(Identifier.of("cobalt", "wf_instruction_manual"), new Item.Settings());
+        ADVENTURER_JOURNAL = LavenderBookItem.registerForBook(Identifier.of("cobalt", "adventure_journal"), new Item.Settings());
 
-        ADVENTURE_ARMOR_SET = registerSet("adventure", new CobaltArmorSet.Builder(CobaltArmorMaterials.ADVENTURE, CobaltItemConfiguration.create(Formatting.DARK_GREEN)).withAll().build());
-        DIVING_ARMOR_SET = registerSet("diving", new CobaltArmorSet.Builder(CobaltArmorMaterials.DIVE, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().withHelmet(true).withSetBonus(new DivingArmorSet()).build());
-        LUMBERJACK_ARMOR_SET = registerSet("lumberjack", new CobaltArmorSet.Builder(CobaltArmorMaterials.LUMBERJACK, CobaltItemConfiguration.create(Formatting.DARK_GREEN)).withAll().build());
-        GUARD_ARMOR_SET = registerSet("guard", new CobaltArmorSet.Builder(CobaltArmorMaterials.GUARD, CobaltItemConfiguration.create(Formatting.GRAY)).withAll().build());
-        HUNTER_ARMOR_SET = registerSet("hunter", new CobaltArmorSet.Builder(CobaltArmorMaterials.HUNTER, CobaltItemConfiguration.create(Formatting.GRAY)).withAll().build());
-        MECHANIC_ARMOR_SET = registerSet("mechanic", new CobaltArmorSet.Builder(CobaltArmorMaterials.MECHANIC, CobaltItemConfiguration.create(Formatting.DARK_GRAY)).withAll().build());
-        REINFORCED_MECHANIC_ARMOR_SET = registerSet("reinforced_mechanic", new CobaltArmorSet.Builder(CobaltArmorMaterials.REINFORCED_MECHANIC, CobaltItemConfiguration.create(Formatting.DARK_GRAY)).withAll().build());
-        MINER_ARMOR_SET = registerSet("miner", new CobaltArmorSet.Builder(CobaltArmorMaterials.MINER, CobaltItemConfiguration.create(Formatting.DARK_GRAY)).withAll().withHelmet(true).build());
-        PROSPECTOR_ARMOR_SET = registerSet("prospector", new CobaltArmorSet.Builder(CobaltArmorMaterials.PROSPECTOR, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().withHelmet(true).build());
-        TINKER_ARMOR_SET = registerSet("tinker", new CobaltArmorSet.Builder(CobaltArmorMaterials.TINKER, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().build());
-        REINFORCED_TINKER_ARMOR_SET = registerSet("reinforced_tinker", new CobaltArmorSet.Builder(CobaltArmorMaterials.REINFORCED_TINKER, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().build());
-        EXOSKELETON = registerSet("exoskeleton", new CobaltArmorSet.Builder(CobaltArmorMaterials.EXOSKELETON, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().withSetBonus(new ExoskeletonArmorSet()).build());
-        THERMAL_GEAR = registerSet("thermal_gear", new CobaltArmorSet.Builder(CobaltArmorMaterials.THERMAL_GEAR, CobaltItemConfiguration.create(Formatting.YELLOW)).withAll().withHelmet(true).withSetBonus(new ThermalGearArmorSet()).build());
-        ADVANCED_EXOSKELETON = registerSet("advanced_exoskeleton", new CobaltArmorSet.Builder(CobaltArmorMaterials.ADVANCED_EXOSKELETON, CobaltItemConfiguration.create(Formatting.GOLD)).withAll().withSetBonus(new AdvancedExoskeletonArmorSet()).build());
+        ADVENTURE_ARMOR_SET = registerSet("adventure", CobaltArmorMaterials.ADVENTURE, CobaltRarity.Average, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        DIVING_ARMOR_SET = registerSet("diving", CobaltArmorMaterials.DIVE, CobaltRarity.Great, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        LUMBERJACK_ARMOR_SET = registerSet("lumberjack", CobaltArmorMaterials.LUMBERJACK, CobaltRarity.Average, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        GUARD_ARMOR_SET = registerSet("guard", CobaltArmorMaterials.GUARD, CobaltRarity.Good, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        HUNTER_ARMOR_SET = registerSet("hunter", CobaltArmorMaterials.HUNTER, CobaltRarity.Average, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        MECHANIC_ARMOR_SET = registerSet("mechanic", CobaltArmorMaterials.MECHANIC, CobaltRarity.Great, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        REINFORCED_MECHANIC_ARMOR_SET = registerSet("reinforced_mechanic", CobaltArmorMaterials.REINFORCED_MECHANIC, CobaltRarity.Great, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        MINER_ARMOR_SET = registerSet("miner", CobaltArmorMaterials.MINER, CobaltRarity.Average, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        PROSPECTOR_ARMOR_SET = registerSet("prospector", CobaltArmorMaterials.PROSPECTOR, CobaltRarity.Good, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        TINKER_ARMOR_SET = registerSet("tinker", CobaltArmorMaterials.TINKER, CobaltRarity.Great, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        REINFORCED_TINKER_ARMOR_SET = registerSet("reinforced_tinker", CobaltArmorMaterials.REINFORCED_TINKER, CobaltRarity.Outstanding, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        EXOSKELETON = registerSet("exoskeleton", CobaltArmorMaterials.EXOSKELETON, CobaltRarity.Outstanding, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        THERMAL_GEAR = registerSet("thermal_gear", CobaltArmorMaterials.THERMAL_GEAR, CobaltRarity.Outstanding, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
+        ADVANCED_EXOSKELETON = registerSet("advanced_exoskeleton", CobaltArmorMaterials.ADVANCED_EXOSKELETON, CobaltRarity.Perfect, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER);
 
-        DAGGER = register("dagger", new CobaltSwordItem(ToolMaterials.STONE, -2+1, -4+3, CobaltItemConfiguration.create(Formatting.GRAY).attributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier("cobalt.dagger.attack_damage", .06, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.OFFHAND), new FabricItemSettings().maxCount(1)));
-        ADVENTURE_SWORD = register("adventure_sword", new CobaltSwordItem(ToolMaterials.STONE, -2+3, -4+1.6f, CobaltItemConfiguration.create(Formatting.DARK_GREEN), new FabricItemSettings()));
-        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(ToolMaterials.STONE, -2+4, -4+1.6f, new FabricItemSettings(), Formatting.DARK_PURPLE, 10, 60*20, ((world, user, hand) -> {
-            user.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, SoundCategory.PLAYERS, 1, 1);
+        DAGGER = register("dagger", new CobaltSwordItem(1, 3, new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(1)));
+        ADVENTURE_SWORD = register("adventure_sword", new CobaltSwordItem(3, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Average)));
+        /*
+        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(ToolMaterials.STONE, -2+4, -4+1.6f, new CobaltItem.Settings(Formatting.DARK_PURPLE), Formatting.DARK_PURPLE, 10, 60*20, ((world, user, hand) -> {
+            user.(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, SoundCategory.PLAYERS, 1, 1);
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20*60, 0));
         })));
-        HEAVY_WRENCH = register("heavy_wrench", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.0f, CobaltItemConfiguration.create(Formatting.DARK_GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.heavy_wrench.speed", -.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
-        BASIC_DRILL = register("basic_drill", new BasicDrillItem(ToolMaterials.STONE, -2+5, -4+1.4f, new Item.Settings()));
-        SAMPLE_DRILL = register("sample_drill", new SampleDrillItem(ToolMaterials.STONE, -2+2, -4+2, new FabricItemSettings(), Formatting.LIGHT_PURPLE));
-        GUARD_SWORD = register("guard_sword", new CobaltSwordItem(ToolMaterials.STONE, -2+4, -4+1.6f, CobaltItemConfiguration.create(Formatting.DARK_GRAY), new FabricItemSettings()));
-        PROSPECTOR_PICKAXE = register("prospector_pickaxe", new CobaltSwordItem(ToolMaterials.STONE, -2+4, -4+2.3f, CobaltItemConfiguration.create(Formatting.GOLD).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.prospector_pickaxe.speed", 0.1f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
-        SCREWDRIVER = register("screwdriver", new CobaltSwordItem(ToolMaterials.STONE, -2+6, -4+2.3f, CobaltItemConfiguration.create(Formatting.GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.screwdriver.speed", 0.1f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
-        CROWBAR = register("crowbar", new CobaltSwordItem(ToolMaterials.STONE, -2+7, -4+0.9f, CobaltItemConfiguration.create(Formatting.DARK_GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.crowbar.speed", -.01, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
-        RATCHETING_SCREWDRIVER = register("ratcheting_screwdriver", new CobaltSwordItem(ToolMaterials.STONE, -2+7, -4+2.3f, CobaltItemConfiguration.create(Formatting.GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.ratcheting_screwdriver.speed", 0.12f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
-        BIONIC_FIST = register("bionic_fist", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD).attributeModifier(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, new EntityAttributeModifier("cobalt.bionic_fist.knockback", 1.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
+         */
+        HEAVY_WRENCH = register("heavy_wrench", new CobaltSwordItem(9, 1.0f, new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        BASIC_DRILL = register("basic_drill", new BasicDrillItem(5, 1.4f, new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        SAMPLE_DRILL = register("sample_drill", new SampleDrillItem(2, 2, new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        GUARD_SWORD = register("guard_sword", new CobaltSwordItem(4, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        PROSPECTOR_PICKAXE = register("prospector_pickaxe", new CobaltSwordItem(4, 2.3f, new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        SCREWDRIVER = register("screwdriver", new CobaltSwordItem(6, 2.3f, new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        CROWBAR = register("crowbar", new CobaltSwordItem(7, 0.9f, new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        RATCHETING_SCREWDRIVER = register("ratcheting_screwdriver", new CobaltSwordItem(7, 2.3f, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding)));
+        BIONIC_FIST = register("bionic_fist", new CobaltSwordItem(9, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding)));
         ADVANCED_BIONIC_FIST = register("advanced_bionic_fist", new AdvancedBionicFistItem());
-        FORGE_HAMMER = register("forge_hammer", new CobaltSwordItem(ToolMaterials.STONE, -2+9, -4+1.6f, CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
+        FORGE_HAMMER = register("forge_hammer", new CobaltSwordItem(9, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Perfect)));
         VOIDREND = register("voidrend", new VoidRendSwordItem());
 
-        MINER_PICKAXE = register("miner_pickaxe", new CobaltPickaxeItem(ToolMaterials.STONE, -2+9, -4+0.9f, CobaltItemConfiguration.create(Formatting.DARK_GRAY).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.miner_pickaxe.speed", -.025, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
+        MINER_PICKAXE = register("miner_pickaxe", new CobaltPickaxeItem(9, 0.9f, new CobaltItem.Settings().rarity(CobaltRarity.Good)));
 
-        HARPOON_GUN = register("harpoon_gun", new CobaltCrossbowItem(CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
-        HUNTER_CROSSBOW = register("hunter_crossbow", new CobaltCrossbowItem(CobaltItemConfiguration.create(Formatting.GRAY), new FabricItemSettings()));
+        HARPOON_GUN = register("harpoon_gun", new CobaltCrossbowItem(new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        HUNTER_CROSSBOW = register("hunter_crossbow", new CobaltCrossbowItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
 
-        LUMBERJACK_AXE = register("lumberjack_axe", new CobaltAxeItem(ToolMaterials.STONE, -2+7, -4+0.8f, CobaltItemConfiguration.create(Formatting.DARK_GREEN).attributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.lumberjack.axe", -.015, EntityAttributeModifier.Operation.MULTIPLY_TOTAL), EquipmentSlot.MAINHAND), new FabricItemSettings()));
+        LUMBERJACK_AXE = register("lumberjack_axe", new CobaltAxeItem(7, 0.8f, new CobaltItem.Settings().rarity(CobaltRarity.Average)));
 
         HUNTER_GLOVE = register("hunter_gloves", new CobaltTrinketItem(
-                new FabricItemSettings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.GRAY),
-                (modifiers, stack, slot, entity, uuid) -> {
-                    modifiers.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier("cobalt.hunter_glove.armor", 1, EntityAttributeModifier.Operation.ADDITION));
+                new CobaltItem.Settings().rarity(CobaltRarity.Average), (modifiers, stack, slot, entity, uuid) -> {
+                    modifiers.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "hunter_gloves.armor"), 1, EntityAttributeModifier.Operation.ADD_VALUE));
                     return modifiers;
                 }));
         MECHANICAL_HAND = register("mechanical_hand", new CobaltTrinketItem(
-                new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.DARK_GRAY),
-                (modifiers, stack, slot, entity, uuid) -> {
-                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(uuid, "cobalt.mechanical_hand.attack_damage", .05f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+                new CobaltItem.Settings().rarity(CobaltRarity.Great), (modifiers, stack, slot, entity, uuid) -> {
+                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "mechanical_hand.damage"), 0.05, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                     return modifiers;
-                }));
+        }));
         MECHANIC_GLOVES = register("mechanic_gloves", new CobaltTrinketItem(
-                new FabricItemSettings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.DARK_GRAY),
+                new CobaltItem.Settings().rarity(CobaltRarity.Great),
                 (modifiers, stack, slot, entity, uuid) -> {
-                    modifiers.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier("cobalt.mechanic_gloves.move_speed", -0.025, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier("cobalt.mechanic_gloves.damage", 0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                    modifiers.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier("cobalt.mechanic_gloves.armor", 2, EntityAttributeModifier.Operation.ADDITION));
-                    modifiers.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier("cobalt.mechanic_gloves.toughness", 1, EntityAttributeModifier.Operation.ADDITION));
+                    modifiers.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "mechanic_gloves.move_speed"), -0.025, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "mechanic_gloves.damage"), 0.05, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    modifiers.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "mechanic_gloves.armor"), 2, EntityAttributeModifier.Operation.ADD_VALUE));
+                    modifiers.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "mechanic_gloves.toughness"), 1, EntityAttributeModifier.Operation.ADD_VALUE));
                     return modifiers;
                 }));
-        MECHANIC_SPECTACLES = register("mechanic_spectacles", new MechanicSpectaclesTrinket(
-                new FabricItemSettings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.DARK_GRAY),
-                (modifiers, stack, slot, entity, uuid) -> modifiers));
+        MECHANIC_SPECTACLES = register("mechanic_spectacles", new MechanicSpectaclesTrinket(new CobaltItem.Settings(), (modifiers, stack, slot, entity, uuid) -> modifiers));
         GEARSTRAP = register("gearstrap", new CobaltTrinketItem(
-                new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.GOLD),
+                new CobaltItem.Settings().rarity(CobaltRarity.Great),
                 (modifiers, stack, slot, entity, uuid) -> {
-                    modifiers.put(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(uuid, "cobalt:knockback_resistance", .05f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                    modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "cobalt:health", 10, EntityAttributeModifier.Operation.ADDITION));
+                    modifiers.put(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "gearstrap.knockback_resistance"), .05f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "gearstrap.health"), 10, EntityAttributeModifier.Operation.ADD_VALUE));
                     return modifiers;
                 }));
         RUNE_GLOVE = register("rune_glove", new CobaltTrinketItem(
-                new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.GOLD),
+                new CobaltItem.Settings().rarity(CobaltRarity.Perfect),
                 (modifiers, stack, slot, entity, uuid) -> {
-                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(uuid, "cobalt.rune_glove.damage", -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                    SlotAttributes.addSlotModifier(modifiers, "hand/rune", uuid, 5, EntityAttributeModifier.Operation.ADDITION);
+                    modifiers.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "rune_glove.damage"), -0.25, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    SlotAttributes.addSlotModifier(modifiers, "hand/rune", uuid, 5, EntityAttributeModifier.Operation.ADD_VALUE);
                     return modifiers;
                 }
         ));
@@ -246,40 +236,40 @@ public class CobaltItems {
         LIGHTNING_RUNE = register("lightning_rune", new LightningRuneItem());
         THICK_RUNE = register("thick_rune", new ThickRuneItem());
 
-        LIGHTNING_ARROW = register("lightning_arrow", new CobaltArrowItem(CobaltItemConfiguration.create(Formatting.DARK_AQUA), new FabricItemSettings(), LightningArrowEntity::new));
-        EXPLOSIVE_ARROW = register("explosive_arrow", new CobaltArrowItem(CobaltItemConfiguration.create(Formatting.DARK_AQUA), new FabricItemSettings(), ExplosiveArrowEntity::new));
+        LIGHTNING_ARROW = register("lightning_arrow", new CobaltArrowItem(new CobaltItem.Settings().rarity(CobaltRarity.Great), LightningArrowEntity::new));
+        EXPLOSIVE_ARROW = register("explosive_arrow", new CobaltArrowItem(new CobaltItem.Settings().rarity(CobaltRarity.Good), ExplosiveArrowEntity::new));
 
-        PAINKILLERS = register("painkillers", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), 5));
-        BANDAGE = register("bandage", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), 10));
-        FIRST_AID_KIT = register("first_aid_kit", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(2), 20));
-        PNEUMATIC_NEEDLE = register("pneumatic_needle", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1), 40));
-        MYSTERY_MEDICINE = register("mystery_medicine", new MysteryMedicineItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings()));
-        LIQUID_COURAGE = register("liquid_courage", new LiquidCourageItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings()));
-        RUINED_GEAR = register("ruined_gear", new CobaltItem(CobaltItemConfiguration.create(Formatting.GRAY), new FabricItemSettings()));
-        TARNISHED_GEAR = register("tarnished_gear", new CobaltItem(CobaltItemConfiguration.create(Formatting.GRAY), new FabricItemSettings()));
-        AVERAGE_GEAR = register("average_gear", new CobaltItem(CobaltItemConfiguration.create(Formatting.GRAY), new FabricItemSettings()));
-        REMARKABLE_GEAR = register("remarkable_gear", new CobaltItem(CobaltItemConfiguration.create(Formatting.GRAY), new FabricItemSettings()));
-        BATTERY = register("battery", new CobaltItem(CobaltItemConfiguration.create(Formatting.DARK_AQUA), new FabricItemSettings().maxCount(24)));
+        PAINKILLERS = register("painkillers", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Average).maxCount(4), 5));
+        BANDAGE = register("bandage", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(4), 10));
+        FIRST_AID_KIT = register("first_aid_kit", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Great).maxCount(2), 20));
+        PNEUMATIC_NEEDLE = register("pneumatic_needle", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Outstanding).maxCount(1), 40));
+        MYSTERY_MEDICINE = register("mystery_medicine", new MysteryMedicineItem(new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        LIQUID_COURAGE = register("liquid_courage", new LiquidCourageItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        RUINED_GEAR = register("ruined_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Average)));
+        TARNISHED_GEAR = register("tarnished_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        AVERAGE_GEAR = register("average_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Great)));
+        REMARKABLE_GEAR = register("remarkable_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Outstanding)));
+        BATTERY = register("battery", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(24)));
         CORRUPTED_PEARL = register("corrupted_pearl", new CorruptedPearlItem());
         WALKIE_TALKIE = register("walkie_talkie", new WalkieTalkieItem(9999));
-        HAND_HELD_LANTERN = register("hand_held_lantern", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings()));
-        RUNE_MODIFIER = register("rune_modifier", new CobaltItem(CobaltItemConfiguration.create(Formatting.DARK_PURPLE), new FabricItemSettings()));
-        FORGE_SIDE_CRYSTAL = register("forge_side_crystal", new CobaltItem(CobaltItemConfiguration.create(Formatting.LIGHT_PURPLE), new FabricItemSettings().maxCount(1)));
-        LIGHT_SOUL = register("light_soul", new CobaltItem(CobaltItemConfiguration.create(Formatting.AQUA), new FabricItemSettings().maxCount(1)));
-        LENS = register("lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
-        RED_LENS = register("red_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
-        GREEN_LENS = register("green_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
-        BLUE_LENS = register("blue_lens", new CobaltItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
-        PRESSURE_GAUGE = register("pressure_gauge", new CobaltItem(CobaltItemConfiguration.create(Formatting.GOLD), new FabricItemSettings()));
+        HAND_HELD_LANTERN = register("hand_held_lantern", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        RUNE_MODIFIER = register("rune_modifier", new CobaltItem(new CobaltItem.Settings()));
+        FORGE_SIDE_CRYSTAL = register("forge_side_crystal", new CobaltItem(new CobaltItem.Settings().maxCount(1)));
+        LIGHT_SOUL = register("light_soul", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        LENS = register("lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        RED_LENS = register("red_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        GREEN_LENS = register("green_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        BLUE_LENS = register("blue_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        PRESSURE_GAUGE = register("pressure_gauge", new CobaltItem(new CobaltItem.Settings()));
 
-        SMOKE_BOMB = register("smoke_bomb", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), SmokeBombEntity::new));
-        DYNAMITE = register("dynamite", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), DynamiteEntity::new));
+        SMOKE_BOMB = register("smoke_bomb", new ThrownItem(new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(4), SmokeBombEntity::new, SmokeBombEntity::new));
+        DYNAMITE = register("dynamite", new ThrownItem(new CobaltItem.Settings().rarity(CobaltRarity.Great).maxCount(4), DynamiteEntity::new, DynamiteEntity::new));
 
-        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new FabricItemSettings()));
-        CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new FabricItemSettings()));
-        CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new FabricItemSettings()));
-        AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new FabricItemSettings()));
-        RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new FabricItemSettings()));
+        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new CobaltItem.Settings()));
+        CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new CobaltItem.Settings()));
+        CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new CobaltItem.Settings()));
+        AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new CobaltItem.Settings()));
+        RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new CobaltItem.Settings()));
     }
 
     // -- REGISTER
@@ -290,12 +280,7 @@ public class CobaltItems {
         registerDispenserBlockBehaviour(LIGHTNING_ARROW);
         registerDispenserBlockBehaviour(EXPLOSIVE_ARROW);
 
-        DispenserBlock.registerBehavior(SMOKE_BOMB, new ProjectileDispenserBehavior() {
-            @Override
-            protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-                return new SmokeBombEntity(world, position.getX(), position.getY(), position.getZ());
-            }
-        });
+        DispenserBlock.registerBehavior(SMOKE_BOMB, new ProjectileDispenserBehavior(SMOKE_BOMB));
 
         // Add spawn eggs
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
@@ -308,7 +293,7 @@ public class CobaltItems {
     }
 
     private static Item register(String itemId, Item item) {
-        Registry.register(Registries.ITEM, new Identifier(MOD_NAMESPACE, itemId), item);
+        Registry.register(Registries.ITEM, Identifier.of(MOD_NAMESPACE, itemId), item);
 
         // Add to appropriate item group depending on item type
         if (item instanceof SwordItem) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.NETHERITE_SWORD, item));
@@ -325,37 +310,22 @@ public class CobaltItems {
         return item;
     }
 
-    private static CobaltArmorSet registerSet(String setId, CobaltArmorSet set) {
-        // Register the armor set
-        set.register(setId, CobaltItems::register);
+    private static CobaltArmorSet registerSet(String id, RegistryEntry<ArmorMaterial> material, CobaltRarity rarity, int damageMultiplier) {
+        return new CobaltArmorSet.Builder(
+                new CobaltArmorItem(material, ArmorItem.Type.HELMET, (CobaltItem.Settings) new CobaltItem.Settings().rarity(rarity).maxDamage(ArmorItem.Type.HELMET.getMaxDamage(damageMultiplier))),
+                new CobaltArmorItem(material, ArmorItem.Type.CHESTPLATE, (CobaltItem.Settings) new CobaltItem.Settings().rarity(rarity).maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(damageMultiplier))),
+                new CobaltArmorItem(material, ArmorItem.Type.LEGGINGS, (CobaltItem.Settings) new CobaltItem.Settings().rarity(rarity).maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(damageMultiplier))),
+                new CobaltArmorItem(material, ArmorItem.Type.BOOTS, (CobaltItem.Settings) new CobaltItem.Settings().rarity(rarity).maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(damageMultiplier)))
+        ).register(id, CobaltItems::registerArmorItem);
+    }
 
-        // Add to vanilla combat item group
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {
-            content.addAfter(Items.TURTLE_HELMET, set.registeredHelmet);
-            content.addAfter(Items.TURTLE_HELMET, set.registeredChestplate);
-            content.addAfter(Items.TURTLE_HELMET, set.registeredLeggings);
-            content.addAfter(Items.TURTLE_HELMET, set.registeredBoots);
-        });
-
-        return set;
+    private static CobaltArmorItem registerArmorItem(String itemId, CobaltArmorItem item) {
+        Registry.register(Registries.ITEM, Identifier.of(MOD_NAMESPACE, itemId), item);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.NETHERITE_BOOTS, item));
+        return item;
     }
 
     private static void registerDispenserBlockBehaviour(Item item) {
-        DispenserBlock.registerBehavior(item, new ProjectileDispenserBehavior(item) {
-
-            /*
-            @Override
-            private ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-                if (item instanceof CobaltArrowItem cobaltArrowItem) {
-                    var arrowEntity = cobaltArrowItem.getEntityFactory().create(position.getX(), position.getY(), position.getZ(), world, stack);
-                    arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
-                    return arrowEntity;
-                }
-
-                return null;
-            }
-
-             */
-        });
+        DispenserBlock.registerBehavior(item, new ProjectileDispenserBehavior(item));
     }
 }

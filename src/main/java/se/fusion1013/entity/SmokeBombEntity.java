@@ -7,6 +7,7 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import se.fusion1013.items.CobaltItems;
 
@@ -18,6 +19,10 @@ public class SmokeBombEntity extends ThrownItemEntity {
 
     public SmokeBombEntity(World world, LivingEntity owner) {
         super(CobaltEntities.SMOKE_BOMB, owner, world);
+    }
+
+    public SmokeBombEntity(World world, Position position) {
+        this(world, position.getX(), position.getY(), position.getZ());
     }
 
     public SmokeBombEntity(World world, double x, double y, double z) {

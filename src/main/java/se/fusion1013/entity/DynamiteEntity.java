@@ -7,6 +7,7 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import se.fusion1013.items.CobaltItems;
 
@@ -20,6 +21,10 @@ public class DynamiteEntity extends ThrownItemEntity {
 
     public DynamiteEntity(World world, LivingEntity owner) {
         super(CobaltEntities.DYNAMITE, owner, world);
+    }
+
+    public DynamiteEntity(World world, Position position) {
+        this(world, position.getX(), position.getY(), position.getZ());
     }
 
     public DynamiteEntity(World world, double x, double y, double z) {

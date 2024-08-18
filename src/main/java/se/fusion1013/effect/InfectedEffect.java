@@ -2,9 +2,6 @@ package se.fusion1013.effect;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -12,7 +9,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import se.fusion1013.Main;
 import se.fusion1013.entity.damage.CobaltDamageTypes;
 
 import java.util.List;
@@ -30,12 +26,11 @@ public class InfectedEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        super.applyUpdateEffect(entity, amplifier);
-
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         var world = entity.getWorld();
-        entity.damage(CobaltDamageTypes.of(world, CobaltDamageTypes.INFECTION), DAMAGE_AMOUNT);
+        entity.damage(CobaltDamageTypes.of(world, CobaltDamageTypes.INFECTED), DAMAGE_AMOUNT);
         trySpread(entity, world);
+        return super.applyUpdateEffect(entity, amplifier);
     }
 
     private void trySpread(LivingEntity entity, World world) {
@@ -61,7 +56,7 @@ public class InfectedEffect extends StatusEffect {
                     livingEntity.addStatusEffect(new StatusEffectInstance(CobaltEffects.INFECTED, thisEffect.getDuration(), thisEffect.getAmplifier()));
 
                     // Visuals
-                    world.addParticle(ParticleTypes.ENTITY_EFFECT, livingEntity.getParticleX(0.5), livingEntity.getRandomBodyY(), livingEntity.getParticleZ(0.5), 61/255f, 17/255f, 120/255f);
+                    world.addParticle(ParticleTypes.EFFECT, livingEntity.getParticleX(0.5), livingEntity.getRandomBodyY(), livingEntity.getParticleZ(0.5), 61/255f, 17/255f, 120/255f);
 
                     currentSpread++;
                     if (currentSpread >= spreadToCount) break;

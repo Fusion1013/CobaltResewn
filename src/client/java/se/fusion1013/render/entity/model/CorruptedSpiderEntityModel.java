@@ -68,23 +68,15 @@ public class CorruptedSpiderEntityModel extends EntityModel<CorruptedSpiderEntit
         return TexturedModelData.of(modelData, 64, 32);
 	}
 
-	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		head.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		neck.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		renderLegs(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-	}
-
-	private void renderLegs(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		rightHindLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leftHindLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		rightMiddleLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leftMiddleLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		rightMiddleFrontLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leftMiddleFrontLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		rightFrontLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leftFrontLeg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	private void renderLegs(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+		rightHindLeg.render(matrices, vertices, light, overlay, color);
+		leftHindLeg.render(matrices, vertices, light, overlay, color);
+		rightMiddleLeg.render(matrices, vertices, light, overlay, color);
+		leftMiddleLeg.render(matrices, vertices, light, overlay, color);
+		rightMiddleFrontLeg.render(matrices, vertices, light, overlay, color);
+		leftMiddleFrontLeg.render(matrices, vertices, light, overlay, color);
+		rightFrontLeg.render(matrices, vertices, light, overlay, color);
+		leftFrontLeg.render(matrices, vertices, light, overlay, color);
 	}
 
 	@Override
@@ -131,5 +123,13 @@ public class CorruptedSpiderEntityModel extends EntityModel<CorruptedSpiderEntit
 		this.leftMiddleFrontLeg.roll += -o;
 		this.rightFrontLeg.roll += p;
 		this.leftFrontLeg.roll += -p;
+	}
+
+	@Override
+	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+		head.render(matrices, vertices, light, overlay, color);
+		neck.render(matrices, vertices, light, overlay, color);
+		body.render(matrices, vertices, light, overlay, color);
+		renderLegs(matrices, vertices, light, overlay, color);
 	}
 }

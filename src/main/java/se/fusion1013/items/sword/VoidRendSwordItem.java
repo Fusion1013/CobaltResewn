@@ -1,12 +1,9 @@
 package se.fusion1013.items.sword;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EvokerFangsEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -16,12 +13,13 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltItem;
+import se.fusion1013.items.CobaltRarity;
 
 public class VoidRendSwordItem extends CobaltSwordItem {
 
     public VoidRendSwordItem() {
-        super(ToolMaterials.STONE, -2+7, -4+2.3f, CobaltItemConfiguration.create(Formatting.DARK_PURPLE), new FabricItemSettings());
+        super(7, 2.3f, new CobaltItem.Settings().rarity(CobaltRarity.Perfect));
     }
 
     @Override

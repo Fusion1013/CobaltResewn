@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class LightningArrowEntityRenderer extends ProjectileEntityRenderer<LightningArrowEntity> {
 
-    public static final Identifier TEXTURE = new Identifier("cobalt:textures/entity/lightning_arrow.png");
+    public static final Identifier TEXTURE = Identifier.of("cobalt:textures/entity/lightning_arrow.png");
 
     public LightningArrowEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

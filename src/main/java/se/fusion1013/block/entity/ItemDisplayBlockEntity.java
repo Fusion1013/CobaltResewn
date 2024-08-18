@@ -10,6 +10,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtFloat;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,7 +22,7 @@ import org.joml.Vector3f;
 import se.fusion1013.Main;
 import se.fusion1013.screen.ItemDisplayScreenHandler;
 
-public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntity implements ExtendedScreenHandlerFactory {
+public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntity implements ExtendedScreenHandlerFactory<ItemDisplayBlockEntity.ItemDisplayBlockEntityData> {
 
     // Offset
     public static final String NBT_KEY_OFFSET = "offset";
@@ -63,8 +64,8 @@ public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntit
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
 
         offset = getVector(nbt, NBT_KEY_OFFSET);
         offsetAmplitude = getVector(nbt, NBT_KEY_OFFSET_AMPLITUDE);
@@ -79,8 +80,8 @@ public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntit
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
 
         putVector(offset, nbt, NBT_KEY_OFFSET);
         putVector(offsetAmplitude, nbt, NBT_KEY_OFFSET_AMPLITUDE);
@@ -134,22 +135,42 @@ public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntit
     //
     // The order you insert things here is the same as you need to extract them. You do not need to reverse the order.
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buffer) {
-        buffer.writeBlockPos(pos);
+    public ItemDisplayBlockEntityData getScreenOpeningData(ServerPlayerEntity player) {
+        var data = new ItemDisplayBlockEntityData();
 
-        // Offset
-        buffer.writeVector3f(offset);
-        buffer.writeVector3f(offsetFrequency);
-        buffer.writeVector3f(offsetAmplitude);
+        data.xOffset = offset.x;
+        data.yOffset = offset.y;
+        data.zOffset = offset.z;
 
-        // Scale
-        buffer.writeVector3f(scale);
-        buffer.writeVector3f(scaleFrequency);
-        buffer.writeVector3f(scaleAmplitude);
+        data.xOffsetFrequency = offsetFrequency.x;
+        data.yOffsetFrequency = offsetFrequency.y;
+        data.zOffsetFrequency = offsetFrequency.z;
 
-        // Rotation
-        buffer.writeVector3f(rotation);
-        buffer.writeVector3f(rotationSpeed);
+        data.xOffsetAmplitude = offsetAmplitude.x;
+        data.yOffsetAmplitude = offsetAmplitude.y;
+        data.zOffsetAmplitude = offsetAmplitude.z;
+
+        data.xScale = scale.x;
+        data.yScale = scale.y;
+        data.zScale = scale.z;
+
+        data.xScaleFrequency = scaleFrequency.x;
+        data.yScaleFrequency = scaleFrequency.y;
+        data.zScaleFrequency = scaleFrequency.z;
+
+        data.xScaleAmplitude = scaleAmplitude.x;
+        data.yScaleAmplitude = scaleAmplitude.y;
+        data.zScaleAmplitude = scaleAmplitude.z;
+
+        data.xRotation = rotation.x;
+        data.yRotation = rotation.y;
+        data.zRotation = rotation.z;
+
+        data.xRotationSpeed = rotationSpeed.x;
+        data.yRotationSpeed = rotationSpeed.y;
+        data.zRotationSpeed = rotationSpeed.z;
+
+        return data;
     }
 
     public Vector3f getOffset() {
@@ -222,5 +243,39 @@ public class ItemDisplayBlockEntity extends CustomSingleStackInventoryBlockEntit
 
     public static int getLastTick() {
         return lastTick;
+    }
+
+    public static class ItemDisplayBlockEntityData {
+        public float xOffset;
+        public float yOffset;
+        public float zOffset;
+
+        public float xOffsetFrequency;
+        public float yOffsetFrequency;
+        public float zOffsetFrequency;
+
+        public float xOffsetAmplitude;
+        public float yOffsetAmplitude;
+        public float zOffsetAmplitude;
+
+        public float xScale;
+        public float yScale;
+        public float zScale;
+
+        public float xScaleFrequency;
+        public float yScaleFrequency;
+        public float zScaleFrequency;
+
+        public float xScaleAmplitude;
+        public float yScaleAmplitude;
+        public float zScaleAmplitude;
+
+        public float xRotation;
+        public float yRotation;
+        public float zRotation;
+
+        public float xRotationSpeed;
+        public float yRotationSpeed;
+        public float zRotationSpeed;
     }
 }

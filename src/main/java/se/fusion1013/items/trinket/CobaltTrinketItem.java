@@ -5,20 +5,22 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.ItemSet;
 
 import java.util.List;
-import java.util.UUID;
+
+import static se.fusion1013.Main.MOD_NAMESPACE;
 
 public class CobaltTrinketItem extends TrinketItem {
 
@@ -51,12 +53,9 @@ public class CobaltTrinketItem extends TrinketItem {
     }
 
     @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
-        var modifiers = super.getModifiers(stack, slot, entity, uuid);
-        return modifierProvider.getModifiers(modifiers, stack, slot, entity, uuid);
-
-
-        // SlotAttributes.addSlotModifier(modifiers, "feet/aglet", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
+    public Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier slotIdentifier) {
+        var modifiers = super.getModifiers(stack, slot, entity, slotIdentifier);
+        return modifierProvider.getModifiers(modifiers, stack, slot, entity, slotIdentifier);
     }
 
     @Override
@@ -66,6 +65,6 @@ public class CobaltTrinketItem extends TrinketItem {
     }
 
     public interface TrinketModifierProvider {
-        Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(Multimap<EntityAttribute, EntityAttributeModifier> modifiers, ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid);
+        Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> getModifiers(Multimap<RegistryEntry<EntityAttribute>, EntityAttributeModifier> modifiers, ItemStack stack, SlotReference slot, LivingEntity entity, Identifier slotIdentifier);
     }
 }

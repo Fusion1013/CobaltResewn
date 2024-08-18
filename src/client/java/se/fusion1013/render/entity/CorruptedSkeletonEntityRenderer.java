@@ -8,7 +8,7 @@ import se.fusion1013.Main;
 
 public class CorruptedSkeletonEntityRenderer extends SkeletonEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/entity/corrupted_skeleton.png");
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/entity/corrupted_skeleton.png");
 
     public CorruptedSkeletonEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

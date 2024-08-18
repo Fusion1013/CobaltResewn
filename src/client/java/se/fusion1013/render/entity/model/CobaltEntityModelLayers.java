@@ -16,7 +16,7 @@ public class CobaltEntityModelLayers {
     public static final EntityModelLayer TEST = register("test", "main");
 
     private static EntityModelLayer register(String id, String layer) {
-        EntityModelLayer entityModelLayer = new EntityModelLayer(new Identifier(Main.MOD_NAMESPACE, id), layer);
+        EntityModelLayer entityModelLayer = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, id), layer);
         if (!LAYERS.add(entityModelLayer)) {
             throw new IllegalStateException("Duplicate layer " + entityModelLayer);
         }

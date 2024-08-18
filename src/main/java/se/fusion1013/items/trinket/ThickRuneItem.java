@@ -7,17 +7,15 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Formatting;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.items.CobaltItemConfiguration;
+import se.fusion1013.items.CobaltRarity;
 import se.fusion1013.util.item.ItemSetUtil;
 
 public class ThickRuneItem extends CobaltTrinketItem {
 
     public ThickRuneItem() {
-        super(new Item.Settings(),
-                new CobaltItemConfiguration()
-                        .nameFormatting(Formatting.GRAY)
-                        .setBonusTooltip("thick_rune_health"),
-                (modifiers, stack, slot, entity, uuid) -> modifiers);
+        super(new CobaltItem.Settings().rarity(CobaltRarity.Perfect), (modifiers, stack, slot, entity, uuid) -> modifiers);
     }
 
     @Override

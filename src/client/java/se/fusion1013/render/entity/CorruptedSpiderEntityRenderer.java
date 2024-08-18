@@ -11,7 +11,7 @@ import se.fusion1013.render.entity.model.CorruptedSpiderEntityModel;
 
 public class CorruptedSpiderEntityRenderer extends MobEntityRenderer<CorruptedSpiderEntity, CorruptedSpiderEntityModel> {
 
-    private static final Identifier TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/entity/corrupted_spider.png");
+    private static final Identifier TEXTURE = Identifier.of(Main.MOD_NAMESPACE, "textures/entity/corrupted_spider.png");
 
     public CorruptedSpiderEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new CorruptedSpiderEntityModel(context.getPart(MainClient.MODEL_CORRUPTED_SPIDER_LAYER)), 0.8f);

@@ -10,7 +10,7 @@ import se.fusion1013.Main;
 
 public class CorruptedSpiderEyesFeatureRenderer<T extends Entity, M extends SpiderEntityModel<T>> extends EyesFeatureRenderer<T, M> {
 
-    private static final RenderLayer SKIN = RenderLayer.getEyes(new Identifier(Main.MOD_NAMESPACE, "textures/entity/corrupted_spider_eyes.png"));
+    private static final RenderLayer SKIN = RenderLayer.getEyes(Identifier.of(Main.MOD_NAMESPACE, "textures/entity/corrupted_spider_eyes.png"));
 
     public CorruptedSpiderEyesFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
