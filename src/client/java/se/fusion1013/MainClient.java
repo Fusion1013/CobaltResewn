@@ -3,7 +3,6 @@ package se.fusion1013;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -19,25 +18,17 @@ import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.gui.ItemDisplayScreen;
 import se.fusion1013.model.CobaltPredicateProviderRegister;
 import se.fusion1013.networking.CobaltClientNetworking;
-import se.fusion1013.networking.CobaltNetworkingConstants;
 import se.fusion1013.render.block.CobaltBlockEntityRenderers;
 import se.fusion1013.render.block.DirectionalLightHolderBlockEntityRenderer;
 import se.fusion1013.render.entity.*;
-import dev.emi.trinkets.api.client.TrinketRenderer;
-import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import se.fusion1013.render.entity.model.CorruptedCoreEntityModel;
 import se.fusion1013.render.entity.model.CorruptedSpiderEntityModel;
 import se.fusion1013.render.entity.model.RatEntityModel;
 import se.fusion1013.screen.CobaltScreenHandlers;
-
-import static se.fusion1013.networking.CobaltNetworkingConstants.*;
 
 public class MainClient implements ClientModInitializer {
 
@@ -118,9 +109,7 @@ public class MainClient implements ClientModInitializer {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (itemSetTriggerKeyBinding.wasPressed()) {
 				if (client.player == null) continue;
-
-				PacketByteBuf buf = PacketByteBufs.create();
-				// TODO: ClientPlayNetworking.send(ITEM_SET_TRIGGER_ABILITY_C2S, buf);
+				// TODO: ClientPlayNetworking.send(new ItemSetTriggerAbilityPayloadC2S(KeyBind.ItemSetTrigger));
 			}
 		});
 

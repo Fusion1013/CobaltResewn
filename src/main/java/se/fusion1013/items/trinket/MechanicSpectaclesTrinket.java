@@ -2,7 +2,6 @@ package se.fusion1013.items.trinket;
 
 import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -12,7 +11,7 @@ import net.minecraft.scoreboard.ServerScoreboard;
 import net.minecraft.server.network.ServerPlayerEntity;
 import se.fusion1013.Main;
 import se.fusion1013.items.CobaltItem;
-import se.fusion1013.networking.CobaltNetworkingConstants;
+import se.fusion1013.networking.CobaltServerNetworking;
 
 public class MechanicSpectaclesTrinket extends CobaltTrinketItem {
 
@@ -26,10 +25,9 @@ public class MechanicSpectaclesTrinket extends CobaltTrinketItem {
         super.tick(stack, slot, entity);
 
         if (entity instanceof ServerPlayerEntity user) {
-            PacketByteBuf buf = PacketByteBufs.create();
-            buf.writeInt(getScoreboardValue("wf_power", "power"));
-            buf.writeInt(getScoreboardValue("wf_pressure", "pressure"));
-            // TODO: ServerPlayNetworking.send(user, CobaltNetworkingConstants.UPDATE_WF_STATUS_S2C, buf);
+            int power = getScoreboardValue("wf_power", "power");
+            int pressure = getScoreboardValue("wf_pressure", "pressure");
+            CobaltServerNetworking.sendUpdateMechanicSpectacles(user, power, pressure);
         }
     }
 

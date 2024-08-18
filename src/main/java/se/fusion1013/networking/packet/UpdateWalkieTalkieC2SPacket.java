@@ -1,16 +1,13 @@
 package se.fusion1013.networking.packet;
 
-import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import se.fusion1013.items.CobaltItems;
 import se.fusion1013.items.misc.WalkieTalkieItem;
-import se.fusion1013.networking.CobaltNetworkingConstants;
+import se.fusion1013.networking.CobaltServerNetworking;
+import se.fusion1013.networking.payload.UpdateWalkieTalkiePayloadC2S;
+import se.fusion1013.networking.payload.UpdateWalkieTalkiePayloadS2C;
 import se.fusion1013.util.item.ItemUtil;
 import se.fusion1013.util.math.MathUtil;
 
@@ -19,7 +16,9 @@ import se.fusion1013.util.math.MathUtil;
  * This updates the walkie talkie item on the server side.
  */
 public class UpdateWalkieTalkieC2SPacket {
-    public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
+    public static void receive(UpdateWalkieTalkiePayloadC2S payload, ServerPlayNetworking.Context context) {
+
+        ServerPlayerEntity player = context.player();
 
         // Gets the held walkie talkie item
         ItemStack stack = ItemUtil.getHeldItemOfType(player, CobaltItems.WALKIE_TALKIE);
@@ -28,8 +27,8 @@ public class UpdateWalkieTalkieC2SPacket {
         // TODO: if (!(stack.getItem() instanceof WalkieTalkieItem) && !stack.hasNbt()) return;
 
         // Read the buffer. Index is the id of the value changed
-        int index = buffer.readInt();
-        boolean status = buffer.readBoolean();
+        int index = payload.index();
+        boolean status = payload.status();
 
         // Get the current values
         boolean activate = WalkieTalkieItem.isActivate(stack);
@@ -52,8 +51,6 @@ public class UpdateWalkieTalkieC2SPacket {
         WalkieTalkieItem.setCanal(stack, canal);
 
         // Send the updated item stack to the client
-        PacketByteBuf packet = new PacketByteBuf(Unpooled.buffer());
-        // TODO: packet.writeItemStack(stack);
-        // TODO: ServerPlayNetworking.send(player, CobaltNetworkingConstants.UPDATE_WALKIETALKIE_S2C, packet);
+        CobaltServerNetworking.sendUpdateWalkieTalkie(player, stack);
     }
 }

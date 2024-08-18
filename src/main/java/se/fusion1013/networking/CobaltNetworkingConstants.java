@@ -9,7 +9,7 @@ import se.fusion1013.Main;
 public class CobaltNetworkingConstants {
 
     // S2C
-    public static final Identifier UPDATE_WF_STATUS_S2C = Identifier.of(Main.MOD_NAMESPACE, "wf_facility_status_s2c");
+    public static final Identifier UPDATE_MECHANIC_SPECTACLES_S2C = Identifier.of(Main.MOD_NAMESPACE, "wf_facility_status_s2c");
     public static final Identifier UPDATE_WALKIETALKIE_S2C = Identifier.of(Main.MOD_NAMESPACE, "update_walkietalkie_s2c");
     public static final Identifier OPEN_WALKIE_TALKIE_SCREEN_S2C = Identifier.of(Main.MOD_NAMESPACE, "open_walkie_talkie_screen_s2c");
     public static final Identifier SET_FOG_VALUE_S2C = Identifier.of(Main.MOD_NAMESPACE, "set_fog_value_s2c");

@@ -13,6 +13,7 @@ import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.entity.attribute.CobaltAttributes;
 import se.fusion1013.items.CobaltItems;
 import se.fusion1013.items.CustomItemGroupRegistry;
+import se.fusion1013.items.components.CobaltComponents;
 import se.fusion1013.networking.CobaltServerNetworking;
 import se.fusion1013.screen.CobaltScreenHandlers;
 import se.fusion1013.sounds.CobaltSoundEvents;
@@ -34,6 +35,7 @@ public class Main implements ModInitializer {
 		CobaltCommands.register();
 		CobaltSoundEvents.register();
 		CobaltEntities.register();
+		CobaltComponents.initialize();
 		CobaltItems.register();
 		CobaltBlocks.register();
 		CustomItemGroupRegistry.register();

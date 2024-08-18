@@ -47,6 +47,7 @@ import se.fusion1013.items.trinket.*;
 import java.text.Format;
 
 import static se.fusion1013.Main.MOD_NAMESPACE;
+import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP;
 import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP_KEY;
 
 public class CobaltItems {
@@ -281,15 +282,6 @@ public class CobaltItems {
         registerDispenserBlockBehaviour(EXPLOSIVE_ARROW);
 
         DispenserBlock.registerBehavior(SMOKE_BOMB, new ProjectileDispenserBehavior(SMOKE_BOMB));
-
-        // Add spawn eggs
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
-            content.add(CORRUPTED_ZOMBIE_SPAWN_EGG);
-            content.add(CORRUPTED_SKELETON_SPAWN_EGG);
-            content.add(CORRUPTED_SPIDER_SPAWN_EGG);
-            content.add(AUTOMATON_SPAWN_EGG);
-            content.add(RAT_SPAWN_EGG);
-        });
     }
 
     private static Item register(String itemId, Item item) {
@@ -322,6 +314,7 @@ public class CobaltItems {
     private static CobaltArmorItem registerArmorItem(String itemId, CobaltArmorItem item) {
         Registry.register(Registries.ITEM, Identifier.of(MOD_NAMESPACE, itemId), item);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> content.addAfter(Items.NETHERITE_BOOTS, item));
+        ItemGroupEvents.modifyEntriesEvent(COBALT_GROUP_KEY).register(content -> content.add(item));
         return item;
     }
 

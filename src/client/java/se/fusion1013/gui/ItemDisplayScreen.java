@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import org.joml.Vector3f;
 import se.fusion1013.gui.widget.VectorWidget;
+import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.networking.payload.UpdateItemDisplayPayloadC2S;
 import se.fusion1013.screen.ItemDisplayScreenHandler;
 
@@ -168,16 +169,6 @@ public class ItemDisplayScreen extends HandledScreen<ItemDisplayScreenHandler> {
     }
 
     private void sendUpdateItemDisplayBlock() {
-        ClientPlayNetworking.send(new UpdateItemDisplayPayloadC2S(
-                blockPos,
-                offset,
-                offsetFrequency,
-                offsetAmplitude,
-                scale,
-                scaleFrequency,
-                scaleAmplitude,
-                rotation,
-                rotationSpeed)
-        );
+        CobaltClientNetworking.sendUpdateItemDisplayBlock(blockPos, offset, offsetFrequency, offsetAmplitude, scale, scaleFrequency, scaleAmplitude, rotation, rotationSpeed);
     }
 }

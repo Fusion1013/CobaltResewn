@@ -19,6 +19,7 @@ import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.gui.widget.ToggleImageButton;
 import se.fusion1013.items.misc.WalkieTalkieItem;
+import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.networking.CobaltNetworkingConstants;
 import se.fusion1013.networking.CobaltServerNetworking;
 import se.fusion1013.networking.payload.UpdateWalkieTalkiePayloadC2S;
@@ -74,7 +75,7 @@ public class WalkieTalkieScreen extends Screen {
     }
 
     private void sendUpdateWalkieTalkie(int index, boolean status) {
-        ClientPlayNetworking.send(new UpdateWalkieTalkiePayloadC2S(index, status));
+        CobaltClientNetworking.sendUpdateWalkieTalkie(index, status);
     }
 
     @Override

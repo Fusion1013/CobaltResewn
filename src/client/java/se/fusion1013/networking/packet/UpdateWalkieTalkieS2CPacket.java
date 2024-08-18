@@ -1,17 +1,15 @@
 package se.fusion1013.networking.packet;
 
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import se.fusion1013.Main;
 import se.fusion1013.gui.WalkieTalkieScreen;
+import se.fusion1013.networking.payload.UpdateWalkieTalkiePayloadS2C;
 
 public class UpdateWalkieTalkieS2CPacket {
-    public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
-
-        // ItemStack stack = buffer.readItemStack();
-        // WalkieTalkieScreen.getInstance().updateButtons(stack);
+    public static void receive(UpdateWalkieTalkiePayloadS2C payload, ClientPlayNetworking.Context context) {
+        context.client().execute(() -> {
+            ItemStack stack = payload.stack();
+            WalkieTalkieScreen.getInstance().updateButtons(stack);
+        });
     }
 }
