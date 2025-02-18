@@ -17,6 +17,15 @@
       "chars": [
         "\uecc1"
       ]
+    },
+    {
+      "type": "bitmap",
+      "file": "cobalt:gui\/snowflake.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\uecc2"
+      ]
     }
   ]
 }

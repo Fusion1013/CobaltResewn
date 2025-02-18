@@ -7,8 +7,10 @@
     "ExampleMixin",
     "InGameHudMixin",
     "render.BackgroundRendererMixin",
+    "render.EntityRendererMixin",
     "render.GameRendererMixin",
     "render.LightTextureMixin",
+    "render.LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

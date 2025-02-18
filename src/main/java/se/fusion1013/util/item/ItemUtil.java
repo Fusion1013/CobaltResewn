@@ -1,5 +1,6 @@
 package se.fusion1013.util.item;
 
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,17 @@ public class ItemUtil {
         if (mainHand.getItem() == item) return mainHand;
         if (offHand.getItem() == item) return offHand;
         return null;
+    }
+
+    public static AttributeModifiersComponent combine(AttributeModifiersComponent component1, AttributeModifiersComponent component2) {
+        var builder = AttributeModifiersComponent.builder();
+        for (var modifier1 : component1.modifiers()) {
+            builder.add(modifier1.attribute(), modifier1.modifier(), modifier1.slot());
+        }
+        for (var modifier2 : component2.modifiers()) {
+            builder.add(modifier2.attribute(), modifier2.modifier(), modifier2.slot());
+        }
+        return builder.build();
     }
 
 }

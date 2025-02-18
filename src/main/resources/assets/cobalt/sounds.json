@@ -43,5 +43,35 @@
     "sounds": [
       "cobalt:entity/rat/kill"
     ]
+  },
+  "music_disc.ancient_getaway": {
+    "sounds": [
+      "cobalt:jukebox/ancient_getaway"
+    ]
+  },
+  "music_disc.era_of_peace": {
+    "sounds": [
+      "cobalt:jukebox/era_of_peace"
+    ]
+  },
+  "music_disc.hydroangea": {
+    "sounds": [
+      "cobalt:jukebox/hydroangea"
+    ]
+  },
+  "music_disc.outpost": {
+    "sounds": [
+      "cobalt:jukebox/outpost"
+    ]
+  },
+  "music_disc.shooting_for_the_stars": {
+    "sounds": [
+      "cobalt:jukebox/shooting_for_the_stars"
+    ]
+  },
+  "music_disc.akali": {
+    "sounds": [
+      "cobalt:jukebox/akali"
+    ]
   }
 }

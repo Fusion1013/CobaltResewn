@@ -15,6 +15,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import se.fusion1013.util.TextUtil;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,8 +39,6 @@ public class CobaltItem extends Item {
         settings.appendTooltip(stack, context, tooltip, type);
         super.appendTooltip(stack, context, tooltip, type);
     }
-
-
 
     public static class Settings extends Item.Settings {
 
@@ -67,9 +66,9 @@ public class CobaltItem extends Item {
         }
 
         public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-            var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
-            var splitTooltip = TextUtil.splitText(tooltipText);
-            tooltip.addAll(splitTooltip);
+            // var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
+            // var splitTooltip = TextUtil.splitText(tooltipText);
+            // tooltip.addAll(splitTooltip);
             tooltip.addAll(this.tooltip);
         }
 
@@ -87,15 +86,6 @@ public class CobaltItem extends Item {
 
         private Settings tooltip(String... translatableStrings) {
             for (String s : translatableStrings) this.tooltip.add(Text.translatable(s).formatted(Formatting.DARK_GRAY));
-            return this;
-        }
-
-
-
-        public Settings attribute(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier, AttributeModifierSlot slot) {
-            component(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.builder()
-                    .add(attribute, modifier, slot)
-                    .build());
             return this;
         }
 

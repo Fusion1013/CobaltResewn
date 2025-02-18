@@ -2,9 +2,11 @@ package se.fusion1013;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
@@ -16,6 +18,7 @@ import org.lwjgl.glfw.GLFW;
 import se.fusion1013.block.CobaltBlocks;
 import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.gui.ItemDisplayScreen;
+import se.fusion1013.items.CobaltItem;
 import se.fusion1013.model.CobaltPredicateProviderRegister;
 import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.render.block.CobaltBlockEntityRenderers;
@@ -93,6 +96,12 @@ public class MainClient implements ClientModInitializer {
 
 		// Networking
 		CobaltClientNetworking.register();
+
+		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
+			if (stack.getItem() instanceof CobaltItem cobaltItem) {
+				if (Screen.hasShiftDown()) lines.clear();
+			}
+		});
 	}
 
 	private void registerItems() {

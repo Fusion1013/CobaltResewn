@@ -1,5 +1,6 @@
 package se.fusion1013.items.armor;
 
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.items.*;
@@ -8,14 +9,14 @@ import java.util.function.BiFunction;
 
 public class CobaltArmorSet {
 
-    public final CobaltArmorItem helmet;
-    public final CobaltArmorItem chestplate;
-    public final CobaltArmorItem leggings;
-    public final CobaltArmorItem boots;
+    public final Item helmet;
+    public final Item chestplate;
+    public final Item leggings;
+    public final Item boots;
 
     public ItemSet set;
 
-    public CobaltArmorSet(CobaltArmorItem helmet, CobaltArmorItem chestplate, CobaltArmorItem leggings, CobaltArmorItem boots) {
+    public CobaltArmorSet(Item helmet, Item chestplate, Item leggings, Item boots) {
         this.helmet = helmet;
         this.chestplate = chestplate;
         this.leggings = leggings;
@@ -24,14 +25,14 @@ public class CobaltArmorSet {
 
     public static class Builder {
 
-        private final CobaltArmorItem helmet;
-        private final CobaltArmorItem chestplate;
-        private final CobaltArmorItem leggings;
-        private final CobaltArmorItem boots;
+        private final Item helmet;
+        private final Item chestplate;
+        private final Item leggings;
+        private final Item boots;
 
         private IItemSetMethods setMethods;
 
-        public Builder(CobaltArmorItem helmet, CobaltArmorItem chestplate, CobaltArmorItem leggings, CobaltArmorItem boots) {
+        public Builder(Item helmet, Item chestplate, Item leggings, Item boots) {
             this.helmet = helmet;
             this.chestplate = chestplate;
             this.leggings = leggings;
@@ -43,7 +44,7 @@ public class CobaltArmorSet {
             return this;
         }
 
-        public CobaltArmorSet register(String setId, BiFunction<String, CobaltArmorItem, CobaltArmorItem> registerFunction) {
+        public CobaltArmorSet register(String setId, BiFunction<String, Item, Item> registerFunction) {
             // Register the parts
             var registeredBoots = registerFunction.apply(setId + "_boots", boots);
             var registeredLeggings = registerFunction.apply(setId + "_leggings", leggings);

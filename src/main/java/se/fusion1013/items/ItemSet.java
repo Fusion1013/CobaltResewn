@@ -130,6 +130,7 @@ public class ItemSet {
         if (tips.isEmpty()) return; // If there are no tooltips, do not add anything
 
         // Append a space and the header
+        tooltip.add(Text.empty());
         tooltip.add(Text.translatable("item_set.cobalt.header").formatted(Formatting.GOLD));
 
         tooltip.addAll(tips);
@@ -176,6 +177,8 @@ public class ItemSet {
     private static List<Text> getSetBonusTooltips(List<ItemSet> sets, Item item) {
         List<Text> tooltips = new ArrayList<>();
 
+        int addedCount = 0;
+
         for (ItemSet set : sets) {
             boolean addTooltip = true;
 
@@ -189,8 +192,8 @@ public class ItemSet {
             if (!addTooltip) continue;
             if (set.setMethods.appendTooltipStrings().length <= 0 && set.setMethods.appendTooltipText().length <= 0) continue;
 
-            // Add empty string to separate different set bonuses
-            tooltips.add(Text.empty());
+            // Add empty string to separate different set bonuses if there were tooltips added before it
+            if (addedCount > 0) tooltips.add(Text.empty());
 
             // Add text tooltips
             var textTooltips = set.setMethods.appendTooltipText();
@@ -199,6 +202,8 @@ public class ItemSet {
             // Add string tooltips
             var stringTooltips = set.setMethods.appendTooltipStrings();
             for (String s : stringTooltips) tooltips.add(Text.translatable(s).formatted(Formatting.GRAY));
+
+            addedCount++;
         }
 
         return tooltips;
