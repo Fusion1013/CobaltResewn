@@ -25,7 +25,7 @@ public class LightUtil {
         boolean isHoldingFlashlight = true;
 
         if (mainHandStack.isEmpty()) isHoldingFlashlight = false;
-        else if (mainHandStack.getItem() != CobaltItems.MiscItems.FLASHLIGHT) isHoldingFlashlight = false;
+        else if (mainHandStack.getItem() != CobaltItems.FLASHLIGHT) isHoldingFlashlight = false;
 
         // Player is holding flashlight
 

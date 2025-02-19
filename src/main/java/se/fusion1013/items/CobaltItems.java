@@ -143,6 +143,8 @@ public class CobaltItems {
     public static final Item SMOKE_BOMB;
     public static final Item DYNAMITE;
 
+    public static final Item FLASHLIGHT;
+
     public static final Item CORRUPTED_ZOMBIE_SPAWN_EGG;
     public static final Item CORRUPTED_SKELETON_SPAWN_EGG;
     public static final Item CORRUPTED_SPIDER_SPAWN_EGG;
@@ -282,6 +284,8 @@ public class CobaltItems {
 
         SMOKE_BOMB = register("smoke_bomb", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), SmokeBombEntity::new));
         DYNAMITE = register("dynamite", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), DynamiteEntity::new));
+
+        FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
 
         CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new FabricItemSettings()));
         CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new FabricItemSettings()));
