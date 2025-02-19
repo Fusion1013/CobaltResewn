@@ -9,14 +9,12 @@ import se.fusion1013.block.CobaltBlocks;
 import se.fusion1013.block.entity.CobaltBlockEntityTypes;
 import se.fusion1013.commands.CobaltCommands;
 import se.fusion1013.effect.CobaltEffects;
-import se.fusion1013.entity.CustomEntityRegistry;
+import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.items.CobaltItems;
 import se.fusion1013.items.CustomItemGroupRegistry;
 import se.fusion1013.networking.CobaltServerNetworking;
 import se.fusion1013.screen.CobaltScreenHandlers;
 import se.fusion1013.sounds.CobaltSoundEvents;
-
-import java.util.Random;
 
 public class Main implements ModInitializer {
 
@@ -33,16 +31,9 @@ public class Main implements ModInitializer {
 
 		CobaltCommands.register();
 		CobaltSoundEvents.register();
-
-		LOGGER.info("Loading Bananas...");
+		CobaltEntities.register();
 		CobaltItems.register();
-
-		CustomEntityRegistry.register();
-
-		LOGGER.info("Loading the big boi...");
 		CobaltBlocks.register();
-
-		LOGGER.info("Loading some other random things...");
 		CustomItemGroupRegistry.register();
 		CobaltBlockEntityTypes.registerAll();
 		CobaltEffects.registerAll();

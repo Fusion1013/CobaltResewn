@@ -1,17 +1,13 @@
 package se.fusion1013.render.entity;
 
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import org.joml.Matrix4f;
-import org.joml.Vector4f;
-import se.fusion1013.Main;
 import se.fusion1013.MainClient;
 import se.fusion1013.entity.CorruptedCoreEntity;
+import se.fusion1013.render.entity.model.CorruptedCoreEntityModel;
 
 public class CorruptedCoreEntityRenderer extends MobEntityRenderer<CorruptedCoreEntity, CorruptedCoreEntityModel> {
 

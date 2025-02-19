@@ -39,15 +39,15 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(CustomEntityRegistry.EXPLOSIVE_ARROW, owner, world, stack);
+        super(CobaltEntities.EXPLOSIVE_ARROW, owner, world, stack);
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(EntityType<? extends PersistentProjectileEntity> entityEntityType, World world) {
-        super(entityEntityType, world, new ItemStack(CobaltItems.ArrowItems.EXPLOSIVE_ARROW));
+        super(entityEntityType, world, new ItemStack(CobaltItems.EXPLOSIVE_ARROW));
         this.setFuse(DEFAULT_FUSE);
     }
     public ExplosiveArrowEntity(double x, double y, double z, World world, ItemStack stack) {
-        super(CustomEntityRegistry.EXPLOSIVE_ARROW, x, y, z, world, stack);
+        super(CobaltEntities.EXPLOSIVE_ARROW, x, y, z, world, stack);
         this.setFuse(DEFAULT_FUSE);
     }
 
@@ -150,6 +150,6 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
 
     @Override
     protected ItemStack asItemStack() {
-        return new ItemStack(CobaltItems.ArrowItems.EXPLOSIVE_ARROW);
+        return new ItemStack(CobaltItems.EXPLOSIVE_ARROW);
     }
 }

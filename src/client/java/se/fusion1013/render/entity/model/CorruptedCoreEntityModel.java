@@ -1,13 +1,9 @@
-package se.fusion1013.render.entity;
+package se.fusion1013.render.entity.model;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import org.joml.Matrix4f;
 import se.fusion1013.entity.CorruptedCoreEntity;
 
 public class CorruptedCoreEntityModel extends EntityModel<CorruptedCoreEntity> {

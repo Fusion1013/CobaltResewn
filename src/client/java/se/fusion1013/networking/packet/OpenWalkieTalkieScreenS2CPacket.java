@@ -13,7 +13,7 @@ public class OpenWalkieTalkieScreenS2CPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buffer, PacketSender responseSender) {
         client.execute(() -> {
             if (client.player == null) return;
-            var item = ItemUtil.getHeldItemOfType(client.player, CobaltItems.MiscItems.WALKIE_TALKIE);
+            var item = ItemUtil.getHeldItemOfType(client.player, CobaltItems.WALKIE_TALKIE);
             if (item == null) return;
             new WalkieTalkieScreen(item);
         });

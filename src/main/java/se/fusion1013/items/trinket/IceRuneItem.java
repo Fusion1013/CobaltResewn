@@ -41,9 +41,9 @@ public class IceRuneItem extends CobaltTrinketItem {
         super.tick(stack, slot, entity, trinketComponent);
 
         // Tick depending on which base rune is equipped
-        if (trinketComponent.isEquipped(CobaltItems.TrinketItems.HEALTH_RUNE)) healthRuneTick(stack, slot, entity);
-        if (trinketComponent.isEquipped(CobaltItems.TrinketItems.HEAVY_RUNE)) heavyRuneTick(stack, slot, entity);
-        if (trinketComponent.isEquipped(CobaltItems.TrinketItems.FAST_RUNE)) fastRuneTick(stack, slot, entity);
+        if (trinketComponent.isEquipped(CobaltItems.HEALTH_RUNE)) healthRuneTick(stack, slot, entity);
+        if (trinketComponent.isEquipped(CobaltItems.HEAVY_RUNE)) heavyRuneTick(stack, slot, entity);
+        if (trinketComponent.isEquipped(CobaltItems.FAST_RUNE)) fastRuneTick(stack, slot, entity);
     }
 
     private void healthRuneTick(ItemStack stack, SlotReference slot, LivingEntity entity) {

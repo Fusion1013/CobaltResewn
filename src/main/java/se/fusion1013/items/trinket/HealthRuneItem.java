@@ -56,7 +56,7 @@ public class HealthRuneItem extends CobaltTrinketItem {
 
             // Calculate final heal amount
             float healAmount = HEAL_AMOUNT *
-                    (trinketComponent.isEquipped(CobaltItems.TrinketItems.FIRE_RUNE) ? FIRE_RUNE_MULTIPLIER : 1);
+                    (trinketComponent.isEquipped(CobaltItems.FIRE_RUNE) ? FIRE_RUNE_MULTIPLIER : 1);
 
             entity.heal(healAmount);
         }

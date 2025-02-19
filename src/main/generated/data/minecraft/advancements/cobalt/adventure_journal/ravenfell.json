@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:cobalt/adventure_journal/root",
+  "criteria": {
+    "visit_ravenfell": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": "Visit Ravenfell",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:copper_block"
+    },
+    "title": "Ravenfell"
+  },
+  "requirements": [
+    [
+      "visit_ravenfell"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

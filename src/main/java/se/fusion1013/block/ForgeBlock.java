@@ -46,7 +46,7 @@ public class ForgeBlock extends BlockWithEntity implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         // Check if player is holding forge hammer
         ItemStack mainHandStack = player.getMainHandStack();
-        if (mainHandStack.getItem() != CobaltItems.SwordItems.FORGE_HAMMER) return ActionResult.FAIL;
+        if (mainHandStack.getItem() != CobaltItems.FORGE_HAMMER) return ActionResult.FAIL;
 
         // Summon lightning
         LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);

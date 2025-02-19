@@ -51,7 +51,7 @@ public class VoiceManager {
     }
 
     private void sendSpeakerSound(MicrophonePacketEvent event, PlayerEntity senderPlayer, int canal, byte[] audioData) {
-        var senderWalkie = ItemUtil.getHeldItemOfType(senderPlayer, CobaltItems.MiscItems.WALKIE_TALKIE);
+        var senderWalkie = ItemUtil.getHeldItemOfType(senderPlayer, CobaltItems.WALKIE_TALKIE);
         if (senderWalkie == null) return;
 
         // Send the audio data to all activated speakers in range
@@ -72,7 +72,7 @@ public class VoiceManager {
     private void sendWalkieTalkieSound(MicrophonePacketEvent event, VoicechatConnection senderConnection, PlayerEntity senderPlayer) {
 
         // Get the held walkie talkie
-        var senderWalkie = ItemUtil.getHeldItemOfType(senderPlayer, CobaltItems.MiscItems.WALKIE_TALKIE);
+        var senderWalkie = ItemUtil.getHeldItemOfType(senderPlayer, CobaltItems.WALKIE_TALKIE);
         if (senderWalkie == null) return;
 
         // Check if the walkie talkie is activated and not muted
@@ -93,7 +93,7 @@ public class VoiceManager {
             // TODO: Check cross dimensional support
 
             // Check if the receiving player is holding a walkie talkie
-            ItemStack receiverWalkie = ItemUtil.getHeldItemOfType(receiverPlayer, CobaltItems.MiscItems.WALKIE_TALKIE);
+            ItemStack receiverWalkie = ItemUtil.getHeldItemOfType(receiverPlayer, CobaltItems.WALKIE_TALKIE);
             if (receiverWalkie == null) continue;
 
             // Check if the walkie talkie is in range and set to the correct canal

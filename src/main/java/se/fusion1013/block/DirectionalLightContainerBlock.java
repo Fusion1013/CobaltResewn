@@ -139,10 +139,10 @@ public class DirectionalLightContainerBlock extends AbstractLightContainerBlock 
 
     public enum LensType implements StringIdentifiable {
         NONE("none", null, Color.WHITE),
-        CLEAR("clear", CobaltItems.MiscItems.LENS, Color.CYAN),
-        RED("red", CobaltItems.MiscItems.RED_LENS, new Color(230, 44, 44)),
-        GREEN("green", CobaltItems.MiscItems.GREEN_LENS, new Color(44, 219, 61)),
-        BLUE("blue", CobaltItems.MiscItems.BLUE_LENS, new Color(59, 123, 227));
+        CLEAR("clear", CobaltItems.LENS, Color.CYAN),
+        RED("red", CobaltItems.RED_LENS, new Color(230, 44, 44)),
+        GREEN("green", CobaltItems.GREEN_LENS, new Color(44, 219, 61)),
+        BLUE("blue", CobaltItems.BLUE_LENS, new Color(59, 123, 227));
 
         public final String id;
         public final Item item;

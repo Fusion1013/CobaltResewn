@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "got_adventure_journal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cobalt:adventure_journal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "description": "Acquire an Adventurer's Journal",
+    "icon": {
+      "item": "cobalt:adventure_journal"
+    },
+    "title": "Adventurer's Journal"
+  },
+  "requirements": [
+    [
+      "got_adventure_journal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

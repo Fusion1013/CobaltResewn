@@ -26,7 +26,7 @@ public class InGameHudMixin {
         if (possibleTrinketComponent.isEmpty()) return;
 
         var trinketComponent = possibleTrinketComponent.get();
-        if (!trinketComponent.isEquipped(CobaltItems.TrinketItems.MECHANIC_SPECTACLES)) return;
+        if (!trinketComponent.isEquipped(CobaltItems.MECHANIC_SPECTACLES)) return;
 
         var powerPercent = Math.round(FacilityStatus.POWER_CURRENT / POWER_MAX * 100);
         MinecraftClient.getInstance().textRenderer.draw("Power: " + powerPercent + "%", 5, 5, getColor(powerPercent), true, new Matrix4f(), context.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL, 0x00000000, 255);

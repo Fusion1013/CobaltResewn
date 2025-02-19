@@ -6,9 +6,12 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +28,7 @@ public class CobaltItemConfiguration {
     private Formatting nameFormatting = Formatting.WHITE;
     private final List<Text> tooltip = new ArrayList<>();
     private final Map<EquipmentSlot, List<AttributeModifierProvider>> attributeModifiers = new HashMap<>();
+    private IItemAbility itemAbility;
 
     public CobaltItemConfiguration() {}
 
@@ -142,6 +146,17 @@ public class CobaltItemConfiguration {
             List<AttributeModifierProvider> list = attributeModifiers.computeIfAbsent(slot, k -> new ArrayList<>());
             list.add(new AttributeModifierProvider(attribute, modifier));
         }
+        return this;
+    }
+
+    /**
+     * Sets the item ability of the item. Executed when a player right clicks with the item.
+     *
+     * @param ability the ability.
+     * @return builder.
+     */
+    public CobaltItemConfiguration ability(IItemAbility ability) {
+        this.itemAbility = ability;
         return this;
     }
 }
