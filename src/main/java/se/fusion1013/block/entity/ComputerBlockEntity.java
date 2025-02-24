@@ -64,7 +64,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
 
     private void createTooltip() {
         tooltip.clear();
-        tooltip.add(Text.literal(title).formatted(Formatting.GRAY));
+        tooltip.add(Text.literal(title).formatted(Formatting.GRAY, Formatting.BOLD));
         var textText = Text.literal(text).formatted(Formatting.GRAY);
         tooltip.addAll(TextUtil.splitText(textText, 30));
     }

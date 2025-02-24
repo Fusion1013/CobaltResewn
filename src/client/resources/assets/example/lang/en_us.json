@@ -606,11 +606,18 @@
   "block.cobalt.sculk_summoner": "Sculk Summoner",
   "block.cobalt.sculk_spreader": "Sculk Spreader",
   "block.cobalt.sculk_growth": "Sculk Growth",
+  "block.cobalt.sculk_bubble": "Sculk Bubble",
+
+  "block.cobalt.umbran_log": "Umbran Log",
+  "block.cobalt.umbran_leaves": "Umbran Leaves",
 
   "block.cobalt.oxidized_copper_speaker": "Oxidized Copper Speaker",
   "block.cobalt.weathered_copper_speaker": "Weathered Copper Speaker",
   "block.cobalt.exposed_copper_speaker": "Exposed Copper Speaker",
   "block.cobalt.copper_speaker": "Copper Speaker",
+
+  "block.cobalt.steel_block": "Steel Block",
+  "block.cobalt.pure_black": "Pure Black",
 
   "block.cobalt.particle_command_block": "Particle Command Block",
 
@@ -629,6 +636,8 @@
   "block.cobalt.directional_light_holder": "Ancient Spotlight",
   "block.cobalt.ancient_pedestal": "Ancient Pedestal",
   "block.cobalt.ancient_pillar": "Ancient Pillar",
+
+  "block.cobalt.computer": "Computer",
 
 
   "trinkets.slot.hand.rune": "Rune"

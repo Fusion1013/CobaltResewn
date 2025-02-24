@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x":{
+      "model": "cobalt:block/umbran_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cobalt:block/umbran_log"
+    },
+    "axis=z": {
+      "model": "cobalt:block/umbran_log",
+      "x": 90
+    }
+  }
+}
