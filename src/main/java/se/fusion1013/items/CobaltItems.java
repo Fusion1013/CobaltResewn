@@ -151,6 +151,13 @@ public class CobaltItems {
     public static final Item AUTOMATON_SPAWN_EGG;
     public static final Item RAT_SPAWN_EGG;
 
+    public static final Item MUSIC_DISC_ANCIENT_GATEWAY;
+    public static final Item MUSIC_DISC_ERA_OF_PEACE;
+    public static final Item MUSIC_DISC_HYDROANGEA;
+    public static final Item MUSIC_DISC_OUTPOST;
+    public static final Item MUSIC_DISC_SHOOTING_FOR_THE_STARS;
+    public static final Item MUSIC_DISC_AKALI;
+
 
     static {
         WF_INSTRUCTION_MANUAL = LavenderBookItem.registerForBook(new Identifier("cobalt", "wf_instruction_manual"), new FabricItemSettings());
@@ -286,12 +293,18 @@ public class CobaltItems {
         DYNAMITE = register("dynamite", new ThrownItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), DynamiteEntity::new));
 
         FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new CobaltItem.Settings()));
+        CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new CobaltItem.Settings()));
+        CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new CobaltItem.Settings()));
+        AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new CobaltItem.Settings()));
+        RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new CobaltItem.Settings()));
 
-        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new FabricItemSettings()));
-        CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new FabricItemSettings()));
-        CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new FabricItemSettings()));
-        AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new FabricItemSettings()));
-        RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new FabricItemSettings()));
+        MUSIC_DISC_ANCIENT_GATEWAY = register("music_disc_ancient_gateway", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ANCIENT_GETAWAY)));
+        MUSIC_DISC_ERA_OF_PEACE = register("music_disc_era_of_peace", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ERA_OF_PEACE)));
+        MUSIC_DISC_HYDROANGEA = register("music_disc_hydroangea", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.HYDROANGEA)));
+        MUSIC_DISC_OUTPOST = register("music_disc_outpost", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.OUTPOST)));
+        MUSIC_DISC_SHOOTING_FOR_THE_STARS = register("music_disc_shooting_for_the_stars", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.SHOOTING_FOR_THE_STARS)));
+        MUSIC_DISC_AKALI = register("music_disc_akali", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.AKALI)));
     }
 
     // -- REGISTER
