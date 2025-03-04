@@ -1,8 +1,0 @@
-{
-  "comparator_output": 15,
-  "description": {
-    "translate": "jukebox_song.cobalt.outpost"
-  },
-  "length_in_seconds": 131.0,
-  "sound_event": "cobalt:music_disc.outpost"
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cobalt:item/music_disc_era_of_peace"
-  }
-}

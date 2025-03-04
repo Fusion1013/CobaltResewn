@@ -469,23 +469,7 @@
 
 
 
-  "item.cobalt.music_disc_ancient_gateway": "Music Disc",
-  "jukebox_song.cobalt.ancient_getaway": "Ancient Getaway - NemesisTheory",
-  "item.cobalt.music_disc_era_of_peace": "Music Disc",
-  "jukebox_song.cobalt.era_of_peace": "Era of Peace - NemesisTheory",
-  "item.cobalt.music_disc_hydroangea": "Music Disc",
-  "jukebox_song.cobalt.hydroangea": "Hydroangea - Crinkles",
-  "item.cobalt.music_disc_outpost": "Music Disc",
-  "jukebox_song.cobalt.outpost": "Outpost - TheDashDub",
-  "item.cobalt.music_disc_shooting_for_the_stars": "Music Disc",
-  "jukebox_song.cobalt.shooting_for_the_stars": "Shooting for the Stars - TheDashDub",
-  "item.cobalt.music_disc_akali": "Music Disc",
-  "jukebox_song.cobalt.akali": "Akali, the Rogue Assasain - League of Legends",
-
-
-
-
-  "item_set.cobalt.header": "Full Set Bonus:",
+  "item_set.cobalt.header": "Set Bonus:",
 
   "item_set.cobalt.diving_armor.tooltip.breathing": "Allows the wearer to breathe underwater",
   "item_set.cobalt.diving_armor.tooltip.cold": "Protects from cold environments",

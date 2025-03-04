@@ -1,8 +1,0 @@
-{
-  "comparator_output": 15,
-  "description": {
-    "translate": "jukebox_song.cobalt.ancient_getaway"
-  },
-  "length_in_seconds": 204.0,
-  "sound_event": "cobalt:music_disc.ancient_getaway"
-}
