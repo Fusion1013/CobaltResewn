@@ -96,12 +96,6 @@ public class MainClient implements ClientModInitializer {
 
 		// Networking
 		CobaltClientNetworking.register();
-
-		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
-			if (stack.getItem() instanceof CobaltItem cobaltItem) {
-				if (Screen.hasShiftDown()) lines.clear();
-			}
-		});
 	}
 
 	private void registerItems() {
