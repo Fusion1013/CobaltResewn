@@ -1,5 +1,7 @@
 package se.fusion1013.block;
 
+import foundry.veil.api.client.render.VeilRenderSystem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -98,6 +100,9 @@ public class CobaltBlocks {
     public static final Block EXPOSED_COPPER_VENT = register("exposed_copper_vent", new CopperVentBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
     public static final Block EXPOSED_COPPER_CRATE = register("exposed_copper_crate", new CopperCrateBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
 
+    // -- Industrial Decoration Blocks
+    public static final Block STEEL_BLOCK = register("steel_block", new Block(AbstractBlock.Settings.create().strength(3, 6)));
+
     // -- Ancient Blocks
     public static final Block ANCIENT_POT_1 = register("ancient_pot_1", new AncientPot1Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block ANCIENT_POT_2 = register("ancient_pot_2", new AncientPot1Block(AbstractBlock.Settings.create().strength(3, 6)));
@@ -108,8 +113,8 @@ public class CobaltBlocks {
 
     public static final Block ANCIENT_PEDESTAL = register("ancient_pedestal", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
     public static final Block ANCIENT_PILLAR = register("ancient_pillar", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
-    public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
-    public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(14, LightContainerBlock.LIT))));
+    public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
+    public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
 
 
     // -- Sculk Blocks
@@ -119,6 +124,10 @@ public class CobaltBlocks {
     public static final Block SCULK_SUMMONER = register("sculk_summoner", new SculkSummonerBlock(FabricBlockSettings.copyOf(Blocks.SCULK)));
     public static final Block SCULK_SPREADER = register("sculk_spreader", new SculkSpreaderBlock(FabricBlockSettings.copyOf(Blocks.SCULK)));
     public static final Block SCULK_GROWTH = register("sculk_growth", new SculkGrowthBlock(FabricBlockSettings.copyOf(Blocks.SCULK).nonOpaque().luminance(8)));
+    public static final Block SCULK_BUBBLE = register("sculk_bubble", new SculkBubbleBlock(FabricBlockSettings.copyOf(Blocks.SCULK).noCollision()));
+
+    public static final Block UMBRAN_LOG = register("umbran_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM)));
+    public static final Block UMBRAN_LEAVES = register("umbran_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
 
     // -- Speakers
     public static final Block OXIDIZED_COPPER_SPEAKER = register("oxidized_copper_speaker", new SpeakerBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
@@ -132,18 +141,14 @@ public class CobaltBlocks {
 
     // -- Misc
     public static final Block ICICLE_BLOCK = register("icicle_block", new IcicleBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE).slipperiness(0.98F).sounds(BlockSoundGroup.GLASS)));
-
     public static final Block PARTICLE_COMMAND_BLOCK = register("particle_command_block", new ParticleBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK)));
-
     public static final Block RUNE_BLOCK = register("rune_block", new RuneBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque().luminance(createLightLevelFromBooleanProperty(4, RuneBlock.VISIBLE))));
-
     public static final Block PEDESTAL_BLOCK = register("pedestal_block", new PedestalBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
-
     public static final Block ITEM_DISPLAY = register("item_display", new ItemDisplayBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK).nonOpaque()));
-
     public static final Block FORGE_BLOCK = register("forge_block", new ForgeBlock(FabricBlockSettings.copyOf(Blocks.ANVIL)));
-
-
+    public static final Block COMPUTER = register("computer", new ComputerBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
+    public static final Block PURE_BLACK = register("pure_black", new Block(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final Block DISPLAY_BLOCK = register("display_block", new DisplayBlock(AbstractBlock.Settings.create().strength(4.0f).nonOpaque().solid()));
 
     private static Block register(String name, Block block) {
         registerItem(name, block);

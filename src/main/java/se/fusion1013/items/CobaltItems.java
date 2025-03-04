@@ -32,6 +32,13 @@ import se.fusion1013.items.consumable.LiquidCourageItem;
 import se.fusion1013.items.consumable.MysteryMedicineItem;
 import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
+import se.fusion1013.items.tools.FlashlightItem;
+import se.fusion1013.items.trinket.CobaltTrinketItem;
+import se.fusion1013.items.trinket.MechanicSpectaclesTrinket;
+import se.fusion1013.util.item.ItemSetUtil;
+
+import java.text.Format;
+import java.util.List;
 import se.fusion1013.items.misc.CorruptedPearlItem;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.items.sword.*;
@@ -139,6 +146,8 @@ public class CobaltItems {
 
     public static final Item SMOKE_BOMB;
     public static final Item DYNAMITE;
+
+    public static final Item FLASHLIGHT;
 
     public static final Item CORRUPTED_ZOMBIE_SPAWN_EGG;
     public static final Item CORRUPTED_SKELETON_SPAWN_EGG;
@@ -345,6 +354,7 @@ public class CobaltItems {
         MUSIC_DISC_OUTPOST = register("music_disc_outpost", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.OUTPOST)));
         MUSIC_DISC_SHOOTING_FOR_THE_STARS = register("music_disc_shooting_for_the_stars", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.SHOOTING_FOR_THE_STARS)));
         MUSIC_DISC_AKALI = register("music_disc_akali", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.AKALI)));
+        FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
     }
 
     // -- REGISTER

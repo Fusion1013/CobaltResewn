@@ -1,0 +1,20 @@
+{
+  "sprite_data": {
+    "sprite": "minecraft:textures/block/iron_block.png"
+  },
+  "render_style": "CUBE",
+  "init_modules": [
+  ],
+  "update_modules": [
+  ],
+  "collision_modules": [
+  ],
+  "forces": [
+  ],
+  "render_modules": [
+    "cobalt:color/smoke_color_over_lifetime"
+  ],
+  "face_velocity": false,
+  "velocity_stretch_factor": 0.0,
+  "should_collide": true
+}

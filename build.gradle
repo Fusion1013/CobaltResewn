@@ -34,6 +34,12 @@ repositories {
 		url = "https://api.modrinth.com/maven"
 		content { includeGroup "maven.modrinth" }
 	}
+
+	// VEIL
+	maven {
+		name = 'BlameJared Maven (CrT / Bookshelf)'
+		url = 'https://maven.blamejared.com'
+	}
 }
 
 configurations {
@@ -78,6 +84,9 @@ dependencies {
 	// Math utils
 	implementation include(group: 'org.apache.commons', name: 'commons-math3', version: '3.0')
 	implementation include('uk.me.berndporr:iirj:1.7')
+
+	// VEIL
+	modImplementation(include("foundry.veil:Veil-fabric-${project.minecraft_version}:${project.veil_version}")) { exclude group: "maven.modrinth" }
 }
 
 processResources {

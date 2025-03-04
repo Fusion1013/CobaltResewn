@@ -1,0 +1,11 @@
+{
+  "max_lifetime": 100,
+  "loop": false,
+  "rate": 1,
+  "count": 1,
+  "emitter_settings": {
+    "shape": "cobalt:basic_smoke",
+    "particle_settings": "cobalt:basic_smoke"
+  },
+  "particle_data": "cobalt:basic_smoke"
+}

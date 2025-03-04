@@ -10,7 +10,8 @@
     "render.EntityRendererMixin",
     "render.GameRendererMixin",
     "render.LightTextureMixin",
-    "render.LivingEntityRendererMixin"
+    "render.LivingEntityRendererMixin",
+    "render.entity.PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

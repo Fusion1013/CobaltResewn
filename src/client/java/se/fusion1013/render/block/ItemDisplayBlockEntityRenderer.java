@@ -1,5 +1,9 @@
 package se.fusion1013.render.block;
 
+import foundry.veil.api.client.color.ColorTheme;
+import foundry.veil.api.client.tooltip.Tooltippable;
+import foundry.veil.api.client.tooltip.VeilUIItemTooltipDataHolder;
+import foundry.veil.api.client.tooltip.anim.TooltipTimeline;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -8,9 +12,15 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import se.fusion1013.block.entity.ItemDisplayBlockEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDisplayBlockEntityRenderer implements BlockEntityRenderer<ItemDisplayBlockEntity> {
 

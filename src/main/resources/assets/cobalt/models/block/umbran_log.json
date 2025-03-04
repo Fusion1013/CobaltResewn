@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "cobalt:block/umbran_log_top",
+    "side": "cobalt:block/umbran_log"
+  },
+  "render_type": "solid"
+}

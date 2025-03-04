@@ -72,7 +72,7 @@ public class DirectionalLightContainerBlock extends AbstractLightContainerBlock 
             Vec3d newPos = centerPos.offset(state.get(FACING), i);
             LensType lensType = state.get(LENS_TYPE);
             Color color = lensType.color;
-            world.addParticle(new DustParticleEffect(new Vector3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f), 1.0f), newPos.getX(), pos.getY() + (1/16f)*6, newPos.getZ(), 0, 0, 0);
+            // world.addParticle(new DustParticleEffect(new Vector3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f), 1.0f), newPos.getX(), pos.getY() + (1/16f)*6, newPos.getZ(), 0, 0, 0);
         }
     }
 
