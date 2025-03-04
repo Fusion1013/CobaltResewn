@@ -146,6 +146,7 @@ public class CobaltBlocks {
     public static final Block FORGE_BLOCK = register("forge_block", new ForgeBlock(FabricBlockSettings.copyOf(Blocks.ANVIL)));
     public static final Block COMPUTER = register("computer", new ComputerBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
     public static final Block PURE_BLACK = register("pure_black", new Block(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final Block DISPLAY_BLOCK = register("display_block", new DisplayBlock(AbstractBlock.Settings.create().strength(4.0f).nonOpaque().solid()));
 
     private static Block register(String name, Block block) {
         registerItem(name, block);

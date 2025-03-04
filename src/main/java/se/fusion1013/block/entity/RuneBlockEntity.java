@@ -15,6 +15,9 @@ import se.fusion1013.tags.CobaltTags;
 
 public class RuneBlockEntity extends BlockEntity {
 
+    private static int tick;
+    private static int lastTick;
+
     public RuneBlockEntity(BlockPos pos, BlockState state) {
         super(CobaltBlockEntityTypes.RUNE_BLOCK, pos, state);
     }
@@ -41,5 +44,22 @@ public class RuneBlockEntity extends BlockEntity {
 
         // Set the visible state of the block
         world.setBlockState(pos, state.with(RuneBlock.VISIBLE, playerInRange));
+    }
+
+    public static void clientTick(World world, BlockPos pos, BlockState blockState, RuneBlockEntity pedestalBlockEntity) {
+        lastTick = tick;
+        tick++;
+    }
+
+    public static void serverTick(World world, BlockPos pos, BlockState blockState, RuneBlockEntity pedestalBlockEntity) {
+        tick(world, pos, blockState, pedestalBlockEntity);
+    }
+
+    public static int getTick() {
+        return tick;
+    }
+
+    public static int getLastTick() {
+        return lastTick;
     }
 }

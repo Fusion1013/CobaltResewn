@@ -86,7 +86,7 @@ dependencies {
 	implementation include('uk.me.berndporr:iirj:1.7')
 
 	// VEIL
-	modImplementation("foundry.veil:Veil-fabric-${project.minecraft_version}:${project.veil_version}") { transitive = false }
+	modImplementation(include("foundry.veil:Veil-fabric-${project.minecraft_version}:${project.veil_version}")) { exclude group: "maven.modrinth" }
 }
 
 processResources {

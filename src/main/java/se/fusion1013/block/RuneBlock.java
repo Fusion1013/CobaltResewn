@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import se.fusion1013.block.entity.CobaltBlockEntityTypes;
 import se.fusion1013.block.entity.MultifaceGrowthBlockWithEntity;
+import se.fusion1013.block.entity.PedestalBlockEntity;
 import se.fusion1013.block.entity.RuneBlockEntity;
 
 public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEntityProvider {
@@ -104,7 +105,7 @@ public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEn
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return validateTicker(type, CobaltBlockEntityTypes.RUNE_BLOCK, RuneBlockEntity::tick);
+        return validateTicker(type, CobaltBlockEntityTypes.RUNE_BLOCK, world.isClient ? RuneBlockEntity::clientTick : RuneBlockEntity::serverTick);
     }
 
     @Override

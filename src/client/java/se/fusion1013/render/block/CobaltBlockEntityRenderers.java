@@ -16,6 +16,8 @@ public class CobaltBlockEntityRenderers {
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.ITEM_DISPLAY_BLOCK_ENTITY, ItemDisplayBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.LIGHT_HOLDER_BLOCK_ENTITY, LightHolderBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DIRECTIONAL_LIGHT_HOLDER_BLOCK_ENTITY, context -> new DirectionalLightHolderBlockEntityRenderer(context.getLayerModelPart(MainClient.TEST_BLOCK_ENTITY_LAYER)));
+        BlockEntityRendererFactories.register(CobaltBlockEntityTypes.RUNE_BLOCK, RuneBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DISPLAY_BLOCK_ENTITY, DisplayBlockEntityRenderer::new);
     }
 
 }

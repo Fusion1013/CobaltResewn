@@ -97,7 +97,8 @@ public class MainClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
 				CobaltBlocks.RUNE_BLOCK,
 				CobaltBlocks.SCULK_GROWTH,
-				CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER
+				CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER,
+				CobaltBlocks.DISPLAY_BLOCK
 		);
 
 		// Screens
