@@ -23,7 +23,7 @@ public class CobaltEffects {
     public static final RegistryEntry<StatusEffect> COLD_RESISTANCE_EFFECT = register("cold_resistance", new ColdResistanceEffect());
     public static final RegistryEntry<StatusEffect> HEAVY = register("heavy", new HeavyEffect());
     public static final RegistryEntry<StatusEffect> INFECTED = register("infected", new InfectedEffect());
-    public static final RegistryEntry<StatusEffect> DARK_SHADOWS = register("dark_shadows", new DarkShadowsEffect());
+    public static final RegistryEntry<StatusEffect> DARK_SHADOWS = register("dark_shadows", new DarkShadowsEffect().fadeTicks(5*20));
     public static final RegistryEntry<StatusEffect> LIGHT_FOG = register("light_fog", new FogEffect());
     public static final RegistryEntry<StatusEffect> MEDIUM_FOG = register("medium_fog", new FogEffect());
     public static final RegistryEntry<StatusEffect> HEAVY_FOG = register("heavy_fog", new FogEffect());

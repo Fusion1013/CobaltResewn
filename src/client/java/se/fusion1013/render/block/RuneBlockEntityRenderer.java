@@ -110,6 +110,6 @@ public class RuneBlockEntityRenderer implements BlockEntityRenderer<RuneBlockEnt
     }
 
     public static void addVertex(Matrix4f matrix, VertexConsumer vertexConsumer, float x, float y, float z, float r, float g, float b, float a, int light, int overlay) {
-        vertexConsumer.vertex(matrix, x, y, z).color(r, g, b, a).texture(0, 0).overlay(overlay).light(light).normal(0, 1, 0).next();
+        vertexConsumer.vertex(matrix, x, y, z).color(r, g, b, a).texture(0, 0).overlay(overlay).light(light).normal(0, 1, 0);
     }
 }

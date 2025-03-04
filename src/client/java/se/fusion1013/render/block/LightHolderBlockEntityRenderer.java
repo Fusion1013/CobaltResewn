@@ -1,7 +1,7 @@
 package se.fusion1013.render.block;
 
 import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.deferred.light.PointLight;
+import foundry.veil.api.client.render.light.PointLight;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
@@ -50,7 +50,7 @@ public class LightHolderBlockEntityRenderer implements BlockEntityRenderer<Light
                         .setBrightness(1.0f)
                         .setRadius(0f)
                         .setColor(50/255f, 123/255f, 168/255f);
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(pointLight);
+                VeilRenderSystem.renderer().getLightRenderer().addLight(pointLight);
                 lights.put(entity, pointLight);
             }
 
@@ -65,7 +65,7 @@ public class LightHolderBlockEntityRenderer implements BlockEntityRenderer<Light
         } else {
             PointLight pointLight = lights.get(entity);
             if (pointLight != null) {
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().removeLight(pointLight);
+                VeilRenderSystem.renderer().getLightRenderer().removeLight(pointLight);
             }
         }
     }

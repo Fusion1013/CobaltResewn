@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import se.fusion1013.Main;
 import se.fusion1013.effect.CobaltEffects;
 import se.fusion1013.util.Darkness;
 import se.fusion1013.util.LightmapAccess;
@@ -32,7 +33,7 @@ public class GameRendererMixin {
     public void renderWorld(RenderTickCounter tickCounter, CallbackInfo ci) {
         final LightmapAccess lightmap = (LightmapAccess) lightmapTextureManager;
 
-        float darknessAmount = getTargetDarkness(tickDelta);
+        float darknessAmount = getTargetDarkness(tickCounter.getTickDelta(false));
         // if (darknessAmount <= 0.0F) return;
 
         if (lightmap.darkness_isDirty()) {
@@ -53,10 +54,13 @@ public class GameRendererMixin {
 
         if (effect.isDurationBelow(OUT_DURATION)) return effect.getDuration() / (float)OUT_DURATION;
         else {
+            float delta = effect.getFadeFactor(player, tickDelta);
+            Main.LOGGER.info("Tick Delta: " + delta);
             // TODO:
             // float delta = effect.getFactorCalculationData().get().lerp(player, tickDelta);
-            // return MathHelper.lerp(delta, 0f, 1f);
-            return 0;
+            return MathHelper.lerp(delta, 0f, 1f);
+            // return 0;
+            // return 1;
         }
     }
 

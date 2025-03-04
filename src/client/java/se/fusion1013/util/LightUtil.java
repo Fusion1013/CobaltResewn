@@ -1,9 +1,8 @@
 package se.fusion1013.util;
 
 import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.deferred.light.AreaLight;
+import foundry.veil.api.client.render.light.AreaLight;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.MathHelper;
 import org.joml.Quaternionf;
@@ -15,7 +14,7 @@ public class LightUtil {
         light.setPosition(entity.getX(), entity.getEyeY(), entity.getZ());
         float pitch = MathHelper.RADIANS_PER_DEGREE * entity.getPitch();
         float headYaw = MathHelper.RADIANS_PER_DEGREE * entity.getHeadYaw();
-        float roll = MathHelper.RADIANS_PER_DEGREE * entity.getRoll();
+        float roll = MathHelper.RADIANS_PER_DEGREE * entity.getHeadYaw();
         light.setOrientation(new Quaternionf().rotationXYZ(-pitch, headYaw, roll));
     }
 
@@ -29,7 +28,7 @@ public class LightUtil {
 
         // Player is holding flashlight
 
-        var lightRenderer = VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer();
+        var lightRenderer = VeilRenderSystem.renderer().getLightRenderer();
 
         if (isHoldingFlashlight) {
             if (flashlightLight == null) {

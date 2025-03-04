@@ -14,6 +14,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
@@ -53,7 +54,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
     // --- NBT
 
     @Override
-    public void readNbt(NbtCompound nbt) {
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         // super.readNbt(nbt);
 
         title = nbt.getString(NBT_KEY_TITLE);
@@ -70,7 +71,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         // super.writeNbt(nbt);
 
         nbt.putString(NBT_KEY_TITLE, title);
@@ -84,8 +85,8 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     // --- TOOLTIPS

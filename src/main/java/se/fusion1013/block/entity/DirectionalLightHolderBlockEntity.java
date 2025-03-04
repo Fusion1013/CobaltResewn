@@ -1,7 +1,7 @@
 package se.fusion1013.block.entity;
 
-import foundry.veil.api.client.render.deferred.light.AreaLight;
-import foundry.veil.api.client.render.deferred.light.PointLight;
+import foundry.veil.api.client.render.light.AreaLight;
+import foundry.veil.api.client.render.light.PointLight;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 

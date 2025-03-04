@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 	id 'java'
 }
@@ -86,7 +86,7 @@ dependencies {
 	implementation include('uk.me.berndporr:iirj:1.7')
 
 	// VEIL
-	modImplementation(include("foundry.veil:Veil-fabric-${project.minecraft_version}:${project.veil_version}")) { exclude group: "maven.modrinth" }
+	modImplementation(include("foundry.veil:veil-fabric-${project.minecraft_version}:${project.veil_version}")) { exclude group: "maven.modrinth" }
 }
 
 processResources {

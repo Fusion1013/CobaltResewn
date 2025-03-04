@@ -1,9 +1,8 @@
 package se.fusion1013.render.block;
 
 import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.VeilRenderer;
-import foundry.veil.api.client.render.deferred.light.AreaLight;
-import foundry.veil.api.client.render.deferred.light.PointLight;
+import foundry.veil.api.client.render.light.AreaLight;
+import foundry.veil.api.client.render.light.PointLight;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
@@ -85,11 +84,11 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         } else {
             AreaLight areaLight = entity.getAreaLight();
             if (areaLight != null) {
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().removeLight(areaLight);
+                VeilRenderSystem.renderer().getLightRenderer().removeLight(areaLight);
             }
             PointLight pointLight = entity.getPointLight();
             if (pointLight != null) {
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().removeLight(pointLight);
+                VeilRenderSystem.renderer().getLightRenderer().removeLight(pointLight);
             }
         }
     }
@@ -148,7 +147,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         PointLight pointLight = new PointLight()
                 .setPosition(blockCenter.x + (xOffset * 1.2), entity.getPos().getY() + 6/16f, blockCenter.z + (zOffset * 1.2))
                 .setRadius(1f);
-        VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(pointLight);
+        VeilRenderSystem.renderer().getLightRenderer().addLight(pointLight);
         entity.setPointLight(pointLight);
         return pointLight;
     }
@@ -164,7 +163,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
                 .setColor(DEFAULT_LIGHT_COLOR.x, DEFAULT_LIGHT_COLOR.y, DEFAULT_LIGHT_COLOR.z)
                 .setOrientation(new Quaternionf().rotationXYZ(0, rotation * ((float)Math.PI * 2) / 4, 0))
                 .setSize(.25, .25);
-        VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(areaLight);
+        VeilRenderSystem.renderer().getLightRenderer().addLight(areaLight);
         entity.setAreaLight(areaLight);
         return areaLight;
     }

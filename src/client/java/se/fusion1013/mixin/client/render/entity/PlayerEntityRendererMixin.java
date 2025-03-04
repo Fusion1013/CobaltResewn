@@ -1,21 +1,15 @@
 package se.fusion1013.mixin.client.render.entity;
 
-import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.deferred.light.AreaLight;
-import foundry.veil.api.client.render.deferred.light.Light;
-import foundry.veil.api.client.render.deferred.light.PointLight;
-import net.minecraft.client.MinecraftClient;
+import foundry.veil.api.client.render.light.AreaLight;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import se.fusion1013.items.CobaltItems;
 import se.fusion1013.util.LightUtil;
 
 @Mixin(PlayerEntityRenderer.class)

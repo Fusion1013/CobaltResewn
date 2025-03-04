@@ -354,7 +354,7 @@ public class CobaltItems {
         MUSIC_DISC_OUTPOST = register("music_disc_outpost", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.OUTPOST)));
         MUSIC_DISC_SHOOTING_FOR_THE_STARS = register("music_disc_shooting_for_the_stars", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.SHOOTING_FOR_THE_STARS)));
         MUSIC_DISC_AKALI = register("music_disc_akali", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.AKALI)));
-        FLASHLIGHT = register("flashlight", new FlashlightItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(1)));
+        FLASHLIGHT = register("flashlight", new FlashlightItem(new CobaltItem.Settings().maxCount(1).rarity(CobaltRarity.Good)));
     }
 
     // -- REGISTER
