@@ -66,10 +66,10 @@ public class CobaltItem extends Item {
         }
 
         public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-            // var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
-            // var splitTooltip = TextUtil.splitText(tooltipText);
-            // tooltip.addAll(splitTooltip);
-            tooltip.addAll(this.tooltip);
+            var tooltipText = Text.translatable(stack.getTranslationKey() + ".tooltip").formatted(Formatting.DARK_GRAY);
+            var splitTooltip = TextUtil.splitText(tooltipText);
+            tooltip.addAll(splitTooltip);
+            // tooltip.addAll(this.tooltip);
         }
 
         // Builder
