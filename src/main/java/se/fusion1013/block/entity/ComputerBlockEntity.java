@@ -7,19 +7,18 @@ import foundry.veil.api.client.tooltip.VeilUIItemTooltipDataHolder;
 import foundry.veil.api.client.tooltip.anim.TooltipTimeline;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtString;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
-import se.fusion1013.Main;
 import se.fusion1013.block.ComputerBlock;
 import se.fusion1013.util.TextUtil;
 
@@ -31,9 +30,11 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
 
     public static final String NBT_KEY_TITLE = "title";
     public static final String NBT_KEY_TEXT = "text";
+    public static final String NBT_KEY_PAGE = "page";
 
     private String title = "empty";
-    private String text = "empty";
+    private int page = 0;
+    private List<String> textList = new ArrayList<>();
 
     private List<Text> tooltip = new ArrayList<>();
 
@@ -47,7 +48,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
         theme.addColor("topBorder", new Color(9, 36, 0, 200));
         theme.addColor("bottomBorder", new Color(9, 36, 0, 200));
 
-        createTooltip();
+        reloadTooltip();
     }
 
     // --- NBT
@@ -57,16 +58,36 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
         // super.readNbt(nbt);
 
         title = nbt.getString(NBT_KEY_TITLE);
-        text = nbt.getString(NBT_KEY_TEXT);
+        page = nbt.getInt(NBT_KEY_PAGE);
 
-        createTooltip();
+        textList.clear();
+        NbtList stringList = nbt.getList(NBT_KEY_TEXT, NbtElement.STRING_TYPE);
+        for (int i = 0; i < stringList.size(); i++) {
+            textList.add(stringList.getString(i));
+        }
+
+        reloadTooltip();
     }
 
-    private void createTooltip() {
+    private void reloadTooltip() {
         tooltip.clear();
         tooltip.add(Text.literal(title).formatted(Formatting.GRAY, Formatting.BOLD));
-        var textText = Text.literal(text).formatted(Formatting.GRAY);
+
+        if (page >= textList.size()) page = 0;
+        var textText = Text.literal("Empty");
+        if (!textList.isEmpty()) textText = Text.literal(textList.get(page)).formatted(Formatting.GRAY);
         tooltip.addAll(TextUtil.splitText(textText, 30));
+
+        if (textList.size() > 1) {
+            tooltip.add(Text.empty());
+            tooltip.add(Text.literal("Page " + page+1 + "/" + textList.size()).formatted(Formatting.GOLD));
+        }
+    }
+
+    public void nextPage() {
+        page++;
+        if (page >= textList.size()) page = 0;
+        reloadTooltip();
     }
 
     @Override
@@ -74,7 +95,13 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
         // super.writeNbt(nbt);
 
         nbt.putString(NBT_KEY_TITLE, title);
-        nbt.putString(NBT_KEY_TEXT, text);
+        nbt.putInt(NBT_KEY_PAGE, page);
+
+        NbtList stringList = new NbtList();
+        for (String s : textList) {
+            stringList.add(NbtString.of(s));
+        }
+        nbt.put(NBT_KEY_TEXT, stringList);
     }
 
     @Nullable
@@ -97,7 +124,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
 
     @Override
     public boolean isTooltipEnabled() {
-        return getCachedState().get(ComputerBlock.IS_ENABLED).booleanValue();
+        return getCachedState().get(ComputerBlock.ENABLED).booleanValue();
     }
 
     @Override
