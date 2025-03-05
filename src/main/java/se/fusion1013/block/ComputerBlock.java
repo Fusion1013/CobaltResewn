@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +27,9 @@ public class ComputerBlock extends BlockWithEntity {
     public static final DirectionProperty FACING;
     public static final BooleanProperty ENABLED;
     private static final MapCodec<ComputerBlock> CODEC = createCodec(ComputerBlock::new);
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 4, 16);
+    private static final VoxelShape TOP_SHAPE = Block.createCuboidShape(1, 4, 1, 15, 16, 15);
+    private static final VoxelShape BASE = VoxelShapes.union(BOTTOM_SHAPE, TOP_SHAPE);
 
     public ComputerBlock(Settings settings) {
         super(settings);
@@ -83,7 +86,7 @@ public class ComputerBlock extends BlockWithEntity {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return BASE;
     }
 
     @Override
