@@ -76,7 +76,7 @@ public class ComputerBlockEntity extends BlockEntity implements Tooltippable {
         if (page >= textList.size()) page = 0;
         var textText = Text.literal("Empty");
         if (!textList.isEmpty()) textText = Text.literal(textList.get(page)).formatted(Formatting.GRAY);
-        tooltip.addAll(TextUtil.splitText(textText, 30));
+        tooltip.addAll(TextUtil.formatText(textText, true, 30));
 
         if (textList.size() > 1) {
             int realPage = page+1;
