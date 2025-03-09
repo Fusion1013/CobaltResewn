@@ -63,14 +63,14 @@ public class VanishingBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!player.getMainHandStack().isEmpty()) return super.onUse(state, world, pos, player, hand, hit);
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!player.getMainHandStack().isEmpty()) return super.onUse(state, world, pos, player, hit);
 
         if (!isVanished(state)) {
             activate(world, pos);
             return ActionResult.SUCCESS;
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.onUse(state, world, pos, player, hit);
     }
 
     @Override

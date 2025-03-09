@@ -1,8 +1,7 @@
 package se.fusion1013.render.block;
 
 import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.deferred.light.AreaLight;
-import foundry.veil.api.client.render.deferred.light.PointLight;
+import foundry.veil.api.client.render.light.AreaLight;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
@@ -46,13 +45,13 @@ public class SpotlightBlockEntityRenderer implements BlockEntityRenderer<Spotlig
                         .setDistance(16)
                         .setSize(3f/16, 3f/16)
                         .setColor(50/255f, 123/255f, 168/255f);
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(pointLight);
+                VeilRenderSystem.renderer().getLightRenderer().addLight(pointLight);
                 lights.put(entity, pointLight);
             }
         } else {
             AreaLight pointLight = lights.get(entity);
             if (pointLight != null) {
-                VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().removeLight(pointLight);
+                VeilRenderSystem.renderer().getLightRenderer().removeLight(pointLight);
             }
         }
     }

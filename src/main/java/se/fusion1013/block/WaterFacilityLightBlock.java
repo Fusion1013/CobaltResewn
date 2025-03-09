@@ -87,7 +87,7 @@ public class WaterFacilityLightBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient && player.isCreativeLevelTwoOp() && player.getInventory().getMainHandStack().isEmpty()) {
             world.setBlockState(pos, state.cycle(LIGHT_LEVEL), 2);
             return ActionResult.SUCCESS;

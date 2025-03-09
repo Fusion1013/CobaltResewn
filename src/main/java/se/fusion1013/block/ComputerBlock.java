@@ -42,11 +42,11 @@ public class ComputerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!state.get(ENABLED)) return super.onUse(state, world, pos, player, hand, hit);
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!state.get(ENABLED)) return super.onUse(state, world, pos, player, hit);
 
         ComputerBlockEntity blockEntity = (ComputerBlockEntity) world.getBlockEntity(pos);
-        if (blockEntity == null) return super.onUse(state, world, pos, player, hand, hit);
+        if (blockEntity == null) return super.onUse(state, world, pos, player, hit);
         blockEntity.nextPage();
         return ActionResult.SUCCESS;
     }
