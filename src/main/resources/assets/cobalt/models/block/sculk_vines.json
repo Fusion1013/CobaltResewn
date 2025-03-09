@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cobalt:block/sculk_vines"
+  }
+}

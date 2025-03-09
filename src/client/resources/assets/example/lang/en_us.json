@@ -639,6 +639,14 @@
 
   "block.cobalt.computer": "Computer",
   "block.cobalt.display_block": "Display Block",
+  "block.cobalt.bursting_pipe": "Bursting Pipe",
+  "block.cobalt.exposed_bursting_pipe": "Exposed Bursting Pipe",
+  "block.cobalt.weathered_bursting_pipe": "Weathered Bursting Pipe",
+  "block.cobalt.oxidized_bursting_pipe": "Oxidized Bursting Pipe",
+  "block.cobalt.electric_light": "Electric Light",
+  "block.cobalt.dim_lantern": "Dim Lantern",
+  "block.cobalt.sculk_vines": "Sculk Vines",
+  "block.cobalt.sculk_rose": "Sculk Rose",
 
 
   "trinkets.slot.hand.rune": "Rune"

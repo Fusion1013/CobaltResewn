@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+		{"model": "cobalt:block/sculk_rose"},
+		{"model": "cobalt:block/sculk_rose_0"},
+		{"model": "cobalt:block/sculk_rose_1"},
+		{"model": "cobalt:block/sculk_rose_2"}
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "vanished=false": {
+      "model": "cobalt:block/oxidized_brown_chiseled_copper"
+    },
+    "vanished=true": {
+      "model": "minecraft:block/barrier"
+    }
+  }
+}

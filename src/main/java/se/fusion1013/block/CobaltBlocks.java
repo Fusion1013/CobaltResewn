@@ -1,10 +1,10 @@
 package se.fusion1013.block;
 
-import foundry.veil.api.client.render.VeilRenderSystem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -14,6 +14,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
+import se.fusion1013.effect.CobaltEffects;
 
 import java.util.function.ToIntFunction;
 
@@ -94,6 +95,11 @@ public class CobaltBlocks {
     public static final Block OXIDIZED_MAGENTA_CHISELED_COPPER =    register("oxidized_magenta_chiseled_copper", new Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block OXIDIZED_PINK_CHISELED_COPPER =       register("oxidized_pink_chiseled_copper", new Block(AbstractBlock.Settings.create().strength(3, 6)));
 
+    public static final Block BURSTING_PIPE = register("bursting_pipe", new BurstingPipeBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+    public static final Block EXPOSED_BURSTING_PIPE = register("exposed_bursting_pipe", new BurstingPipeBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+    public static final Block WEATHERED_BURSTING_PIPE = register("weathered_bursting_pipe", new BurstingPipeBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+    public static final Block OXIDIZED_BURSTING_PIPE = register("oxidized_bursting_pipe", new BurstingPipeBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+
     // -- Copper Decoration Blocks
     public static final Block EXPOSED_COPPER_VENT = register("exposed_copper_vent", new CopperVentBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
     public static final Block EXPOSED_COPPER_CRATE = register("exposed_copper_crate", new CopperCrateBlock(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)));
@@ -123,6 +129,9 @@ public class CobaltBlocks {
     public static final Block SCULK_SPREADER = register("sculk_spreader", new SculkSpreaderBlock(FabricBlockSettings.copyOf(Blocks.SCULK)));
     public static final Block SCULK_GROWTH = register("sculk_growth", new SculkGrowthBlock(FabricBlockSettings.copyOf(Blocks.SCULK).nonOpaque().luminance(8)));
     public static final Block SCULK_BUBBLE = register("sculk_bubble", new SculkBubbleBlock(FabricBlockSettings.copyOf(Blocks.SCULK).noCollision()));
+    public static final Block SCULK_VINES = register("sculk_vines", new SculkVinesBlock(AbstractBlock.Settings.copy(Blocks.WEEPING_VINES)));
+    public static final Block SCULK_VINES_PLANT = register("sculk_vines_plant", new SculkVinesPlantBlock(AbstractBlock.Settings.copy(Blocks.WEEPING_VINES_PLANT)));
+    public static final Block SCULK_ROSE = register("sculk_rose", new WitherRoseBlock(StatusEffects.WITHER, 8, AbstractBlock.Settings.copy(Blocks.WITHER_ROSE)));
 
     public static final Block UMBRAN_LOG = register("umbran_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM)));
     public static final Block UMBRAN_LEAVES = register("umbran_leaves", new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
@@ -147,6 +156,10 @@ public class CobaltBlocks {
     public static final Block COMPUTER = register("computer", new ComputerBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
     public static final Block PURE_BLACK = register("pure_black", new Block(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block DISPLAY_BLOCK = register("display_block", new DisplayBlock(AbstractBlock.Settings.create().strength(4.0f).nonOpaque().solid()));
+    public static final Block ELECTRIC_LIGHT = register("electric_light", new WaterFacilityLightBlock(AbstractBlock.Settings.create().strength(4.0f, 6).luminance(WaterFacilityLightBlock.STATE_TO_LUMINANCE)));
+    public static final Block SPOTLIGHT = register("spotlight", new SpotlightBlock(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final Block VANISHING_BLOCK = register("vanishing_block", new VanishingBlock(AbstractBlock.Settings.create().strength(3, 6)));
+    public static final Block DIM_LANTERN = register("dim_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.SOUL_LANTERN)));
 
     private static Block register(String name, Block block) {
         registerItem(name, block);
@@ -185,6 +198,11 @@ public class CobaltBlocks {
             content.add(EXPOSED_COPPER_SPEAKER);
             content.add(OXIDIZED_COPPER_SPEAKER);
             content.add(RUNE_BLOCK);
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
+            content.add(ELECTRIC_LIGHT);
+            content.add(DISPLAY_BLOCK);
         });
 
         // Add to natural blocks

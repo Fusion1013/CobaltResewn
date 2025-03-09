@@ -91,7 +91,11 @@ public class MainClient implements ClientModInitializer {
 				CobaltBlocks.SHORT_SCULK_GRASS,
 				CobaltBlocks.ITEM_DISPLAY,
 				CobaltBlocks.ICICLE_BLOCK,
-				CobaltBlocks.SCULK_BUBBLE
+				CobaltBlocks.SCULK_BUBBLE,
+				CobaltBlocks.DIM_LANTERN,
+				CobaltBlocks.SCULK_VINES,
+				CobaltBlocks.SCULK_VINES_PLANT,
+				CobaltBlocks.SCULK_ROSE
 		);
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
