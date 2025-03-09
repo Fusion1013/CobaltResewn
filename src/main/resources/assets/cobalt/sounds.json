@@ -586,6 +586,58 @@
             "cobalt:entity/rat/say/say4"
         ]
     },
+    "jukebox": {
+        "sounds": [
+            {
+                "name": "cobalt:jukebox/akali"
+            },
+            {
+                "name": "cobalt:jukebox/ancient_getaway"
+            },
+            {
+                "name": "cobalt:jukebox/era_of_peace"
+            },
+            {
+                "name": "cobalt:jukebox/hydroangea"
+            },
+            {
+                "name": "cobalt:jukebox/outpost"
+            },
+            {
+                "name": "cobalt:jukebox/shooting_for_the_stars"
+            }
+        ]
+    },
+    "jukebox.akali": {
+        "sounds": [
+            "cobalt:jukebox/akali"
+        ]
+    },
+    "jukebox.ancient_getaway": {
+        "sounds": [
+            "cobalt:jukebox/ancient_getaway"
+        ]
+    },
+    "jukebox.era_of_peace": {
+        "sounds": [
+            "cobalt:jukebox/era_of_peace"
+        ]
+    },
+    "jukebox.hydroangea": {
+        "sounds": [
+            "cobalt:jukebox/hydroangea"
+        ]
+    },
+    "jukebox.outpost": {
+        "sounds": [
+            "cobalt:jukebox/outpost"
+        ]
+    },
+    "jukebox.shooting_for_the_stars": {
+        "sounds": [
+            "cobalt:jukebox/shooting_for_the_stars"
+        ]
+    },
     "music": {
         "sounds": [
             {
