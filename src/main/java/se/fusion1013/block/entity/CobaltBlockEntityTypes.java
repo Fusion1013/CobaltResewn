@@ -27,6 +27,7 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<LightHolderBlockEntity>                   LIGHT_HOLDER_BLOCK_ENTITY;
     public static final BlockEntityType<DirectionalLightHolderBlockEntity>        DIRECTIONAL_LIGHT_HOLDER_BLOCK_ENTITY;
     public static final BlockEntityType<DisplayBlockEntity>                       DISPLAY_BLOCK_ENTITY;
+    public static final BlockEntityType<SpotlightBlockEntity>                     SPOTLIGHT_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Main.MOD_NAMESPACE, id), builder.build());
@@ -48,6 +49,7 @@ public class CobaltBlockEntityTypes {
         LIGHT_HOLDER_BLOCK_ENTITY = register("light_holder_block_entity", FabricBlockEntityTypeBuilder.create(LightHolderBlockEntity::new, CobaltBlocks.LIGHT_HOLDER));
         DIRECTIONAL_LIGHT_HOLDER_BLOCK_ENTITY = register("directional_light_holder_block_entity", FabricBlockEntityTypeBuilder.create(DirectionalLightHolderBlockEntity::new, CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER));
         DISPLAY_BLOCK_ENTITY = register("display_block_entity", FabricBlockEntityTypeBuilder.create(DisplayBlockEntity::new, CobaltBlocks.DISPLAY_BLOCK));
+        SPOTLIGHT_BLOCK_ENTITY = register("spotlight_block_entity", FabricBlockEntityTypeBuilder.create(SpotlightBlockEntity::new, CobaltBlocks.SPOTLIGHT));
     }
 
 }

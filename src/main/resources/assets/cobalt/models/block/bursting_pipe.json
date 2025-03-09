@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "side": "minecraft:block/copper_block",
+    "top": "cobalt:block/bursting_pipe",
+    "front": "minecraft:block/copper_block"
+  }
+}

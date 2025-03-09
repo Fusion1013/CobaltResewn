@@ -15,16 +15,16 @@ public class RatEntity extends SilverfishEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return CobaltSoundEvents.RAT_AMBIENT;
+        return CobaltSoundEvents.RAT_SAY;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return CobaltSoundEvents.RAT_DEATH;
+        return CobaltSoundEvents.RAT_KILL;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return CobaltSoundEvents.RAT_HURT;
+        return CobaltSoundEvents.RAT_HIT;
     }
 }

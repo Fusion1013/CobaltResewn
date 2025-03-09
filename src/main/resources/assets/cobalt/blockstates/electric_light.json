@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cobalt:block/electric_light"
+    },
+    "lit=true": {
+      "model": "cobalt:block/electric_light_on"
+    }
+  }
+}

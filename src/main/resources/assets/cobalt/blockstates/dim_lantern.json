@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "cobalt:block/dim_lantern"
+    },
+    "hanging=true": {
+      "model": "cobalt:block/dim_lantern_hanging"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "block.light_holder.soul_insert": {
+    "sounds": [
+      "cobalt:light_holder_soul_insert"
+    ]
+  },
+  "block.light_holder.soul_remove": {
+    "sounds": [
+      "cobalt:light_holder_soul_remove"
+    ]
+  },
+  "block.light_holder.lens_insert": {
+    "sounds": [
+      "cobalt:light_holder_lens_insert"
+    ]
+  },
+  "block.light_holder.lens_remove": {
+    "sounds": [
+      "cobalt:light_holder_lens_remove"
+    ]
+  },
+  "illusory_wall": {
+    "sounds": [
+      "cobalt:illusory_wall"
+    ]
+  },
+  "entity.rat.hit": {
+    "sounds": [
+      "cobalt:entity/rat/hit1",
+      "cobalt:entity/rat/hit2",
+      "cobalt:entity/rat/hit3"
+    ]
+  },
+  "entity.rat.ambient": {
+    "sounds": [
+      "cobalt:entity/rat/say1",
+      "cobalt:entity/rat/say2",
+      "cobalt:entity/rat/say3",
+      "cobalt:entity/rat/say4"
+    ]
+  },
+  "entity.rat.death": {
+    "sounds": [
+      "cobalt:entity/rat/kill"
+    ]
+  }
+}

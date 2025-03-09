@@ -1,77 +1,1040 @@
 {
-  "block.light_holder.soul_insert": {
-    "sounds": [
-      "cobalt:light_holder_soul_insert"
-    ]
-  },
-  "block.light_holder.soul_remove": {
-    "sounds": [
-      "cobalt:light_holder_soul_remove"
-    ]
-  },
-  "block.light_holder.lens_insert": {
-    "sounds": [
-      "cobalt:light_holder_lens_insert"
-    ]
-  },
-  "block.light_holder.lens_remove": {
-    "sounds": [
-      "cobalt:light_holder_lens_remove"
-    ]
-  },
-  "illusory_wall": {
-    "sounds": [
-      "cobalt:illusory_wall"
-    ]
-  },
-  "entity.rat.hit": {
-    "sounds": [
-      "cobalt:entity/rat/hit1",
-      "cobalt:entity/rat/hit2",
-      "cobalt:entity/rat/hit3"
-    ]
-  },
-  "entity.rat.ambient": {
-    "sounds": [
-      "cobalt:entity/rat/say1",
-      "cobalt:entity/rat/say2",
-      "cobalt:entity/rat/say3",
-      "cobalt:entity/rat/say4"
-    ]
-  },
-  "entity.rat.death": {
-    "sounds": [
-      "cobalt:entity/rat/kill"
-    ]
-  },
-  "music_disc.ancient_getaway": {
-    "sounds": [
-      "cobalt:jukebox/ancient_getaway"
-    ]
-  },
-  "music_disc.era_of_peace": {
-    "sounds": [
-      "cobalt:jukebox/era_of_peace"
-    ]
-  },
-  "music_disc.hydroangea": {
-    "sounds": [
-      "cobalt:jukebox/hydroangea"
-    ]
-  },
-  "music_disc.outpost": {
-    "sounds": [
-      "cobalt:jukebox/outpost"
-    ]
-  },
-  "music_disc.shooting_for_the_stars": {
-    "sounds": [
-      "cobalt:jukebox/shooting_for_the_stars"
-    ]
-  },
-  "music_disc.akali": {
-    "sounds": [
-      "cobalt:jukebox/akali"
-    ]
-  }
+    "ambience": {
+        "sounds": []
+    },
+    "ambience.drones": {
+        "sounds": []
+    },
+    "ambience.drones.ominous": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous1"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous2"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous3"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous4"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous5"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous6"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous7"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous8"
+            },
+            {
+                "name": "cobalt:ambience/drones/ominous/ominous9"
+            }
+        ]
+    },
+    "ambience.drones.ominous.ominous1": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous1"
+        ]
+    },
+    "ambience.drones.ominous.ominous2": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous2"
+        ]
+    },
+    "ambience.drones.ominous.ominous3": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous3"
+        ]
+    },
+    "ambience.drones.ominous.ominous4": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous4"
+        ]
+    },
+    "ambience.drones.ominous.ominous5": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous5"
+        ]
+    },
+    "ambience.drones.ominous.ominous6": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous6"
+        ]
+    },
+    "ambience.drones.ominous.ominous7": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous7"
+        ]
+    },
+    "ambience.drones.ominous.ominous8": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous8"
+        ]
+    },
+    "ambience.drones.ominous.ominous9": {
+        "sounds": [
+            "cobalt:ambience/drones/ominous/ominous9"
+        ]
+    },
+    "ambience.forest": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/forest/ambience1"
+            }
+        ]
+    },
+    "ambience.forest.ambience1": {
+        "sounds": [
+            "cobalt:ambience/forest/ambience1"
+        ]
+    },
+    "ambience.forest.animal": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/forest/animal/animal1"
+            },
+            {
+                "name": "cobalt:ambience/forest/animal/animal2"
+            },
+            {
+                "name": "cobalt:ambience/forest/animal/animal3"
+            },
+            {
+                "name": "cobalt:ambience/forest/animal/animal4"
+            },
+            {
+                "name": "cobalt:ambience/forest/animal/crickets1"
+            }
+        ]
+    },
+    "ambience.forest.animal.animal1": {
+        "sounds": [
+            "cobalt:ambience/forest/animal/animal1"
+        ]
+    },
+    "ambience.forest.animal.animal2": {
+        "sounds": [
+            "cobalt:ambience/forest/animal/animal2"
+        ]
+    },
+    "ambience.forest.animal.animal3": {
+        "sounds": [
+            "cobalt:ambience/forest/animal/animal3"
+        ]
+    },
+    "ambience.forest.animal.animal4": {
+        "sounds": [
+            "cobalt:ambience/forest/animal/animal4"
+        ]
+    },
+    "ambience.forest.animal.crickets1": {
+        "sounds": [
+            "cobalt:ambience/forest/animal/crickets1"
+        ]
+    },
+    "ambience.gust": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/gust/gust1"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust2"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust3"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust4"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust5"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust6"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust7"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust8"
+            },
+            {
+                "name": "cobalt:ambience/gust/gust9"
+            }
+        ]
+    },
+    "ambience.gust.gust1": {
+        "sounds": [
+            "cobalt:ambience/gust/gust1"
+        ]
+    },
+    "ambience.gust.gust2": {
+        "sounds": [
+            "cobalt:ambience/gust/gust2"
+        ]
+    },
+    "ambience.gust.gust3": {
+        "sounds": [
+            "cobalt:ambience/gust/gust3"
+        ]
+    },
+    "ambience.gust.gust4": {
+        "sounds": [
+            "cobalt:ambience/gust/gust4"
+        ]
+    },
+    "ambience.gust.gust5": {
+        "sounds": [
+            "cobalt:ambience/gust/gust5"
+        ]
+    },
+    "ambience.gust.gust6": {
+        "sounds": [
+            "cobalt:ambience/gust/gust6"
+        ]
+    },
+    "ambience.gust.gust7": {
+        "sounds": [
+            "cobalt:ambience/gust/gust7"
+        ]
+    },
+    "ambience.gust.gust8": {
+        "sounds": [
+            "cobalt:ambience/gust/gust8"
+        ]
+    },
+    "ambience.gust.gust9": {
+        "sounds": [
+            "cobalt:ambience/gust/gust9"
+        ]
+    },
+    "ambience.metal": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/metal/background1"
+            }
+        ]
+    },
+    "ambience.metal.background1": {
+        "sounds": [
+            "cobalt:ambience/metal/background1"
+        ]
+    },
+    "ambience.metal.creak": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/metal/creak/creak1"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak2"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak3"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak4"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak5"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak6"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak7"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak8"
+            },
+            {
+                "name": "cobalt:ambience/metal/creak/creak9"
+            }
+        ]
+    },
+    "ambience.metal.creak.creak1": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak1"
+        ]
+    },
+    "ambience.metal.creak.creak2": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak2"
+        ]
+    },
+    "ambience.metal.creak.creak3": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak3"
+        ]
+    },
+    "ambience.metal.creak.creak4": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak4"
+        ]
+    },
+    "ambience.metal.creak.creak5": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak5"
+        ]
+    },
+    "ambience.metal.creak.creak6": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak6"
+        ]
+    },
+    "ambience.metal.creak.creak7": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak7"
+        ]
+    },
+    "ambience.metal.creak.creak8": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak8"
+        ]
+    },
+    "ambience.metal.creak.creak9": {
+        "sounds": [
+            "cobalt:ambience/metal/creak/creak9"
+        ]
+    },
+    "ambience.metal.groan": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/metal/groan/groan1"
+            },
+            {
+                "name": "cobalt:ambience/metal/groan/groan2"
+            },
+            {
+                "name": "cobalt:ambience/metal/groan/groan3"
+            },
+            {
+                "name": "cobalt:ambience/metal/groan/groan4"
+            }
+        ]
+    },
+    "ambience.metal.groan.groan1": {
+        "sounds": [
+            "cobalt:ambience/metal/groan/groan1"
+        ]
+    },
+    "ambience.metal.groan.groan2": {
+        "sounds": [
+            "cobalt:ambience/metal/groan/groan2"
+        ]
+    },
+    "ambience.metal.groan.groan3": {
+        "sounds": [
+            "cobalt:ambience/metal/groan/groan3"
+        ]
+    },
+    "ambience.metal.groan.groan4": {
+        "sounds": [
+            "cobalt:ambience/metal/groan/groan4"
+        ]
+    },
+    "ambience.ominous": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/ominous/lights_out_1"
+            }
+        ]
+    },
+    "ambience.ominous.lights_out_1": {
+        "sounds": [
+            "cobalt:ambience/ominous/lights_out_1"
+        ]
+    },
+    "ambience.stone": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/stone/crumble1"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble2"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble3"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble4"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble5"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble6"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble7"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble8"
+            },
+            {
+                "name": "cobalt:ambience/stone/crumble9"
+            }
+        ]
+    },
+    "ambience.stone.crumble1": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble1"
+        ]
+    },
+    "ambience.stone.crumble2": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble2"
+        ]
+    },
+    "ambience.stone.crumble3": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble3"
+        ]
+    },
+    "ambience.stone.crumble4": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble4"
+        ]
+    },
+    "ambience.stone.crumble5": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble5"
+        ]
+    },
+    "ambience.stone.crumble6": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble6"
+        ]
+    },
+    "ambience.stone.crumble7": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble7"
+        ]
+    },
+    "ambience.stone.crumble8": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble8"
+        ]
+    },
+    "ambience.stone.crumble9": {
+        "sounds": [
+            "cobalt:ambience/stone/crumble9"
+        ]
+    },
+    "ambience.water": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/water/calm1"
+            },
+            {
+                "name": "cobalt:ambience/water/creek1"
+            },
+            {
+                "name": "cobalt:ambience/water/creek2"
+            }
+        ]
+    },
+    "ambience.water.calm1": {
+        "sounds": [
+            "cobalt:ambience/water/calm1"
+        ]
+    },
+    "ambience.water.creek1": {
+        "sounds": [
+            "cobalt:ambience/water/creek1"
+        ]
+    },
+    "ambience.water.creek2": {
+        "sounds": [
+            "cobalt:ambience/water/creek2"
+        ]
+    },
+    "ambience.wind": {
+        "sounds": [
+            {
+                "name": "cobalt:ambience/wind/cave1"
+            }
+        ]
+    },
+    "ambience.wind.cave1": {
+        "sounds": [
+            "cobalt:ambience/wind/cave1"
+        ]
+    },
+    "block": {
+        "sounds": []
+    },
+    "block.light_holder": {
+        "sounds": [
+            {
+                "name": "cobalt:block/light_holder/lens_insert"
+            },
+            {
+                "name": "cobalt:block/light_holder/lens_remove"
+            },
+            {
+                "name": "cobalt:block/light_holder/soul_insert"
+            },
+            {
+                "name": "cobalt:block/light_holder/soul_remove"
+            }
+        ]
+    },
+    "block.light_holder.lens_insert": {
+        "sounds": [
+            "cobalt:block/light_holder/lens_insert"
+        ]
+    },
+    "block.light_holder.lens_remove": {
+        "sounds": [
+            "cobalt:block/light_holder/lens_remove"
+        ]
+    },
+    "block.light_holder.soul_insert": {
+        "sounds": [
+            "cobalt:block/light_holder/soul_insert"
+        ]
+    },
+    "block.light_holder.soul_remove": {
+        "sounds": [
+            "cobalt:block/light_holder/soul_remove"
+        ]
+    },
+    "entity": {
+        "sounds": []
+    },
+    "entity.rat": {
+        "sounds": []
+    },
+    "entity.rat.hit": {
+        "sounds": [
+            {
+                "name": "cobalt:entity/rat/hit/hit1"
+            },
+            {
+                "name": "cobalt:entity/rat/hit/hit2"
+            },
+            {
+                "name": "cobalt:entity/rat/hit/hit3"
+            }
+        ]
+    },
+    "entity.rat.hit.hit1": {
+        "sounds": [
+            "cobalt:entity/rat/hit/hit1"
+        ]
+    },
+    "entity.rat.hit.hit2": {
+        "sounds": [
+            "cobalt:entity/rat/hit/hit2"
+        ]
+    },
+    "entity.rat.hit.hit3": {
+        "sounds": [
+            "cobalt:entity/rat/hit/hit3"
+        ]
+    },
+    "entity.rat.kill": {
+        "sounds": [
+            {
+                "name": "cobalt:entity/rat/kill/kill"
+            }
+        ]
+    },
+    "entity.rat.kill.kill": {
+        "sounds": [
+            "cobalt:entity/rat/kill/kill"
+        ]
+    },
+    "entity.rat.say": {
+        "sounds": [
+            {
+                "name": "cobalt:entity/rat/say/say1"
+            },
+            {
+                "name": "cobalt:entity/rat/say/say2"
+            },
+            {
+                "name": "cobalt:entity/rat/say/say3"
+            },
+            {
+                "name": "cobalt:entity/rat/say/say4"
+            }
+        ]
+    },
+    "entity.rat.say.say1": {
+        "sounds": [
+            "cobalt:entity/rat/say/say1"
+        ]
+    },
+    "entity.rat.say.say2": {
+        "sounds": [
+            "cobalt:entity/rat/say/say2"
+        ]
+    },
+    "entity.rat.say.say3": {
+        "sounds": [
+            "cobalt:entity/rat/say/say3"
+        ]
+    },
+    "entity.rat.say.say4": {
+        "sounds": [
+            "cobalt:entity/rat/say/say4"
+        ]
+    },
+    "music": {
+        "sounds": [
+            {
+                "name": "cobalt:music/2wei-insomnia"
+            },
+            {
+                "name": "cobalt:music/eote-eternal_halls"
+            },
+            {
+                "name": "cobalt:music/eote-into_the_vault"
+            },
+            {
+                "name": "cobalt:music/eote_forbidden_archives"
+            },
+            {
+                "name": "cobalt:music/poppy_playtime-a_doll_in_distress"
+            },
+            {
+                "name": "cobalt:music/poppy_playtime-everything_will_melt"
+            },
+            {
+                "name": "cobalt:music/poppy_playtime-fly_in_a_web"
+            },
+            {
+                "name": "cobalt:music/talos-the_forbidden_tower"
+            },
+            {
+                "name": "cobalt:music/voidtrain-approaching_the_gates"
+            },
+            {
+                "name": "cobalt:music/voidtrain-approaching_the_gates2"
+            }
+        ]
+    },
+    "music.2wei-insomnia": {
+        "sounds": [
+            "cobalt:music/2wei-insomnia"
+        ]
+    },
+    "music.eote-eternal_halls": {
+        "sounds": [
+            "cobalt:music/eote-eternal_halls"
+        ]
+    },
+    "music.eote-into_the_vault": {
+        "sounds": [
+            "cobalt:music/eote-into_the_vault"
+        ]
+    },
+    "music.eote_forbidden_archives": {
+        "sounds": [
+            "cobalt:music/eote_forbidden_archives"
+        ]
+    },
+    "music.poppy_playtime-a_doll_in_distress": {
+        "sounds": [
+            "cobalt:music/poppy_playtime-a_doll_in_distress"
+        ]
+    },
+    "music.poppy_playtime-everything_will_melt": {
+        "sounds": [
+            "cobalt:music/poppy_playtime-everything_will_melt"
+        ]
+    },
+    "music.poppy_playtime-fly_in_a_web": {
+        "sounds": [
+            "cobalt:music/poppy_playtime-fly_in_a_web"
+        ]
+    },
+    "music.talos-the_forbidden_tower": {
+        "sounds": [
+            "cobalt:music/talos-the_forbidden_tower"
+        ]
+    },
+    "music.voidtrain-approaching_the_gates": {
+        "sounds": [
+            "cobalt:music/voidtrain-approaching_the_gates"
+        ]
+    },
+    "music.voidtrain-approaching_the_gates2": {
+        "sounds": [
+            "cobalt:music/voidtrain-approaching_the_gates2"
+        ]
+    },
+    "sfx": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/illusory_wall"
+            }
+        ]
+    },
+    "sfx.electric": {
+        "sounds": []
+    },
+    "sfx.electric.flicker": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/electric/flicker/flicker1"
+            }
+        ]
+    },
+    "sfx.electric.flicker.flicker1": {
+        "sounds": [
+            "cobalt:sfx/electric/flicker/flicker1"
+        ]
+    },
+    "sfx.electric.spark": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/electric/spark/spark01"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark02"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark03"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark04"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark05"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark06"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark07"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark08"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark09"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark10"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark11"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark12"
+            },
+            {
+                "name": "cobalt:sfx/electric/spark/spark13"
+            }
+        ]
+    },
+    "sfx.electric.spark.spark01": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark01"
+        ]
+    },
+    "sfx.electric.spark.spark02": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark02"
+        ]
+    },
+    "sfx.electric.spark.spark03": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark03"
+        ]
+    },
+    "sfx.electric.spark.spark04": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark04"
+        ]
+    },
+    "sfx.electric.spark.spark05": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark05"
+        ]
+    },
+    "sfx.electric.spark.spark06": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark06"
+        ]
+    },
+    "sfx.electric.spark.spark07": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark07"
+        ]
+    },
+    "sfx.electric.spark.spark08": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark08"
+        ]
+    },
+    "sfx.electric.spark.spark09": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark09"
+        ]
+    },
+    "sfx.electric.spark.spark10": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark10"
+        ]
+    },
+    "sfx.electric.spark.spark11": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark11"
+        ]
+    },
+    "sfx.electric.spark.spark12": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark12"
+        ]
+    },
+    "sfx.electric.spark.spark13": {
+        "sounds": [
+            "cobalt:sfx/electric/spark/spark13"
+        ]
+    },
+    "sfx.gear": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/gear/clonk1"
+            },
+            {
+                "name": "cobalt:sfx/gear/clonk2"
+            },
+            {
+                "name": "cobalt:sfx/gear/thud1"
+            }
+        ]
+    },
+    "sfx.gear.clonk1": {
+        "sounds": [
+            "cobalt:sfx/gear/clonk1"
+        ]
+    },
+    "sfx.gear.clonk2": {
+        "sounds": [
+            "cobalt:sfx/gear/clonk2"
+        ]
+    },
+    "sfx.gear.thud1": {
+        "sounds": [
+            "cobalt:sfx/gear/thud1"
+        ]
+    },
+    "sfx.illusory_wall": {
+        "sounds": [
+            "cobalt:sfx/illusory_wall"
+        ]
+    },
+    "sfx.metal": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/metal/shudder1"
+            }
+        ]
+    },
+    "sfx.metal.creak": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/metal/creak/creak1"
+            },
+            {
+                "name": "cobalt:sfx/metal/creak/creak2"
+            },
+            {
+                "name": "cobalt:sfx/metal/creak/creak3"
+            },
+            {
+                "name": "cobalt:sfx/metal/creak/creak4"
+            }
+        ]
+    },
+    "sfx.metal.creak.creak1": {
+        "sounds": [
+            "cobalt:sfx/metal/creak/creak1"
+        ]
+    },
+    "sfx.metal.creak.creak2": {
+        "sounds": [
+            "cobalt:sfx/metal/creak/creak2"
+        ]
+    },
+    "sfx.metal.creak.creak3": {
+        "sounds": [
+            "cobalt:sfx/metal/creak/creak3"
+        ]
+    },
+    "sfx.metal.creak.creak4": {
+        "sounds": [
+            "cobalt:sfx/metal/creak/creak4"
+        ]
+    },
+    "sfx.metal.door": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/metal/door/close_start"
+            },
+            {
+                "name": "cobalt:sfx/metal/door/close_stop"
+            },
+            {
+                "name": "cobalt:sfx/metal/door/open_start"
+            },
+            {
+                "name": "cobalt:sfx/metal/door/open_stop"
+            }
+        ]
+    },
+    "sfx.metal.door.close_start": {
+        "sounds": [
+            "cobalt:sfx/metal/door/close_start"
+        ]
+    },
+    "sfx.metal.door.close_stop": {
+        "sounds": [
+            "cobalt:sfx/metal/door/close_stop"
+        ]
+    },
+    "sfx.metal.door.open_start": {
+        "sounds": [
+            "cobalt:sfx/metal/door/open_start"
+        ]
+    },
+    "sfx.metal.door.open_stop": {
+        "sounds": [
+            "cobalt:sfx/metal/door/open_stop"
+        ]
+    },
+    "sfx.metal.shudder1": {
+        "sounds": [
+            "cobalt:sfx/metal/shudder1"
+        ]
+    },
+    "sfx.misc": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/misc/gong1"
+            }
+        ]
+    },
+    "sfx.misc.gong1": {
+        "sounds": [
+            "cobalt:sfx/misc/gong1"
+        ]
+    },
+    "sfx.valve": {
+        "sounds": [
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_1"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_10"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_2"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_3"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_4"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_5"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_6"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_7"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_8"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_leak_loop_9"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_refill"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_valve_close"
+            },
+            {
+                "name": "cobalt:sfx/valve/air_valve_open"
+            }
+        ]
+    },
+    "sfx.valve.air_leak_loop_1": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_1"
+        ]
+    },
+    "sfx.valve.air_leak_loop_10": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_10"
+        ]
+    },
+    "sfx.valve.air_leak_loop_2": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_2"
+        ]
+    },
+    "sfx.valve.air_leak_loop_3": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_3"
+        ]
+    },
+    "sfx.valve.air_leak_loop_4": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_4"
+        ]
+    },
+    "sfx.valve.air_leak_loop_5": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_5"
+        ]
+    },
+    "sfx.valve.air_leak_loop_6": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_6"
+        ]
+    },
+    "sfx.valve.air_leak_loop_7": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_7"
+        ]
+    },
+    "sfx.valve.air_leak_loop_8": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_8"
+        ]
+    },
+    "sfx.valve.air_leak_loop_9": {
+        "sounds": [
+            "cobalt:sfx/valve/air_leak_loop_9"
+        ]
+    },
+    "sfx.valve.air_refill": {
+        "sounds": [
+            "cobalt:sfx/valve/air_refill"
+        ]
+    },
+    "sfx.valve.air_valve_close": {
+        "sounds": [
+            "cobalt:sfx/valve/air_valve_close"
+        ]
+    },
+    "sfx.valve.air_valve_open": {
+        "sounds": [
+            "cobalt:sfx/valve/air_valve_open"
+        ]
+    }
 }
