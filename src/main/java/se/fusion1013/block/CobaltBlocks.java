@@ -160,6 +160,7 @@ public class CobaltBlocks {
     public static final Block SPOTLIGHT = register("spotlight", new SpotlightBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block VANISHING_BLOCK = register("vanishing_block", new VanishingBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block DIM_LANTERN = register("dim_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.SOUL_LANTERN)));
+    public static final Block PROJECTOR_BLOCK = register("projector_block", new ProjectorBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)));
 
     private static Block register(String name, Block block) {
         registerItem(name, block);

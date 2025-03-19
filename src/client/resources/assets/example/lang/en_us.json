@@ -457,6 +457,11 @@
   "item.cobalt.red_lens": "Red Lens",
   "item.cobalt.green_lens": "Green Lens",
 
+  "item.cobalt.slide_reel_test": "Slide Reel",
+  "item.cobalt.slide_reel_test.tooltip": "Test",
+  "item.cobalt.slide_reel_outer_wilds": "Slide Reel",
+  "item.cobalt.slide_reel_outer_wilds.tooltip": "A memory of home",
+
 
 
 
@@ -648,6 +653,7 @@
   "block.cobalt.sculk_vines": "Sculk Vines",
   "block.cobalt.sculk_rose": "Sculk Rose",
 
+  "block.cobalt.projector_block": "Projector",
 
   "trinkets.slot.hand.rune": "Rune"
 

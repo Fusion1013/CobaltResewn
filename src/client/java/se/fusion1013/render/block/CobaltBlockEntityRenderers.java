@@ -19,6 +19,7 @@ public class CobaltBlockEntityRenderers {
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.RUNE_BLOCK, RuneBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DISPLAY_BLOCK_ENTITY, DisplayBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.SPOTLIGHT_BLOCK_ENTITY, SpotlightBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(CobaltBlockEntityTypes.PROJECTOR_BLOCK_ENTITY, ProjectorBlockEntityRenderer::new);
     }
 
 }

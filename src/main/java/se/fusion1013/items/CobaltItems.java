@@ -14,7 +14,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -24,6 +23,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+import se.fusion1013.block.ProjectorBlock;
 import se.fusion1013.entity.*;
 import se.fusion1013.items.armor.CobaltArmorSet;
 import se.fusion1013.items.armor.sets.AdvancedExoskeletonArmorSet;
@@ -36,13 +36,12 @@ import se.fusion1013.items.consumable.LiquidCourageItem;
 import se.fusion1013.items.consumable.MysteryMedicineItem;
 import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
+import se.fusion1013.items.misc.MiscTestItem;
+import se.fusion1013.items.misc.SlideReelItem;
 import se.fusion1013.items.tools.FlashlightItem;
 import se.fusion1013.items.trinket.CobaltTrinketItem;
 import se.fusion1013.items.trinket.MechanicSpectaclesTrinket;
-import se.fusion1013.util.item.ItemSetUtil;
 
-import java.text.Format;
-import java.util.List;
 import se.fusion1013.items.misc.CorruptedPearlItem;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.items.sword.*;
@@ -50,6 +49,7 @@ import se.fusion1013.items.tools.BasicDrillItem;
 import se.fusion1013.items.tools.CobaltAxeItem;
 import se.fusion1013.items.tools.CobaltPickaxeItem;
 import se.fusion1013.items.trinket.*;
+import se.fusion1013.slidereel.SlideReelRegistry;
 
 import static se.fusion1013.Main.MOD_NAMESPACE;
 import static se.fusion1013.items.CustomItemGroupRegistry.*;
@@ -150,6 +150,10 @@ public class CobaltItems {
     public static final Item CORRUPTED_SPIDER_SPAWN_EGG;
     public static final Item AUTOMATON_SPAWN_EGG;
     public static final Item RAT_SPAWN_EGG;
+
+    public static final Item SLIDE_REEL_TEST;
+    public static final Item SLIDE_REEL_OUTER_WILDS;
+    public static final Item MISC_TEST_ITEM;
 
 
     static {
@@ -259,6 +263,9 @@ public class CobaltItems {
         LIGHTNING_ARROW = register("lightning_arrow", new CobaltArrowItem(CobaltItemConfiguration.create(Formatting.DARK_AQUA), new FabricItemSettings(), LightningArrowEntity::new));
         EXPLOSIVE_ARROW = register("explosive_arrow", new CobaltArrowItem(CobaltItemConfiguration.create(Formatting.DARK_AQUA), new FabricItemSettings(), ExplosiveArrowEntity::new));
 
+        MISC_TEST_ITEM = register("test_item", new MiscTestItem());
+        SLIDE_REEL_TEST = register("slide_reel_test", new SlideReelItem(SlideReelRegistry.TEST));
+        SLIDE_REEL_OUTER_WILDS = register("slide_reel_outer_wilds", new SlideReelItem(SlideReelRegistry.OUTER_WILDS));
         PAINKILLERS = register("painkillers", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), 5));
         BANDAGE = register("bandage", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(4), 10));
         FIRST_AID_KIT = register("first_aid_kit", new CobaltHealingItem(CobaltItemConfiguration.create(Formatting.WHITE), new FabricItemSettings().maxCount(2), 20));
