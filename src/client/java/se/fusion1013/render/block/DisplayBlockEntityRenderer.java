@@ -39,7 +39,13 @@ public class DisplayBlockEntityRenderer implements BlockEntityRenderer<DisplayBl
         if (url == null || url.isEmpty()) return;
          */
 
-        Identifier texture = new Identifier(Main.MOD_NAMESPACE, "textures/block/display_placeholder.png");
+        if (blockEntity.pictures.isEmpty()) return;
+        Identifier texture = Identifier.of(Main.MOD_NAMESPACE, "textures/slide_reel/display_placeholder.png");
+        try {
+            texture = new Identifier(Main.MOD_NAMESPACE, "textures/slide_reel/" + blockEntity.getCurrentParentPicture() + ".png");
+        } catch (Exception e) {
+            Main.LOGGER.error("Could not find texture for display block: " + e.getMessage());
+        }
         Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
 
         if (!dimensions.isPowered) return;
@@ -95,9 +101,9 @@ public class DisplayBlockEntityRenderer implements BlockEntityRenderer<DisplayBl
 
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(texture));
 
-        vertexConsumer.vertex(positionMatrix, displayWidth + 0.125F, 0.125F, 1.0F).color(255, 255, 255, 255).texture(1.0F, 1.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // A
-        vertexConsumer.vertex(positionMatrix, displayWidth + 0.125F, displayHeight + 0.125F, 1.0F).color(255, 255, 255, 255).texture(1.0F, 0.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // B
-        vertexConsumer.vertex(positionMatrix, 0.125F, displayHeight + 0.125F, 1.0F).color(255, 255, 255, 255).texture(0.0F, 0.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // C
-        vertexConsumer.vertex(positionMatrix, 0.125F, 0.125F, 1.0F).color(255, 255, 255, 255).texture(0.0F, 1.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // D
+        vertexConsumer.vertex(positionMatrix, displayWidth + 0.125F, 0.125F, 1.0F).color(255, 255, 255, 100).texture(1.0F, 1.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // A
+        vertexConsumer.vertex(positionMatrix, displayWidth + 0.125F, displayHeight + 0.125F, 1.0F).color(255, 255, 255, 100).texture(1.0F, 0.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // B
+        vertexConsumer.vertex(positionMatrix, 0.125F, displayHeight + 0.125F, 1.0F).color(255, 255, 255, 100).texture(0.0F, 0.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // C
+        vertexConsumer.vertex(positionMatrix, 0.125F, 0.125F, 1.0F).color(255, 255, 255, 100).texture(0.0F, 1.0F).overlay(overlay).light(light).normal(normalMatrix, 0, 0, 1).next(); // D
     }
 }

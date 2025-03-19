@@ -134,7 +134,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         pointLight.setColor(color);
     }
 
-    private static @NotNull Vector3fc getLerpedColor(Vector3fc currentColor, DirectionalLightContainerBlock.LensType lens, float tickDelta) {
+    public static @NotNull Vector3fc getLerpedColor(Vector3fc currentColor, DirectionalLightContainerBlock.LensType lens, float tickDelta) {
         Color targetColor = lens == DirectionalLightContainerBlock.LensType.NONE ? new Color(DEFAULT_LIGHT_COLOR.x, DEFAULT_LIGHT_COLOR.y, DEFAULT_LIGHT_COLOR.z) : lens.color;
         return new Vector3f(
                 MathHelper.lerp(tickDelta * 0.1f, currentColor.x(), targetColor.getRed() / 255f),
@@ -169,7 +169,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         return areaLight;
     }
 
-    private int getRotation(Direction facing) {
+    public static int getRotation(Direction facing) {
         return switch (facing) {
             case DOWN, UP, SOUTH -> 0;
             case WEST -> 1;
@@ -178,7 +178,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         };
     }
 
-    private Vec3d getOffsets(Direction facing) {
+    public static Vec3d getOffsets(Direction facing) {
         return switch (facing) {
             case DOWN, UP -> new Vec3d(0, 0, 0);
             case NORTH -> new Vec3d(0, 0, -5.5f/16f);
@@ -193,7 +193,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         return new Vec3d(blockCenter.x, entity.getPos().getY() + 6/16f, blockCenter.z);
     }
 
-    private float toRad(float deg) {
+    public static float toRad(float deg) {
         return deg * ((float)Math.PI / 180);
     }
 

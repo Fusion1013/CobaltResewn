@@ -29,6 +29,7 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<DisplayBlockEntity>                       DISPLAY_BLOCK_ENTITY;
     public static final BlockEntityType<SpotlightBlockEntity>                     SPOTLIGHT_BLOCK_ENTITY;
     public static final BlockEntityType<ProjectorBlockEntity>                     PROJECTOR_BLOCK_ENTITY;
+    public static final BlockEntityType<AncientHealerBlockEntity>                 ANCIENT_HEALER_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Main.MOD_NAMESPACE, id), builder.build());
@@ -52,6 +53,7 @@ public class CobaltBlockEntityTypes {
         DISPLAY_BLOCK_ENTITY = register("display_block_entity", FabricBlockEntityTypeBuilder.create(DisplayBlockEntity::new, CobaltBlocks.DISPLAY_BLOCK));
         SPOTLIGHT_BLOCK_ENTITY = register("spotlight_block_entity", FabricBlockEntityTypeBuilder.create(SpotlightBlockEntity::new, CobaltBlocks.SPOTLIGHT));
         PROJECTOR_BLOCK_ENTITY = register("projector_block_entity", FabricBlockEntityTypeBuilder.create(ProjectorBlockEntity::new, CobaltBlocks.PROJECTOR_BLOCK));
+        ANCIENT_HEALER_BLOCK_ENTITY = register("ancient_healer_block_entity", FabricBlockEntityTypeBuilder.create(AncientHealerBlockEntity::new, CobaltBlocks.ANCIENT_HEALER));
     }
 
 }
