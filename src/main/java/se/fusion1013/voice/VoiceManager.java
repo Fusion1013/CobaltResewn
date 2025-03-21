@@ -3,21 +3,18 @@ package se.fusion1013.voice;
 import de.maxhenkel.voicechat.api.Group;
 import de.maxhenkel.voicechat.api.VoicechatConnection;
 import de.maxhenkel.voicechat.api.VoicechatServerApi;
-import de.maxhenkel.voicechat.api.audiochannel.StaticAudioChannel;
 import de.maxhenkel.voicechat.api.events.MicrophonePacketEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import se.fusion1013.Main;
 import se.fusion1013.block.entity.SpeakerBlockEntity;
 import se.fusion1013.config.CobaltModConfig;
 import se.fusion1013.items.CobaltItems;
+import se.fusion1013.items.materials.CobaltArmorMaterial;
+import se.fusion1013.items.materials.CobaltArmorMaterials;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.util.VoiceUtil;
+import se.fusion1013.util.item.ArmorUtil;
 import se.fusion1013.util.item.ItemUtil;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class VoiceManager {
 
@@ -26,6 +23,7 @@ public class VoiceManager {
     public static final String GLOBAL_GROUP_NAME = "global";
 
     private static final RadioFilter radioFilter = new RadioFilter();
+    private static final UnderwaterFilter underwaterFilter = new UnderwaterFilter();
 
     private VoiceManager() {
     }
@@ -47,7 +45,7 @@ public class VoiceManager {
 
     private void testStatic(MicrophonePacketEvent event, VoicechatConnection senderConnection) {
         var api = event.getVoicechat();
-        api.sendStaticSoundPacketTo(senderConnection, event.getPacket().staticSoundPacketBuilder().opusEncodedData(getFilteredAudio(radioFilter, event, 1)).build());
+        api.sendStaticSoundPacketTo(senderConnection, event.getPacket().staticSoundPacketBuilder().opusEncodedData(getFilteredAudio(underwaterFilter, event, 1.2)).build());
     }
 
     private void sendSpeakerSound(MicrophonePacketEvent event, PlayerEntity senderPlayer, int canal, byte[] audioData) {
@@ -64,23 +62,27 @@ public class VoiceManager {
         byte[] opusEncodedData = event.getPacket().getOpusEncodedData();
         if (CobaltModConfig.applyRadioEffect) {
             short[] rawData = VoiceChatIntegration.decoder.decode(opusEncodedData);
-            opusEncodedData = VoiceChatIntegration.encoder.encode(filter.apply(rawData, volume));
+
+            short[] output = filter.apply(rawData, volume);
+
+            opusEncodedData = VoiceChatIntegration.encoder.encode(output);
         }
         return opusEncodedData;
     }
 
     private void sendWalkieTalkieSound(MicrophonePacketEvent event, VoicechatConnection senderConnection, PlayerEntity senderPlayer) {
 
-        // Get the held walkie talkie
+        // Get the held walkie-talkie
         var senderWalkie = ItemUtil.getHeldItemOfType(senderPlayer, CobaltItems.WALKIE_TALKIE);
         if (senderWalkie == null) return;
+        if (!ArmorUtil.isWearingArmorSet(senderPlayer, CobaltArmorMaterials.DIVE) && senderPlayer.isSubmergedInWater()) return;
 
         // Check if the walkie talkie is activated and not muted
         if (!WalkieTalkieItem.isActivate(senderWalkie) || WalkieTalkieItem.isMute(senderWalkie)) return;
 
         int senderCanal = WalkieTalkieItem.getCanal(senderWalkie);
 
-        var filteredAudio = getFilteredAudio(radioFilter, event, 1.8d);
+        var filteredAudio = getFilteredAudio(senderPlayer.isSubmergedInWater() ? underwaterFilter : radioFilter, event, 1.2d);
 
         // Send mic packet to all nearby speaker blocks
         sendSpeakerSound(event, senderPlayer, senderCanal, filteredAudio);
