@@ -3,13 +3,14 @@ package se.fusion1013.voice;
 import de.maxhenkel.voicechat.api.Group;
 import de.maxhenkel.voicechat.api.VoicechatConnection;
 import de.maxhenkel.voicechat.api.VoicechatServerApi;
+import de.maxhenkel.voicechat.api.events.LocationalSoundPacketEvent;
 import de.maxhenkel.voicechat.api.events.MicrophonePacketEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import se.fusion1013.block.entity.SpeakerBlockEntity;
 import se.fusion1013.config.CobaltModConfig;
+import se.fusion1013.effect.CobaltEffects;
 import se.fusion1013.items.CobaltItems;
-import se.fusion1013.items.materials.CobaltArmorMaterial;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.util.VoiceUtil;
@@ -29,6 +30,21 @@ public class VoiceManager {
     }
 
     /// region Voice chat listeners
+
+    public void onLocationalSoundPacket(LocationalSoundPacketEvent event) {
+        VoicechatConnection senderConnection = event.getSenderConnection();
+        VoicechatConnection receiverConnection = event.getReceiverConnection();
+
+        if (senderConnection == null || receiverConnection == null) return;
+
+        if (!(senderConnection.getPlayer().getPlayer() instanceof PlayerEntity senderPlayer)) return;
+        if (!(receiverConnection.getPlayer().getPlayer() instanceof PlayerEntity receiverPlayer)) return;
+
+        boolean isSenderDreaming = senderPlayer.hasStatusEffect(CobaltEffects.DREAMING);
+        boolean isReceiverDreaming = receiverPlayer.hasStatusEffect(CobaltEffects.DREAMING);
+
+        if (isSenderDreaming != isReceiverDreaming) event.cancel();
+    }
 
     public void onMicPacket(MicrophonePacketEvent event) {
         VoicechatConnection senderConnection = event.getSenderConnection();
