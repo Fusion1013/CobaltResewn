@@ -12,10 +12,11 @@ import se.fusion1013.render.entity.model.RatEntityModel;
 
 public class RatEntityRenderer extends MobEntityRenderer<RatEntity, RatEntityModel> {
 
-    private static final Identifier TEXTURE = new Identifier(Main.MOD_NAMESPACE, "textures/entity/rat.png");
+    private final String name;
 
-    public RatEntityRenderer(EntityRendererFactory.Context context) {
+    public RatEntityRenderer(EntityRendererFactory.Context context, String name) {
         super(context, new RatEntityModel(context.getPart(MainClient.MODEL_RAT_LAYER)), 0.3f);
+        this.name = name;
     }
 
     @Override
@@ -25,6 +26,6 @@ public class RatEntityRenderer extends MobEntityRenderer<RatEntity, RatEntityMod
 
     @Override
     public Identifier getTexture(RatEntity entity) {
-        return TEXTURE;
+        return new Identifier(Main.MOD_NAMESPACE, "textures/entity/" + name + ".png");
     }
 }

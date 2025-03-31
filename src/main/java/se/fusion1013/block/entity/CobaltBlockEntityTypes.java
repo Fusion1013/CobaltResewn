@@ -19,7 +19,7 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<SculkSpreaderBlockEntity>                 SCULK_SPREADER;
     public static final BlockEntityType<SpeakerBlockEntity>                       SPEAKER;
     public static final BlockEntityType<ParticleBlockEntity>                      PARTICLE_BLOCK;
-    public static final BlockEntityType<RuneBlockEntity>                          RUNE_BLOCK;
+    // public static final BlockEntityType<RuneBlockEntity>                          RUNE_BLOCK;
     public static final BlockEntityType<PedestalBlockEntity>                      PEDESTAL_BLOCK_ENTITY;
     public static final BlockEntityType<ItemDisplayBlockEntity>                   ITEM_DISPLAY_BLOCK_ENTITY;
     public static final BlockEntityType<ForgeBlockEntity>                         FORGE_BLOCK_ENTITY;
@@ -43,7 +43,7 @@ public class CobaltBlockEntityTypes {
         SCULK_SPREADER = register("sculk_spreader_block_entity", FabricBlockEntityTypeBuilder.create(SculkSpreaderBlockEntity::new, CobaltBlocks.SCULK_SPREADER));
         SPEAKER = register("speaker_block_entity", FabricBlockEntityTypeBuilder.create(SpeakerBlockEntity::new, CobaltBlocks.OXIDIZED_COPPER_SPEAKER, CobaltBlocks.EXPOSED_COPPER_SPEAKER, CobaltBlocks.WEATHERED_COPPER_SPEAKER, CobaltBlocks.COPPER_SPEAKER));
         PARTICLE_BLOCK = register("particle_block_entity", FabricBlockEntityTypeBuilder.create(ParticleBlockEntity::new, CobaltBlocks.PARTICLE_COMMAND_BLOCK));
-        RUNE_BLOCK = register("rune_block_entity", FabricBlockEntityTypeBuilder.create(RuneBlockEntity::new, CobaltBlocks.RUNE_BLOCK));
+        // RUNE_BLOCK = register("rune_block_entity", FabricBlockEntityTypeBuilder.create(RuneBlockEntity::new, CobaltBlocks.RUNE_BLOCK));
         PEDESTAL_BLOCK_ENTITY = register("pedestal_block_entity", FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, CobaltBlocks.PEDESTAL_BLOCK));
         ITEM_DISPLAY_BLOCK_ENTITY = register("item_display_entity", FabricBlockEntityTypeBuilder.create(ItemDisplayBlockEntity::new, CobaltBlocks.ITEM_DISPLAY));
         FORGE_BLOCK_ENTITY = register("forge_block_entity", FabricBlockEntityTypeBuilder.create(ForgeBlockEntity::new, CobaltBlocks.FORGE_BLOCK));

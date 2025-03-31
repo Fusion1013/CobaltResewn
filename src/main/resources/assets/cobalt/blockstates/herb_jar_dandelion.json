@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar_dandelion",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar_dandelion"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar_dandelion",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar_dandelion",
+      "y": 270
+    }
+  }
+}

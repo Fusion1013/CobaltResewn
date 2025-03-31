@@ -102,11 +102,13 @@ public class RuneBlock extends MultifaceGrowthBlockWithEntity implements BlockEn
         return null;
     }
 
+    /*
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return validateTicker(type, CobaltBlockEntityTypes.RUNE_BLOCK, world.isClient ? RuneBlockEntity::clientTick : RuneBlockEntity::serverTick);
     }
+     */
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {

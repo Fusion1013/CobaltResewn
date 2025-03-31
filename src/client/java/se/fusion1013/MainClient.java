@@ -51,6 +51,7 @@ public class MainClient implements ClientModInitializer {
 	public static final EntityModelLayer MODEL_CORRUPTED_CORE_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_core"), "main");
 	public static final EntityModelLayer MODEL_CORRUPTED_SPIDER_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_spider"), "main");
 	public static final EntityModelLayer MODEL_RAT_LAYER = new EntityModelLayer(new Identifier("cobalt", "rat"), "main");
+	public static final EntityModelLayer MODEL_CORRUPTED_RAT_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_rat"), "main");
 
 	public static final EntityModelLayer TEST_BLOCK_ENTITY_LAYER = new EntityModelLayer(new Identifier("cobalt", "empty_lens"), "main");
 
@@ -71,8 +72,11 @@ public class MainClient implements ClientModInitializer {
 		EntityRendererRegistry.register(CobaltEntities.CORRUPTED_SPIDER, CorruptedSpiderEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_CORRUPTED_SPIDER_LAYER, CorruptedSpiderEntityModel::getTexturedModelData);
 
-		EntityRendererRegistry.register(CobaltEntities.RAT, RatEntityRenderer::new);
+		EntityRendererRegistry.register(CobaltEntities.RAT, ctx -> new RatEntityRenderer(ctx, "rat"));
 		EntityModelLayerRegistry.registerModelLayer(MODEL_RAT_LAYER, RatEntityModel::getTexturedModelData);
+
+		EntityRendererRegistry.register(CobaltEntities.CORRUPTED_RAT, ctx -> new RatEntityRenderer(ctx, "corrupted_rat"));
+		EntityModelLayerRegistry.registerModelLayer(MODEL_CORRUPTED_RAT_LAYER, RatEntityModel::getTexturedModelData);
 
 		EntityRendererRegistry.register(CobaltEntities.AUTOMATON, AutomatonEntityRenderer::new);
 
@@ -96,14 +100,70 @@ public class MainClient implements ClientModInitializer {
 				CobaltBlocks.SCULK_VINES,
 				CobaltBlocks.SCULK_VINES_PLANT,
 				CobaltBlocks.SCULK_ROSE,
-				CobaltBlocks.ANCIENT_HEALER
-		);
+				CobaltBlocks.ANCIENT_HEALER,
+				CobaltBlocks.HERB_JAR,
+				CobaltBlocks.HERB_JAR_TORCHFLOWER,
+				CobaltBlocks.HERB_JAR_OAK_SAPLING,
+				CobaltBlocks.HERB_JAR_SPRUCE_SAPLING,
+				CobaltBlocks.HERB_JAR_BIRCH_SAPLING,
+				CobaltBlocks.HERB_JAR_JUNGLE_SAPLING,
+				CobaltBlocks.HERB_JAR_ACACIA_SAPLING,
+				CobaltBlocks.HERB_JAR_CHERRY_SAPLING,
+				CobaltBlocks.HERB_JAR_DARK_OAK_SAPLING,
+				CobaltBlocks.HERB_JAR_MANGROVE_PROPAGULE,
+				CobaltBlocks.HERB_JAR_FERN,
+				CobaltBlocks.HERB_JAR_DANDELION,
+				CobaltBlocks.HERB_JAR_POPPY,
+				CobaltBlocks.HERB_JAR_BLUE_ORCHID,
+				CobaltBlocks.HERB_JAR_ALLIUM,
+				CobaltBlocks.HERB_JAR_AZURE_BLUET,
+				CobaltBlocks.HERB_JAR_RED_TULIP,
+				CobaltBlocks.HERB_JAR_ORANGE_TULIP,
+				CobaltBlocks.HERB_JAR_WHITE_TULIP,
+				CobaltBlocks.HERB_JAR_PINK_TULIP,
+				CobaltBlocks.HERB_JAR_OXEYE_DAISY,
+				CobaltBlocks.HERB_JAR_CORNFLOWER,
+				CobaltBlocks.HERB_JAR_LILY_OF_THE_VALLEY,
+				CobaltBlocks.HERB_JAR_WITHER_ROSE,
+				CobaltBlocks.HERB_JAR_RED_MUSHROOM,
+				CobaltBlocks.HERB_JAR_BROWN_MUSHROOM,
+				CobaltBlocks.HERB_JAR_DEAD_BUSH
+				);
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-				CobaltBlocks.RUNE_BLOCK,
+				// CobaltBlocks.RUNE_BLOCK,
 				CobaltBlocks.SCULK_GROWTH,
 				CobaltBlocks.DIRECTIONAL_LIGHT_HOLDER,
-				CobaltBlocks.DISPLAY_BLOCK
+				CobaltBlocks.DISPLAY_BLOCK,
+				CobaltBlocks.HERB_JAR,
+				CobaltBlocks.HERB_JAR_TORCHFLOWER,
+				CobaltBlocks.HERB_JAR_OAK_SAPLING,
+				CobaltBlocks.HERB_JAR_SPRUCE_SAPLING,
+				CobaltBlocks.HERB_JAR_BIRCH_SAPLING,
+				CobaltBlocks.HERB_JAR_JUNGLE_SAPLING,
+				CobaltBlocks.HERB_JAR_ACACIA_SAPLING,
+				CobaltBlocks.HERB_JAR_CHERRY_SAPLING,
+				CobaltBlocks.HERB_JAR_DARK_OAK_SAPLING,
+				CobaltBlocks.HERB_JAR_MANGROVE_PROPAGULE,
+				CobaltBlocks.HERB_JAR_FERN,
+				CobaltBlocks.HERB_JAR_DANDELION,
+				CobaltBlocks.HERB_JAR_POPPY,
+				CobaltBlocks.HERB_JAR_BLUE_ORCHID,
+				CobaltBlocks.HERB_JAR_ALLIUM,
+				CobaltBlocks.HERB_JAR_AZURE_BLUET,
+				CobaltBlocks.HERB_JAR_RED_TULIP,
+				CobaltBlocks.HERB_JAR_ORANGE_TULIP,
+				CobaltBlocks.HERB_JAR_WHITE_TULIP,
+				CobaltBlocks.HERB_JAR_PINK_TULIP,
+				CobaltBlocks.HERB_JAR_OXEYE_DAISY,
+				CobaltBlocks.HERB_JAR_CORNFLOWER,
+				CobaltBlocks.HERB_JAR_LILY_OF_THE_VALLEY,
+				CobaltBlocks.HERB_JAR_WITHER_ROSE,
+				CobaltBlocks.HERB_JAR_RED_MUSHROOM,
+				CobaltBlocks.HERB_JAR_BROWN_MUSHROOM,
+				CobaltBlocks.HERB_JAR_DEAD_BUSH,
+				CobaltBlocks.JAR,
+				CobaltBlocks.JAR_BRAIN
 		);
 
 		// Screens

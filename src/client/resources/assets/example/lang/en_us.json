@@ -470,6 +470,7 @@
   "item.cobalt.corrupted_spider_spawn_egg": "Corrupted Spider Spawn Egg",
   "item.cobalt.automaton_spawn_egg": "Automaton Spawn Egg",
   "item.cobalt.rat_spawn_egg": "Rat Spawn Egg",
+  "item.cobalt.corrupted_rat_spawn_egg": "Corrupted Rat Spawn Egg",
 
 
 
@@ -501,6 +502,7 @@
   "entity.cobalt.corrupted_spider": "Corrupted Spider",
   "entity.cobalt.automaton": "Automaton",
   "entity.cobalt.rat": "Rat",
+  "entity.cobalt.corrupted_rat": "Corrupted Rat",
 
 
 
@@ -524,6 +526,7 @@
 
 
   "gui.cobalt.walkietalkie.title": "Walkie Talkie Settings",
+
 
 
 
@@ -653,6 +656,11 @@
   "block.cobalt.dim_lantern": "Dim Lantern",
   "block.cobalt.sculk_vines": "Sculk Vines",
   "block.cobalt.sculk_rose": "Sculk Rose",
+  "block.cobalt.herb_jar": "Herb Jar",
+  "block.cobalt.goblet": "Goblet",
+  "block.cobalt.candlestick": "Candlestick",
+  "block.cobalt.jar": "Jar",
+  "block.cobalt.jar_brain": "Brain Jar",
 
   "block.cobalt.projector_block": "Projector",
   "block.cobalt.ancient_healer": "Ancient Healer",

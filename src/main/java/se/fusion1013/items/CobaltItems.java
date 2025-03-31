@@ -150,6 +150,7 @@ public class CobaltItems {
     public static final Item CORRUPTED_SPIDER_SPAWN_EGG;
     public static final Item AUTOMATON_SPAWN_EGG;
     public static final Item RAT_SPAWN_EGG;
+    public static final Item CORRUPTED_RAT_SPAWN_EGG;
 
     public static final Item SLIDE_REEL_TEST;
     public static final Item SLIDE_REEL_OUTER_WILDS;
@@ -299,6 +300,7 @@ public class CobaltItems {
         CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new FabricItemSettings()));
         AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new FabricItemSettings()));
         RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new FabricItemSettings()));
+        CORRUPTED_RAT_SPAWN_EGG = register("corrupted_rat_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_RAT, 4996656, 3790560, new FabricItemSettings()));
     }
 
     // -- REGISTER
@@ -323,6 +325,7 @@ public class CobaltItems {
             content.add(CORRUPTED_SPIDER_SPAWN_EGG);
             content.add(AUTOMATON_SPAWN_EGG);
             content.add(RAT_SPAWN_EGG);
+            content.add(CORRUPTED_RAT_SPAWN_EGG);
         });
     }
 

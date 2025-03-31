@@ -19,7 +19,8 @@ public class RuneBlockEntity extends BlockEntity {
     private static int lastTick;
 
     public RuneBlockEntity(BlockPos pos, BlockState state) {
-        super(CobaltBlockEntityTypes.RUNE_BLOCK, pos, state);
+        // super(CobaltBlockEntityTypes.RUNE_BLOCK, pos, state);
+        super(null, pos, state);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, RuneBlockEntity blockEntity) {

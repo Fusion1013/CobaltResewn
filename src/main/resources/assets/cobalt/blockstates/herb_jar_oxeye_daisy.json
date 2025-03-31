@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar_oxeye_daisy",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar_oxeye_daisy"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar_oxeye_daisy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar_oxeye_daisy",
+      "y": 270
+    }
+  }
+}

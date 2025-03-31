@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "cobalt:block/jar_brain"
+    },
+    "hanging=true": {
+      "model": "cobalt:block/jar_brain_hanging"
+    }
+  }
+}

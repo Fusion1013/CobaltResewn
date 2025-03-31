@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar_lily_of_the_valley",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar_lily_of_the_valley"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar_lily_of_the_valley",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar_lily_of_the_valley",
+      "y": 270
+    }
+  }
+}
