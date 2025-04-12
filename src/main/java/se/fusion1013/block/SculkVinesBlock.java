@@ -2,9 +2,11 @@ package se.fusion1013.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.World;
 
 public class SculkVinesBlock extends AbstractPlantStemBlock {
 
@@ -33,5 +35,10 @@ public class SculkVinesBlock extends AbstractPlantStemBlock {
     @Override
     protected boolean chooseStemState(BlockState state) {
         return VineLogic.isValidForWeepingStem(state);
+    }
+
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return false;
     }
 }

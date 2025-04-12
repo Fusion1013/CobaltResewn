@@ -145,6 +145,23 @@ public class CobaltBlocks {
     public static final Block AMETHYST_WALL = register("amethyst_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).solid()));
     public static final Block PACKED_ICE_WALL = register("packed_ice_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).solid()));
 
+    // -- Carpets
+    public static final Block ORNAMENTAL_BLACK_CARPET = register("ornamental_black_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_BLUE_CARPET = register("ornamental_blue_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_BROWN_CARPET = register("ornamental_brown_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_CYAN_CARPET = register("ornamental_cyan_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_GRAY_CARPET = register("ornamental_gray_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_GREEN_CARPET = register("ornamental_green_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_LIGHT_BLUE_CARPET = register("ornamental_light_blue_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_LIGHT_GRAY_CARPET = register("ornamental_light_gray_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_LIME_CARPET = register("ornamental_lime_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_MAGENTA_CARPET = register("ornamental_magenta_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_ORANGE_CARPET = register("ornamental_orange_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_PINK_CARPET = register("ornamental_pink_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_PURPLE_CARPET = register("ornamental_purple_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_WHITE_CARPET = register("ornamental_white_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block ORNAMENTAL_YELLOW_CARPET = register("ornamental_yellow_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+
     // -- Misc
     public static final Block ICICLE_BLOCK = register("icicle_block", new IcicleBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE).slipperiness(0.98F).sounds(BlockSoundGroup.GLASS)));
     public static final Block PARTICLE_COMMAND_BLOCK = register("particle_command_block", new ParticleBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK)));
