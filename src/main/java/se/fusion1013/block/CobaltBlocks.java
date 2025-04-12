@@ -15,6 +15,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 
+import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_BLOCK_GROUP_KEY;
@@ -24,6 +25,8 @@ import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP_KEY;
  * Handles registering custom {@link Block}s.
  */
 public class CobaltBlocks {
+
+    public static String[] BLOCK_COLORS = new String[] { "white", "light_gray", "gray", "black", "brown", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink" };
 
     // -- Chiseled Copper Blocks
     public static final Block WHITE_CHISELED_COPPER =                register("white_chiseled_copper", new Block(AbstractBlock.Settings.create().strength(3, 6)));
@@ -146,21 +149,7 @@ public class CobaltBlocks {
     public static final Block PACKED_ICE_WALL = register("packed_ice_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).solid()));
 
     // -- Carpets
-    public static final Block ORNAMENTAL_BLACK_CARPET = register("ornamental_black_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_BLUE_CARPET = register("ornamental_blue_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_BROWN_CARPET = register("ornamental_brown_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_CYAN_CARPET = register("ornamental_cyan_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_GRAY_CARPET = register("ornamental_gray_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_GREEN_CARPET = register("ornamental_green_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_LIGHT_BLUE_CARPET = register("ornamental_light_blue_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_LIGHT_GRAY_CARPET = register("ornamental_light_gray_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_LIME_CARPET = register("ornamental_lime_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_MAGENTA_CARPET = register("ornamental_magenta_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_ORANGE_CARPET = register("ornamental_orange_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_PINK_CARPET = register("ornamental_pink_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_PURPLE_CARPET = register("ornamental_purple_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_WHITE_CARPET = register("ornamental_white_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
-    public static final Block ORNAMENTAL_YELLOW_CARPET = register("ornamental_yellow_carpet", new CarpetMultiBlock(FabricBlockSettings.copyOf(Blocks.BLUE_CARPET)));
+    public static final Block[] ORNAMENTAL_CARPETS = forEachColor("ornamental", "carpet", CarpetMultiBlock::new, FabricBlockSettings.copyOf(Blocks.WHITE_CARPET));
 
     // -- Misc
     public static final Block ICICLE_BLOCK = register("icicle_block", new IcicleBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE).slipperiness(0.98F).sounds(BlockSoundGroup.GLASS)));
@@ -210,6 +199,14 @@ public class CobaltBlocks {
     public static final Block HERB_JAR_RED_MUSHROOM = register("herb_jar_red_mushroom", new HerbJarBlock(Blocks.RED_MUSHROOM), false);
     public static final Block HERB_JAR_BROWN_MUSHROOM = register("herb_jar_brown_mushroom", new HerbJarBlock(Blocks.BROWN_MUSHROOM), false);
     public static final Block HERB_JAR_DEAD_BUSH = register("herb_jar_dead_bush", new HerbJarBlock(Blocks.DEAD_BUSH), false);
+
+    private static Block[] forEachColor(String prefix, String suffix, Function<AbstractBlock.Settings, Block> createBlock, AbstractBlock.Settings settings) {
+        Block[] blocks = new Block[16];
+        for (int i = 0; i < BLOCK_COLORS.length; i++) {
+            blocks[i] = register(prefix + "_" + BLOCK_COLORS[i] + "_" + suffix, createBlock.apply(settings));
+        }
+        return blocks;
+    }
 
     private static Block register(String name, Block block) {
         return register(name, block, true);
