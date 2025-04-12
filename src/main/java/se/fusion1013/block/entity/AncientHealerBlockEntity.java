@@ -31,7 +31,7 @@ public class AncientHealerBlockEntity extends BlockEntity {
     private static void applyPlayerEffects(World world, BlockPos blockPos, StatusEffect effect) {
         if (world.isClient) return;
 
-        Box box = new Box(blockPos).expand(4).stretch(0.0, world.getHeight(), 0.0);
+        Box box = new Box(blockPos).expand(4);
         List<PlayerEntity> players = world.getNonSpectatingEntities(PlayerEntity.class, box);
         for (PlayerEntity player : players) {
             player.addStatusEffect(new StatusEffectInstance(effect, 16*20, 1, true, true));
