@@ -75,10 +75,10 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() == CobaltItems.LIGHT_SOUL) return tryInsertSoul(world, pos, player, hand);
-        else return tryTakeSoul(world, pos, player, hand);
+        else return tryTakeSoul(world, pos, player, hand, this);
     }
 
-    private ItemActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
+    public static ActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
@@ -95,7 +95,7 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
         return ItemActionResult.SUCCESS;
     }
 
-    private ItemActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
+    public static ActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand, Block sourceBlock) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
@@ -107,7 +107,7 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
 
         // Update all neighbors
         for (Direction dir : Direction.values()) {
-            world.updateNeighborsAlways(pos.offset(dir), this);
+            world.updateNeighborsAlways(pos.offset(dir), sourceBlock);
         }
 
         if (!world.isClient) {

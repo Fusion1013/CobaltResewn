@@ -1,6 +1,5 @@
 package se.fusion1013.effect;
 
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
@@ -27,6 +26,7 @@ public class CobaltEffects {
     public static final RegistryEntry<StatusEffect> LIGHT_FOG = register("light_fog", new FogEffect());
     public static final RegistryEntry<StatusEffect> MEDIUM_FOG = register("medium_fog", new FogEffect());
     public static final RegistryEntry<StatusEffect> HEAVY_FOG = register("heavy_fog", new FogEffect());
+    public static final RegistryEntry<StatusEffect> DREAMING = register("dreaming", new DreamingEffect());
 
     public static RegistryEntry<StatusEffect> register(String id, StatusEffect effect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Main.MOD_NAMESPACE, id), effect);

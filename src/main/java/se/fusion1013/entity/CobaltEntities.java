@@ -32,6 +32,7 @@ public class CobaltEntities {
     public static EntityType<DynamiteEntity> DYNAMITE;
 
     public static EntityType<RatEntity> RAT;
+    public static EntityType<RatEntity> CORRUPTED_RAT;
 
     public static void register() {
         LIGHTNING_ARROW = register("lightning_arrow", createThrownEntityType(LightningArrowEntity::new));
@@ -67,6 +68,9 @@ public class CobaltEntities {
 
         RAT = register("rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).build());
         FabricDefaultAttributeRegistry.register(RAT, RatEntity.createSilverfishAttributes());
+
+        CORRUPTED_RAT = register("corrupted_rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).build());
+        FabricDefaultAttributeRegistry.register(CORRUPTED_RAT, RatEntity.createSilverfishAttributes());
     }
 
     private static <T extends Entity> EntityType<T> register(String s, EntityType<T> entityType) {

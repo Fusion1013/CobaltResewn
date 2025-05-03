@@ -39,7 +39,13 @@ public class DisplayBlockEntityRenderer implements BlockEntityRenderer<DisplayBl
         if (url == null || url.isEmpty()) return;
          */
 
-        Identifier texture = Identifier.of(Main.MOD_NAMESPACE, "textures/block/display_placeholder.png");
+        if (blockEntity.pictures.isEmpty()) return;
+        Identifier texture = Identifier.of(Main.MOD_NAMESPACE, "textures/slide_reel/display_placeholder.png");
+        try {
+            texture = Identifier.of(Main.MOD_NAMESPACE, "textures/slide_reel/" + blockEntity.getCurrentParentPicture() + ".png");
+        } catch (Exception e) {
+            Main.LOGGER.error("Could not find texture for display block: " + e.getMessage());
+        }
         Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
 
         if (!dimensions.isPowered) return;

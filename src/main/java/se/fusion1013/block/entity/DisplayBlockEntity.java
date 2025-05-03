@@ -1,22 +1,161 @@
 package se.fusion1013.block.entity;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import se.fusion1013.block.CobaltBlocks;
+import org.jetbrains.annotations.Nullable;
+import se.fusion1013.Main;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayBlockEntity extends BlockEntity {
+
+    public static final String NBT_KEY_PICTURES = "pictures";
+    public static final String NBT_KEY_PICTURE_ENTRY = "entry.";
+    public static final String NBT_KEY_PICTURE_ID = "picture_id";
+
+    public ArrayList<String> pictures = new ArrayList<>();
+    public int pictureId;
 
     public DisplayBlockEntity(BlockPos pos, BlockState state) {
         super(CobaltBlockEntityTypes.DISPLAY_BLOCK_ENTITY, pos, state);
     }
 
-    public DisplayBlockEntity(BlockPos pos, BlockState state, Block parent) {
-        super(CobaltBlockEntityTypes.DISPLAY_BLOCK_ENTITY, pos, state);
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        pictures.clear();
+        NbtCompound picturesCompound = nbt.getCompound(NBT_KEY_PICTURES);
+        int id = 0;
+        while (true) {
+            String nbtPath = NBT_KEY_PICTURE_ENTRY + id;
+            if (!picturesCompound.contains(nbtPath)) break;
+            String picturePath = picturesCompound.getString(nbtPath);
+            pictures.add(picturePath);
+            id++;
+        }
+        pictureId = nbt.getInt(NBT_KEY_PICTURE_ID);
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        NbtCompound compound = new NbtCompound();
+        for (int i = 0; i < pictures.size(); i++) {
+            String nbtPath = NBT_KEY_PICTURE_ENTRY + i;
+            compound.putString(nbtPath, pictures.get(i));
+        }
+        nbt.put(NBT_KEY_PICTURES, compound);
+        nbt.putInt(NBT_KEY_PICTURE_ID, pictureId);
+        super.writeNbt(nbt);
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
+    }
+
+    public void changeSlideParent(int amount) {
+        BlockPos parentPos = findParentPos();
+        DisplayBlockEntity parentEntity = (DisplayBlockEntity) world.getBlockEntity(parentPos);
+        if (parentEntity != null) parentEntity.changeSlide(amount);
+    }
+
+    public void changeSlide(int amount) {
+        pictureId+=amount;
+        if (pictureId >= pictures.size()) pictureId = 0;
+        if (pictureId < 0) pictureId = pictures.size()-1;
+        markDirty();
+        world.updateListeners(pos, getCachedState(), getCachedState(), 0);
+    }
+
+    public String getCurrentParentPicture() {
+        BlockPos parentPos = findParentPos();
+        DisplayBlockEntity parentEntity = (DisplayBlockEntity) world.getBlockEntity(parentPos);
+        if (parentEntity == null) return null;
+        return parentEntity.getCurrentPicture();
+    }
+
+    public String getCurrentPicture() {
+        if (pictures.isEmpty()) return "";
+        return pictures.get(pictureId);
+    }
+
+    public void setParentPictures(List<String> picturePaths) {
+        BlockPos parentPos = findParentPos();
+        DisplayBlockEntity parentEntity = (DisplayBlockEntity) world.getBlockEntity(parentPos);
+        parentEntity.setPictures(picturePaths);
+    }
+
+    public void setPictures(List<String> picturePaths) {
+        pictures.clear();
+        pictures.addAll(picturePaths);
+        pictureId = 0;
+        markDirty();
+        world.updateListeners(pos, getCachedState(), getCachedState(), 0);
+    }
+
+    public void clearPictures() {
+        setParentPictures(new ArrayList<>());
+    }
+
+    public BlockPos findParentPos() {
+        World world = getWorld();
+        Direction startBlockDirection = Direction.WEST;
+
+        Direction facing = this.getCachedState().get(Properties.HORIZONTAL_FACING);
+        switch (facing) {
+            case NORTH:
+                startBlockDirection = Direction.EAST;
+                break;
+            case WEST:
+                startBlockDirection = Direction.NORTH;
+                break;
+            case EAST:
+                startBlockDirection = Direction.SOUTH;
+                break;
+            default:
+                break;
+        }
+
+        BlockPos foundPos = pos;
+
+        while (true) {
+            boolean found = false;
+
+            // Check width direction
+            BlockPos checkWidthPos = foundPos.offset(startBlockDirection);
+            BlockEntity foundWidthEntity = world.getBlockEntity(checkWidthPos);
+            if (foundWidthEntity != null && foundWidthEntity.getType() == this.getType()) {
+                foundPos = foundPos.offset(startBlockDirection);
+                found = true;
+            }
+
+            // Check height direction
+            BlockPos checkHeightPos = foundPos.offset(Direction.DOWN);
+            BlockEntity foundHeightEntity = world.getBlockEntity(checkHeightPos);
+            if (foundHeightEntity != null && foundWidthEntity.getType() == this.getType()) {
+                foundPos = foundPos.offset(Direction.DOWN);
+                found = true;
+            }
+
+            if (!found) break;
+        }
+
+        return foundPos;
     }
 
     /**

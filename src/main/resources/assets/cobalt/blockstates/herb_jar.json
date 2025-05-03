@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar",
+      "y": 270
+    }
+  }
+}

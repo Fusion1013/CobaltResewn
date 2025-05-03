@@ -1,0 +1,6 @@
+{
+  "parent": "cobalt:block/herb_jar_cross",
+  "textures": {
+    "plant": "block/mangrove_propagule"
+  }
+}

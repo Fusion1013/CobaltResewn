@@ -16,6 +16,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import se.fusion1013.entity.*;
@@ -32,13 +33,12 @@ import se.fusion1013.items.consumable.LiquidCourageItem;
 import se.fusion1013.items.consumable.MysteryMedicineItem;
 import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
+import se.fusion1013.items.misc.MiscTestItem;
+import se.fusion1013.items.misc.SlideReelItem;
 import se.fusion1013.items.tools.FlashlightItem;
 import se.fusion1013.items.trinket.CobaltTrinketItem;
 import se.fusion1013.items.trinket.MechanicSpectaclesTrinket;
-import se.fusion1013.util.item.ItemSetUtil;
 
-import java.text.Format;
-import java.util.List;
 import se.fusion1013.items.misc.CorruptedPearlItem;
 import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.items.sword.*;
@@ -47,6 +47,7 @@ import se.fusion1013.items.tools.CobaltAxeItem;
 import se.fusion1013.items.tools.CobaltPickaxeItem;
 import se.fusion1013.items.trinket.*;
 import se.fusion1013.sounds.CobaltJukeboxSongs;
+import se.fusion1013.slidereel.SlideReelRegistry;
 
 import static se.fusion1013.Main.MOD_NAMESPACE;
 import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP_KEY;
@@ -154,6 +155,11 @@ public class CobaltItems {
     public static final Item CORRUPTED_SPIDER_SPAWN_EGG;
     public static final Item AUTOMATON_SPAWN_EGG;
     public static final Item RAT_SPAWN_EGG;
+    public static final Item CORRUPTED_RAT_SPAWN_EGG;
+
+    public static final Item SLIDE_REEL_TEST;
+    public static final Item SLIDE_REEL_OUTER_WILDS;
+    public static final Item MISC_TEST_ITEM;
 
     public static final Item MUSIC_DISC_ANCIENT_GATEWAY;
     public static final Item MUSIC_DISC_ERA_OF_PEACE;
@@ -316,17 +322,20 @@ public class CobaltItems {
         LIGHTNING_ARROW = register("lightning_arrow", new CobaltArrowItem(new CobaltItem.Settings().rarity(CobaltRarity.Great), LightningArrowEntity::new));
         EXPLOSIVE_ARROW = register("explosive_arrow", new CobaltArrowItem(new CobaltItem.Settings().rarity(CobaltRarity.Good), ExplosiveArrowEntity::new));
 
-        PAINKILLERS = register("painkillers", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Average).maxCount(4), 5));
-        BANDAGE = register("bandage", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(4), 10));
-        FIRST_AID_KIT = register("first_aid_kit", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Great).maxCount(2), 20));
-        PNEUMATIC_NEEDLE = register("pneumatic_needle", new CobaltHealingItem(new CobaltItem.Settings().rarity(CobaltRarity.Outstanding).maxCount(1), 40));
-        MYSTERY_MEDICINE = register("mystery_medicine", new MysteryMedicineItem(new CobaltItem.Settings().rarity(CobaltRarity.Great)));
-        LIQUID_COURAGE = register("liquid_courage", new LiquidCourageItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
-        RUINED_GEAR = register("ruined_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Average)));
-        TARNISHED_GEAR = register("tarnished_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
-        AVERAGE_GEAR = register("average_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Great)));
-        REMARKABLE_GEAR = register("remarkable_gear", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Outstanding)));
-        BATTERY = register("battery", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(24)));
+        MISC_TEST_ITEM = register("test_item", new MiscTestItem());
+        SLIDE_REEL_TEST = register("slide_reel_test", new SlideReelItem(SlideReelRegistry.TEST));
+        SLIDE_REEL_OUTER_WILDS = register("slide_reel_outer_wilds", new SlideReelItem(SlideReelRegistry.OUTER_WILDS));
+        PAINKILLERS = register("painkillers", new CobaltHealingItem(new CobaltItem.Settings().maxCount(4), 5));
+        BANDAGE = register("bandage", new CobaltHealingItem(new CobaltItem.Settings().maxCount(4), 10));
+        FIRST_AID_KIT = register("first_aid_kit", new CobaltHealingItem(new CobaltItem.Settings().maxCount(2), 20));
+        PNEUMATIC_NEEDLE = register("pneumatic_needle", new CobaltHealingItem(new CobaltItem.Settings().maxCount(1), 40));
+        MYSTERY_MEDICINE = register("mystery_medicine", new MysteryMedicineItem(new CobaltItem.Settings()));
+        LIQUID_COURAGE = register("liquid_courage", new LiquidCourageItem(new CobaltItem.Settings()));
+        RUINED_GEAR = register("ruined_gear", new CobaltItem(new CobaltItem.Settings()));
+        TARNISHED_GEAR = register("tarnished_gear", new CobaltItem(new CobaltItem.Settings()));
+        AVERAGE_GEAR = register("average_gear", new CobaltItem(new CobaltItem.Settings()));
+        REMARKABLE_GEAR = register("remarkable_gear", new CobaltItem(new CobaltItem.Settings()));
+        BATTERY = register("battery", new CobaltItem(new CobaltItem.Settings().maxCount(24)));
         CORRUPTED_PEARL = register("corrupted_pearl", new CorruptedPearlItem());
         WALKIE_TALKIE = register("walkie_talkie", new WalkieTalkieItem(9999));
         HAND_HELD_LANTERN = register("hand_held_lantern", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
@@ -347,6 +356,7 @@ public class CobaltItems {
         CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new CobaltItem.Settings()));
         AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new CobaltItem.Settings()));
         RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new CobaltItem.Settings()));
+        CORRUPTED_RAT_SPAWN_EGG = register("corrupted_rat_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_RAT, 4996656, 3790560, new CobaltItem.Settings()));
 
         MUSIC_DISC_ANCIENT_GATEWAY = register("music_disc_ancient_gateway", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ANCIENT_GETAWAY)));
         MUSIC_DISC_ERA_OF_PEACE = register("music_disc_era_of_peace", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ERA_OF_PEACE)));
@@ -375,6 +385,15 @@ public class CobaltItems {
         });
 
         DispenserBlock.registerBehavior(SMOKE_BOMB, new ProjectileDispenserBehavior(SMOKE_BOMB));
+        // Add spawn eggs
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
+            content.add(CORRUPTED_ZOMBIE_SPAWN_EGG);
+            content.add(CORRUPTED_SKELETON_SPAWN_EGG);
+            content.add(CORRUPTED_SPIDER_SPAWN_EGG);
+            content.add(AUTOMATON_SPAWN_EGG);
+            content.add(RAT_SPAWN_EGG);
+            content.add(CORRUPTED_RAT_SPAWN_EGG);
+        });
     }
 
     private static Item register(String itemId, Item item) {

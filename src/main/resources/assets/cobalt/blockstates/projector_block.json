@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/projector_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/projector_block"
+    },
+    "facing=south": {
+      "model": "cobalt:block/projector_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/projector_block",
+      "y": 270
+    }
+  }
+}

@@ -16,6 +16,7 @@ import se.fusion1013.Main;
 import se.fusion1013.items.CobaltItem;
 import se.fusion1013.effect.CobaltEffects;
 
+import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_BLOCK_GROUP_KEY;
@@ -25,6 +26,8 @@ import static se.fusion1013.items.CustomItemGroupRegistry.COBALT_GROUP_KEY;
  * Handles registering custom {@link Block}s.
  */
 public class CobaltBlocks {
+
+    public static String[] BLOCK_COLORS = new String[] { "white", "light_gray", "gray", "black", "brown", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink" };
 
     // -- Chiseled Copper Blocks
     public static final Block WHITE_CHISELED_COPPER =                register("white_chiseled_copper", new Block(AbstractBlock.Settings.create().strength(3, 6)));
@@ -130,7 +133,7 @@ public class CobaltBlocks {
     public static final Block SCULK_GROWTH = register("sculk_growth", new SculkGrowthBlock(FabricBlockSettings.copyOf(Blocks.SCULK).nonOpaque().luminance(8)));
     public static final Block SCULK_BUBBLE = register("sculk_bubble", new SculkBubbleBlock(FabricBlockSettings.copyOf(Blocks.SCULK).noCollision()));
     public static final Block SCULK_VINES = register("sculk_vines", new SculkVinesBlock(AbstractBlock.Settings.copy(Blocks.WEEPING_VINES)));
-    public static final Block SCULK_VINES_PLANT = register("sculk_vines_plant", new SculkVinesPlantBlock(AbstractBlock.Settings.copy(Blocks.WEEPING_VINES_PLANT)));
+    public static final Block SCULK_VINES_PLANT = register("sculk_vines_plant", new SculkVinesPlantBlock(AbstractBlock.Settings.copy(Blocks.WEEPING_VINES_PLANT)), false);
     public static final Block SCULK_ROSE = register("sculk_rose", new WitherRoseBlock(StatusEffects.WITHER, 8, AbstractBlock.Settings.copy(Blocks.WITHER_ROSE)));
 
     public static final Block UMBRAN_LOG = register("umbran_log", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM)));
@@ -146,10 +149,13 @@ public class CobaltBlocks {
     public static final Block AMETHYST_WALL = register("amethyst_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).solid()));
     public static final Block PACKED_ICE_WALL = register("packed_ice_wall", new WallBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE).solid()));
 
+    // -- Carpets
+    public static final Block[] ORNAMENTAL_CARPETS = forEachColor("ornamental", "carpet", CarpetMultiBlock::new, FabricBlockSettings.copyOf(Blocks.WHITE_CARPET));
+
     // -- Misc
     public static final Block ICICLE_BLOCK = register("icicle_block", new IcicleBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE).slipperiness(0.98F).sounds(BlockSoundGroup.GLASS)));
     public static final Block PARTICLE_COMMAND_BLOCK = register("particle_command_block", new ParticleBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK)));
-    public static final Block RUNE_BLOCK = register("rune_block", new RuneBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque().luminance(createLightLevelFromBooleanProperty(4, RuneBlock.VISIBLE))));
+    // public static final Block RUNE_BLOCK = register("rune_block", new RuneBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque().luminance(createLightLevelFromBooleanProperty(4, RuneBlock.VISIBLE))));
     public static final Block PEDESTAL_BLOCK = register("pedestal_block", new PedestalBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
     public static final Block ITEM_DISPLAY = register("item_display", new ItemDisplayBlock(FabricBlockSettings.copyOf(Blocks.COMMAND_BLOCK).nonOpaque()));
     public static final Block FORGE_BLOCK = register("forge_block", new ForgeBlock(FabricBlockSettings.copyOf(Blocks.ANVIL)));
@@ -160,9 +166,55 @@ public class CobaltBlocks {
     public static final Block SPOTLIGHT = register("spotlight", new SpotlightBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block VANISHING_BLOCK = register("vanishing_block", new VanishingBlock(AbstractBlock.Settings.create().strength(3, 6)));
     public static final Block DIM_LANTERN = register("dim_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.SOUL_LANTERN)));
+    public static final Block PROJECTOR_BLOCK = register("projector_block", new ProjectorBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block ANCIENT_HEALER = register("ancient_healer", new AncientHealerBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS).luminance(state -> 15)));
+    public static final Block GOBLET = register("goblet", new GobletBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block CANDLESTICK = register("candlestick", new CandlestickBlock(AbstractBlock.Settings.copy(Blocks.LANTERN).luminance(state -> 10)));
+    public static final Block JAR = register("jar", new JarBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
+    public static final Block JAR_BRAIN = register("jar_brain", new JarBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
+
+    public static final Block HERB_JAR = register("herb_jar", new HerbJarBlock(Blocks.AIR));
+    public static final Block HERB_JAR_TORCHFLOWER = register("herb_jar_torchflower", new HerbJarBlock(Blocks.TORCHFLOWER), false);
+    public static final Block HERB_JAR_OAK_SAPLING = register("herb_jar_oak_sapling", new HerbJarBlock(Blocks.OAK_SAPLING), false);
+    public static final Block HERB_JAR_SPRUCE_SAPLING = register("herb_jar_spruce_sapling", new HerbJarBlock(Blocks.SPRUCE_SAPLING), false);
+    public static final Block HERB_JAR_BIRCH_SAPLING = register("herb_jar_birch_sapling", new HerbJarBlock(Blocks.BIRCH_SAPLING), false);
+    public static final Block HERB_JAR_JUNGLE_SAPLING = register("herb_jar_jungle_sapling", new HerbJarBlock(Blocks.JUNGLE_SAPLING), false);
+    public static final Block HERB_JAR_ACACIA_SAPLING = register("herb_jar_acacia_sapling", new HerbJarBlock(Blocks.ACACIA_SAPLING), false);
+    public static final Block HERB_JAR_CHERRY_SAPLING = register("herb_jar_cherry_sapling", new HerbJarBlock(Blocks.CHERRY_SAPLING), false);
+    public static final Block HERB_JAR_DARK_OAK_SAPLING = register("herb_jar_dark_oak_sapling", new HerbJarBlock(Blocks.DARK_OAK_SAPLING), false);
+    public static final Block HERB_JAR_MANGROVE_PROPAGULE = register("herb_jar_mangrove_propagule", new HerbJarBlock(Blocks.MANGROVE_PROPAGULE), false);
+    public static final Block HERB_JAR_FERN = register("herb_jar_fern", new HerbJarBlock(Blocks.FERN), false);
+    public static final Block HERB_JAR_DANDELION = register("herb_jar_dandelion", new HerbJarBlock(Blocks.DANDELION), false);
+    public static final Block HERB_JAR_POPPY = register("herb_jar_poppy", new HerbJarBlock(Blocks.POPPY), false);
+    public static final Block HERB_JAR_BLUE_ORCHID = register("herb_jar_blue_orchid", new HerbJarBlock(Blocks.BLUE_ORCHID), false);
+    public static final Block HERB_JAR_ALLIUM = register("herb_jar_allium", new HerbJarBlock(Blocks.ALLIUM), false);
+    public static final Block HERB_JAR_AZURE_BLUET = register("herb_jar_azure_bluet", new HerbJarBlock(Blocks.AZURE_BLUET), false);
+    public static final Block HERB_JAR_RED_TULIP = register("herb_jar_red_tulip", new HerbJarBlock(Blocks.RED_TULIP), false);
+    public static final Block HERB_JAR_ORANGE_TULIP = register("herb_jar_orange_tulip", new HerbJarBlock(Blocks.ORANGE_TULIP), false);
+    public static final Block HERB_JAR_WHITE_TULIP = register("herb_jar_white_tulip", new HerbJarBlock(Blocks.WHITE_TULIP), false);
+    public static final Block HERB_JAR_PINK_TULIP = register("herb_jar_pink_tulip", new HerbJarBlock(Blocks.PINK_TULIP), false);
+    public static final Block HERB_JAR_OXEYE_DAISY = register("herb_jar_oxeye_daisy", new HerbJarBlock(Blocks.OXEYE_DAISY), false);
+    public static final Block HERB_JAR_CORNFLOWER = register("herb_jar_cornflower", new HerbJarBlock(Blocks.CORNFLOWER), false);
+    public static final Block HERB_JAR_LILY_OF_THE_VALLEY = register("herb_jar_lily_of_the_valley", new HerbJarBlock(Blocks.LILY_OF_THE_VALLEY), false);
+    public static final Block HERB_JAR_WITHER_ROSE = register("herb_jar_wither_rose", new HerbJarBlock(Blocks.WITHER_ROSE), false);
+    public static final Block HERB_JAR_RED_MUSHROOM = register("herb_jar_red_mushroom", new HerbJarBlock(Blocks.RED_MUSHROOM), false);
+    public static final Block HERB_JAR_BROWN_MUSHROOM = register("herb_jar_brown_mushroom", new HerbJarBlock(Blocks.BROWN_MUSHROOM), false);
+    public static final Block HERB_JAR_DEAD_BUSH = register("herb_jar_dead_bush", new HerbJarBlock(Blocks.DEAD_BUSH), false);
+
+    private static Block[] forEachColor(String prefix, String suffix, Function<AbstractBlock.Settings, Block> createBlock, AbstractBlock.Settings settings) {
+        Block[] blocks = new Block[16];
+        for (int i = 0; i < BLOCK_COLORS.length; i++) {
+            blocks[i] = register(prefix + "_" + BLOCK_COLORS[i] + "_" + suffix, createBlock.apply(settings));
+        }
+        return blocks;
+    }
 
     private static Block register(String name, Block block) {
-        registerItem(name, block);
+        return register(name, block, true);
+    }
+
+    private static Block register(String name, Block block, boolean createItem) {
+        if (createItem) registerItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(Main.MOD_NAMESPACE, name), block);
     }
 
@@ -197,7 +249,7 @@ public class CobaltBlocks {
             content.add(WEATHERED_COPPER_SPEAKER);
             content.add(EXPOSED_COPPER_SPEAKER);
             content.add(OXIDIZED_COPPER_SPEAKER);
-            content.add(RUNE_BLOCK);
+            // content.add(RUNE_BLOCK);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {

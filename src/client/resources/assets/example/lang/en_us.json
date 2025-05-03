@@ -457,6 +457,11 @@
   "item.cobalt.red_lens": "Red Lens",
   "item.cobalt.green_lens": "Green Lens",
 
+  "item.cobalt.slide_reel_test": "Slide Reel",
+  "item.cobalt.slide_reel_test.tooltip": "Test",
+  "item.cobalt.slide_reel_outer_wilds": "Slide Reel",
+  "item.cobalt.slide_reel_outer_wilds.tooltip": "A memory of home",
+
 
 
 
@@ -465,6 +470,7 @@
   "item.cobalt.corrupted_spider_spawn_egg": "Corrupted Spider Spawn Egg",
   "item.cobalt.automaton_spawn_egg": "Automaton Spawn Egg",
   "item.cobalt.rat_spawn_egg": "Rat Spawn Egg",
+  "item.cobalt.corrupted_rat_spawn_egg": "Corrupted Rat Spawn Egg",
 
 
 
@@ -516,6 +522,7 @@
   "entity.cobalt.corrupted_spider": "Corrupted Spider",
   "entity.cobalt.automaton": "Automaton",
   "entity.cobalt.rat": "Rat",
+  "entity.cobalt.corrupted_rat": "Corrupted Rat",
 
 
 
@@ -528,6 +535,7 @@
   "effect.cobalt.cold_resistance": "Cold Resistance",
   "effect.cobalt.infected": "Infected",
   "effect.cobalt.dark_shadows": "Dark Shadows",
+  "effect.cobalt.dreaming": "Dreaming",
 
 
 
@@ -538,6 +546,7 @@
 
 
   "gui.cobalt.walkietalkie.title": "Walkie Talkie Settings",
+
 
 
 
@@ -657,6 +666,23 @@
   "block.cobalt.ancient_pedestal": "Ancient Pedestal",
   "block.cobalt.ancient_pillar": "Ancient Pillar",
 
+  "block.cobalt.ornamental_black_carpet": "Ornamental Black Carpet",
+  "block.cobalt.ornamental_blue_carpet": "Ornamental Blue Carpet",
+  "block.cobalt.ornamental_brown_carpet": "Ornamental Brown Carpet",
+  "block.cobalt.ornamental_cyan_carpet": "Ornamental Cyan Carpet",
+  "block.cobalt.ornamental_gray_carpet": "Ornamental Gray Carpet",
+  "block.cobalt.ornamental_green_carpet": "Ornamental Green Carpet",
+  "block.cobalt.ornamental_light_blue_carpet": "Ornamental Light Blue Carpet",
+  "block.cobalt.ornamental_light_gray_carpet": "Ornamental Light Gray Carpet",
+  "block.cobalt.ornamental_lime_carpet": "Ornamental Lime Carpet",
+  "block.cobalt.ornamental_magenta_carpet": "Ornamental Magenta Carpet",
+  "block.cobalt.ornamental_orange_carpet": "Ornamental Orange Carpet",
+  "block.cobalt.ornamental_pink_carpet": "Ornamental Pink Carpet",
+  "block.cobalt.ornamental_purple_carpet": "Ornamental Purple Carpet",
+  "block.cobalt.ornamental_white_carpet": "Ornamental White Carpet",
+  "block.cobalt.ornamental_yellow_carpet": "Ornamental Yellow Carpet",
+  "block.cobalt.ornamental_red_carpet": "Ornamental Red Carpet",
+
   "block.cobalt.computer": "Computer",
   "block.cobalt.display_block": "Display Block",
   "block.cobalt.bursting_pipe": "Bursting Pipe",
@@ -667,7 +693,14 @@
   "block.cobalt.dim_lantern": "Dim Lantern",
   "block.cobalt.sculk_vines": "Sculk Vines",
   "block.cobalt.sculk_rose": "Sculk Rose",
+  "block.cobalt.herb_jar": "Herb Jar",
+  "block.cobalt.goblet": "Goblet",
+  "block.cobalt.candlestick": "Candlestick",
+  "block.cobalt.jar": "Jar",
+  "block.cobalt.jar_brain": "Brain Jar",
 
+  "block.cobalt.projector_block": "Projector",
+  "block.cobalt.ancient_healer": "Ancient Healer",
 
   "trinkets.slot.hand.rune": "Rune"
 

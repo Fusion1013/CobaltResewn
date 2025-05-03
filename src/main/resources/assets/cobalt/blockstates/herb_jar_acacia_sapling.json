@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar_acacia_sapling",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar_acacia_sapling"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar_acacia_sapling",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar_acacia_sapling",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cobalt:block/herb_jar_red_tulip",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cobalt:block/herb_jar_red_tulip"
+    },
+    "facing=south": {
+      "model": "cobalt:block/herb_jar_red_tulip",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cobalt:block/herb_jar_red_tulip",
+      "y": 270
+    }
+  }
+}

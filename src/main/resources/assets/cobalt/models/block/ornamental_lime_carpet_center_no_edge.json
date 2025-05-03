@@ -1,0 +1,6 @@
+{
+  "parent": "cobalt:block/ornamental_carpet",
+  "textures": {
+    "carpet": "cobalt:block/carpets/lime_center_no_edge"
+  }
+}
