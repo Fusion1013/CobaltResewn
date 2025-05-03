@@ -13,7 +13,7 @@ public class CobaltRegistryKeys {
     public static final RegistryKey<Registry<SlideReel>> SLIDE_REEL = of("slide_reel");
 
     private static <T>RegistryKey<Registry<T>> of(String id) {
-        return RegistryKey.ofRegistry(new Identifier(id));
+        return RegistryKey.ofRegistry(Identifier.of(id));
     }
 
 }

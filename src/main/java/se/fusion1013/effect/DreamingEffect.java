@@ -12,8 +12,9 @@ public class DreamingEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         entity.addStatusEffect(new StatusEffectInstance(CobaltEffects.DARK_SHADOWS, 20*6, 0, true, false));
+        return true;
     }
 
     @Override

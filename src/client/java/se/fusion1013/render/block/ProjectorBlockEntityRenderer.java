@@ -1,18 +1,16 @@
 package se.fusion1013.render.block;
 
 import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.deferred.light.AreaLight;
+import foundry.veil.api.client.render.light.AreaLight;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.commons.math3.complex.Quaternion;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
@@ -84,13 +82,13 @@ public class ProjectorBlockEntityRenderer implements BlockEntityRenderer<Project
                 .setColor(DEFAULT_LIGHT_COLOR)
                 .setOrientation(new Quaternionf().rotationXYZ(0, rotation * ((float)Math.PI * 2) / 4, 0))
                 .setSize(.25, .25);
-        VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(light);
+        VeilRenderSystem.renderer().getLightRenderer().addLight(light);
         lights.put(entity, light);
         return light;
     }
 
     private void removeLight(ProjectorBlockEntity entity) {
         AreaLight light = lights.get(entity);
-        if (light != null) VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().removeLight(light);
+        if (light != null) VeilRenderSystem.renderer().getLightRenderer().removeLight(light);
     }
 }

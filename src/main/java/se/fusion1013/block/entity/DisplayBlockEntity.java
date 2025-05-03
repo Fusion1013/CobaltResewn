@@ -6,6 +6,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -30,8 +31,8 @@ public class DisplayBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         pictures.clear();
         NbtCompound picturesCompound = nbt.getCompound(NBT_KEY_PICTURES);
         int id = 0;
@@ -46,7 +47,7 @@ public class DisplayBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         NbtCompound compound = new NbtCompound();
         for (int i = 0; i < pictures.size(); i++) {
             String nbtPath = NBT_KEY_PICTURE_ENTRY + i;
@@ -54,7 +55,7 @@ public class DisplayBlockEntity extends BlockEntity {
         }
         nbt.put(NBT_KEY_PICTURES, compound);
         nbt.putInt(NBT_KEY_PICTURE_ID, pictureId);
-        super.writeNbt(nbt);
+        super.writeNbt(nbt, registryLookup);
     }
 
     @Nullable
@@ -64,8 +65,8 @@ public class DisplayBlockEntity extends BlockEntity {
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     public void changeSlideParent(int amount) {

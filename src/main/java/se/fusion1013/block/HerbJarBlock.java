@@ -15,6 +15,7 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -69,7 +70,7 @@ public class HerbJarBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack heldItem = player.getStackInHand(hand);
         Item item = heldItem.getItem();
         BlockState newState = (item instanceof BlockItem ? CONTENT_TO_POTTED.getOrDefault(((BlockItem)item).getBlock(), Blocks.AIR) : Blocks.AIR).getDefaultState();
@@ -88,7 +89,7 @@ public class HerbJarBlock extends Block {
             world.setBlockState(pos, CobaltBlocks.HERB_JAR.getDefaultState().with(FACING, state.get(FACING)), Block.NOTIFY_ALL);
         }
         world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-        return ActionResult.success(world.isClient);
+        return ItemActionResult.success(world.isClient);
     }
 
     @Override
@@ -108,7 +109,7 @@ public class HerbJarBlock extends Block {
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return false;
     }
 

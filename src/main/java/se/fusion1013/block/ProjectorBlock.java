@@ -17,6 +17,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -75,14 +76,14 @@ public class ProjectorBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(HAS_SLIDE_REEL)) {
             ProjectorBlockEntity entity = (ProjectorBlockEntity) world.getBlockEntity(pos);
             entity.dropSlideReel();
             DisplayBlockEntity displayBlockEntity = getDisplayBlockEntity(state, world, pos);
             displayBlockEntity.clearPictures();
 
-            return ActionResult.success(world.isClient);
+            return ItemActionResult.success(world.isClient);
         }
 
         ItemStack heldItem = player.getStackInHand(hand);
@@ -106,10 +107,10 @@ public class ProjectorBlock extends BlockWithEntity {
                 }
             }
 
-            return ActionResult.success(world.isClient);
+            return ItemActionResult.success(world.isClient);
         }
 
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
     }
 
     @Override

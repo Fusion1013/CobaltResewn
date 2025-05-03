@@ -26,6 +26,6 @@ public class RatEntityRenderer extends MobEntityRenderer<RatEntity, RatEntityMod
 
     @Override
     public Identifier getTexture(RatEntity entity) {
-        return new Identifier(Main.MOD_NAMESPACE, "textures/entity/" + name + ".png");
+        return Identifier.of(Main.MOD_NAMESPACE, "textures/entity/" + name + ".png");
     }
 }

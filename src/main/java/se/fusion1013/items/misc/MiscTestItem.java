@@ -16,7 +16,7 @@ import se.fusion1013.registries.CobaltRegistryKeys;
 public class MiscTestItem extends CobaltItem {
 
     public MiscTestItem() {
-        super(CobaltItemConfiguration.create(Formatting.GOLD), new Item.Settings());
+        super(new CobaltItem.Settings(Formatting.GOLD));
     }
 
     @Override

@@ -7,6 +7,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.stat.Stat;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -28,7 +30,7 @@ public class AncientHealerBlockEntity extends BlockEntity {
         applyPlayerEffects(world, blockPos, StatusEffects.REGENERATION);
     }
 
-    private static void applyPlayerEffects(World world, BlockPos blockPos, StatusEffect effect) {
+    private static void applyPlayerEffects(World world, BlockPos blockPos, RegistryEntry<StatusEffect> effect) {
         if (world.isClient) return;
 
         Box box = new Box(blockPos).expand(4);

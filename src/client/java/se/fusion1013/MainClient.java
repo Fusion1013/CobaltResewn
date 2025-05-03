@@ -45,7 +45,7 @@ public class MainClient implements ClientModInitializer {
 	public static final EntityModelLayer MODEL_RAT_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "rat"), "main");
 
 	public static final EntityModelLayer TEST_BLOCK_ENTITY_LAYER = new EntityModelLayer(Identifier.of(Main.MOD_NAMESPACE, "empty_lens"), "main");
-	public static final EntityModelLayer MODEL_CORRUPTED_RAT_LAYER = new EntityModelLayer(new Identifier("cobalt", "corrupted_rat"), "main");
+	public static final EntityModelLayer MODEL_CORRUPTED_RAT_LAYER = new EntityModelLayer(Identifier.of("cobalt", "corrupted_rat"), "main");
 
 	@Override
 	public void onInitializeClient() {

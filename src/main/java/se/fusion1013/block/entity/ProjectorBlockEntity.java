@@ -4,9 +4,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SingleStackInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.GameEvent;
@@ -26,19 +28,19 @@ public class ProjectorBlockEntity extends BlockEntity implements SingleStackInve
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         if (nbt.contains("SlideReelItem", 10)) {
-            slideReelStack = ItemStack.fromNbt(nbt.getCompound("SlideReelItem"));
+            slideReelStack = ItemStack.fromNbt(registryLookup, nbt.getCompound("SlideReelItem")).get();
         }
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         if (!slideReelStack.isEmpty()) {
-            nbt.put("SlideReelItem", slideReelStack.writeNbt(new NbtCompound()));
+            nbt.put("SlideReelItem", slideReelStack.encode(registryLookup));
         }
-        super.writeNbt(nbt);
+        super.writeNbt(nbt, registryLookup);
     }
 
     private void updateState(@Nullable Entity entity, boolean hasSlideReel) {
@@ -73,11 +75,6 @@ public class ProjectorBlockEntity extends BlockEntity implements SingleStackInve
         }
     }
 
-    @Override
-    public BlockEntity asBlockEntity() {
-        return this;
-    }
-
     public void dropSlideReel() {
         if (world == null || world.isClient) return;
         if (slideReelStack.isEmpty()) return;
@@ -90,5 +87,10 @@ public class ProjectorBlockEntity extends BlockEntity implements SingleStackInve
         ItemEntity itemEntity = new ItemEntity(world, vec3d.getX(), vec3d.getY(), vec3d.getZ(), stackCopy, 0, 0, 0);
         itemEntity.setToDefaultPickupDelay();
         world.spawnEntity(itemEntity);
+    }
+
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        return true;
     }
 }

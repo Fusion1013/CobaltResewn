@@ -78,7 +78,7 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
         else return tryTakeSoul(world, pos, player, hand, this);
     }
 
-    public static ActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
+    public static ItemActionResult tryInsertSoul(World world, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
@@ -95,7 +95,7 @@ public abstract class AbstractLightContainerBlock extends BlockWithEntity {
         return ItemActionResult.SUCCESS;
     }
 
-    public static ActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand, Block sourceBlock) {
+    public static ItemActionResult tryTakeSoul(World world, BlockPos pos, PlayerEntity player, Hand hand, Block sourceBlock) {
         ItemStack stack = player.getStackInHand(hand);
         BlockState state = world.getBlockState(pos);
 
