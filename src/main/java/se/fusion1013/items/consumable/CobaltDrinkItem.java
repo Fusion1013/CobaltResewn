@@ -1,12 +1,20 @@
 package se.fusion1013.items.consumable;
 
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
+import net.minecraft.world.World;
 import se.fusion1013.items.CobaltItem;
 
 import java.util.Random;
@@ -18,8 +26,25 @@ public class CobaltDrinkItem extends CobaltItem {
     }
 
     @Override
+    public ItemStack getDefaultStack() {
+        ItemStack itemStack = super.getDefaultStack();
+        itemStack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER));
+        return itemStack;
+    }
+
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return ItemUsage.consumeHeldItem(world, user, hand);
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        return 32;
     }
 
     @Override

@@ -1,9 +1,12 @@
 package se.fusion1013.items.consumable;
 
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potions;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -16,13 +19,7 @@ public class CobaltHealingItem extends CobaltDrinkItem {
     private final int healAmount;
 
     public CobaltHealingItem(CobaltItem.Settings settings, int amount) {
-        super((CobaltItem.Settings)settings.food(new FoodComponent.Builder()
-                .nutrition(0)
-                .saturationModifier(0f)
-                .snack()
-                .build())
-        );
-
+        super(settings);
         healAmount = amount;
     }
 
@@ -35,7 +32,10 @@ public class CobaltHealingItem extends CobaltDrinkItem {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (world.isClient()) return super.finishUsing(stack, world, user);
 
-        if (user instanceof PlayerEntity player) applyHeal(player, stack);
+        if (user instanceof PlayerEntity player) {
+            applyHeal(player, stack);
+            stack.decrementUnlessCreative(1, player);
+        }
 
         return super.finishUsing(stack, world, user);
     }

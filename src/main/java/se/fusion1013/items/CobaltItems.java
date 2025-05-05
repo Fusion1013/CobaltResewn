@@ -12,10 +12,14 @@ import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -83,7 +87,7 @@ public class CobaltItems {
     public static final CobaltArmorSet ADVANCED_EXOSKELETON;
 
     public static final Item ADVENTURE_SWORD;
-    // public static final Item INFECTED_ADVENTURE_SWORD;
+    public static final Item INFECTED_ADVENTURE_SWORD;
     public static final Item HEAVY_WRENCH;
     public static final Item BASIC_DRILL;
     public static final Item SAMPLE_DRILL;
@@ -250,12 +254,10 @@ public class CobaltItems {
 
         DAGGER = register("dagger", new CobaltSwordItem(1, 3, new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(1), AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "dagger.attack_damage"), .06, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), AttributeModifierSlot.OFFHAND).build()));
         ADVENTURE_SWORD = register("adventure_sword", new CobaltSwordItem(3, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Average)));
-        /*
-        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(ToolMaterials.STONE, -2+4, -4+1.6f, new CobaltItem.Settings(Formatting.DARK_PURPLE), Formatting.DARK_PURPLE, 10, 60*20, ((world, user, hand) -> {
-            user.(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, SoundCategory.PLAYERS, 1, 1);
+        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(-2+4, -4+1.6f, new CobaltItem.Settings(Formatting.DARK_PURPLE), 10, 60*20, ((world, user, hand) -> {
+            user.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,1, 1);
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20*60, 0));
         })));
-         */
         HEAVY_WRENCH = register("heavy_wrench", new CobaltSwordItem(9, 1.0f, (CobaltItem.Settings) new CobaltItem.Settings().rarity(CobaltRarity.Great).component(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "heavy_wrench.speed"), -0.05, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), AttributeModifierSlot.MAINHAND).build())));
         BASIC_DRILL = register("basic_drill", new BasicDrillItem(5, 1.4f, new CobaltItem.Settings().rarity(CobaltRarity.Good)));
         SAMPLE_DRILL = register("sample_drill", new SampleDrillItem(2, 2, new CobaltItem.Settings().rarity(CobaltRarity.Great)));
