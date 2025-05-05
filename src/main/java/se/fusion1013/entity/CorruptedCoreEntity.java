@@ -106,6 +106,11 @@ public class CorruptedCoreEntity extends HostileEntity {
     public void move(MovementType movementType, Vec3d movement) {}
 
     @Override
+    public boolean hasNoGravity() {
+        return true;
+    }
+
+    @Override
     public boolean damage(DamageSource source, float amount) {
 
         if (source.getSource() instanceof PersistentProjectileEntity) return false;
@@ -261,15 +266,7 @@ public class CorruptedCoreEntity extends HostileEntity {
     }
 
     public static DefaultAttributeContainer.Builder createCorruptedCoreAttributes() {
-        return DefaultAttributeContainer.builder()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                .add(EntityAttributes.GENERIC_ARMOR)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)
-                .add(EntityAttributes.GENERIC_MAX_ABSORPTION)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 200).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16);
     }
 
     static {
