@@ -201,6 +201,8 @@ public class CobaltBlocks {
     public static final Block HERB_JAR_BROWN_MUSHROOM = register("herb_jar_brown_mushroom", new HerbJarBlock(Blocks.BROWN_MUSHROOM), false);
     public static final Block HERB_JAR_DEAD_BUSH = register("herb_jar_dead_bush", new HerbJarBlock(Blocks.DEAD_BUSH), false);
 
+    public static final Block VESSEL_OF_LAMBENT_HUE = register("vessel_of_lambent_hue", new Block(AbstractBlock.Settings.copy(Blocks.REINFORCED_DEEPSLATE)));
+
     private static Block[] forEachColor(String prefix, String suffix, Function<AbstractBlock.Settings, Block> createBlock, AbstractBlock.Settings settings) {
         Block[] blocks = new Block[16];
         for (int i = 0; i < BLOCK_COLORS.length; i++) {
