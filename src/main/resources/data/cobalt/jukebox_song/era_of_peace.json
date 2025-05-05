@@ -4,5 +4,5 @@
     "translate": "jukebox_song.cobalt.era_of_peace"
   },
   "length_in_seconds": 172.0,
-  "sound_event": "cobalt:music_disc.era_of_peace"
+  "sound_event": "cobalt:jukebox.era_of_peace"
 }

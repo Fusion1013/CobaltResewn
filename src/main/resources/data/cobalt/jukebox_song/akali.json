@@ -4,5 +4,5 @@
     "translate": "jukebox_song.cobalt.akali"
   },
   "length_in_seconds": 173.0,
-  "sound_event": "cobalt:music_disc.akali"
+  "sound_event": "cobalt:jukebox.akali"
 }

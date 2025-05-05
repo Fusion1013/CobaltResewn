@@ -16,12 +16,12 @@ public class CobaltSoundEvents {
 
     public static final SoundEvent ILLUSORY_WALL = register("sfx.illusory_wall");
 
-    public static final SoundEvent ANCIENT_GETAWAY = register("music_disc.ancient_getaway");
-    public static final SoundEvent ERA_OF_PEACE = register("music_disc.era_of_peace");
-    public static final SoundEvent HYDROANGEA = register("music_disc.hydroangea");
-    public static final SoundEvent OUTPOST = register("music_disc.outpost");
-    public static final SoundEvent SHOOTING_FOR_THE_STARS = register("music_disc.shooting_for_the_stars");
-    public static final SoundEvent AKALI = register("music_disc.akali");
+    public static final SoundEvent ANCIENT_GETAWAY = register("jukebox.ancient_getaway");
+    public static final SoundEvent ERA_OF_PEACE = register("jukebox.era_of_peace");
+    public static final SoundEvent HYDROANGEA = register("jukebox.hydroangea");
+    public static final SoundEvent OUTPOST = register("jukebox.outpost");
+    public static final SoundEvent SHOOTING_FOR_THE_STARS = register("jukebox.shooting_for_the_stars");
+    public static final SoundEvent AKALI = register("jukebox.akali");
 
     // Mobs
     public static final SoundEvent RAT_HIT = register("entity.rat.hit");
