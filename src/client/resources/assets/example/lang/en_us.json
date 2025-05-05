@@ -702,6 +702,17 @@
   "block.cobalt.projector_block": "Projector",
   "block.cobalt.ancient_healer": "Ancient Healer",
 
-  "trinkets.slot.hand.rune": "Rune"
+  "block.cobalt.vessel_of_lambent_hue": "Vessel of Lambent Hue",
+  "block.cobalt.vessel_of_lambent_hue.tooltip": "Lights flicker within..",
+
+  "trinkets.slot.hand.rune": "Rune",
+
+  "painting.cobalt.leo.title": "Leo von Abendroth",
+  "painting.cobalt.leo.author": "Imerocks",
+  "painting.cobalt.eadric.title": "Eadric Sturmwald",
+  "painting.cobalt.eadric.author": "Imerocks",
+  "painting.cobalt.gisela.title": "Gisela Eisenhardt",
+  "painting.cobalt.ulrich.title": "Ulrich Dundren",
+  "painting.cobalt.ulrich.author": "Imerocks"
 
 }
