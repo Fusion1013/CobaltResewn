@@ -14,6 +14,11 @@ public class CobaltSoundEvents {
     public static final SoundEvent LIGHT_HOLDER_LENS_INSERT = register("block.light_holder.lens_insert");
     public static final SoundEvent LIGHT_HOLDER_LENS_REMOVE = register("block.light_holder.lens_remove");
 
+    public static final SoundEvent DREAM_CANDLE_EXTINGUISH = register("block.dream_candle.extinguish");
+    public static final SoundEvent DREAM_CANDLE_LIGHT = register("block.dream_candle.light");
+
+    public static final SoundEvent DREAM_LIGHT_EXTINGUISH = register("block.dream_totem.blow");
+
     public static final SoundEvent ILLUSORY_WALL = register("sfx.illusory_wall");
 
     public static final SoundEvent ANCIENT_GETAWAY = register("jukebox.ancient_getaway");

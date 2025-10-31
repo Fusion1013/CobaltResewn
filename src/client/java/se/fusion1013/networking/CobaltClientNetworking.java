@@ -10,13 +10,10 @@ import se.fusion1013.networking.payload.*;
 public class CobaltClientNetworking {
 
     public static void register() {
-        PayloadTypeRegistry.playS2C().register(UpdateMechanicSpectaclesPayloadS2C.ID, UpdateMechanicSpectaclesPayloadS2C.CODEC);
         ClientPlayNetworking.registerGlobalReceiver(UpdateMechanicSpectaclesPayloadS2C.ID, UpdateWaterFacilityStatusS2CPacket::receive);
 
         // Walkie talkie networking
-        PayloadTypeRegistry.playS2C().register(OpenWalkieTalkieScreenPayloadS2C.ID, OpenWalkieTalkieScreenPayloadS2C.CODEC);
         ClientPlayNetworking.registerGlobalReceiver(OpenWalkieTalkieScreenPayloadS2C.ID, OpenWalkieTalkieScreenS2CPacket::receive);
-        PayloadTypeRegistry.playS2C().register(UpdateWalkieTalkiePayloadS2C.ID, UpdateWalkieTalkiePayloadS2C.CODEC);
         ClientPlayNetworking.registerGlobalReceiver(UpdateWalkieTalkiePayloadS2C.ID, UpdateWalkieTalkieS2CPacket::receive);
 
         // TODO: ClientPlayNetworking.registerGlobalReceiver(CobaltNetworkingConstants.SET_FOG_VALUE_S2C, SetFogValueS2CPacket::receive);

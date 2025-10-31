@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "cobalt:block/dream_lantern"
+    },
+    "hanging=true": {
+      "model": "cobalt:block/dream_lantern_hanging"
+    }
+  }
+}

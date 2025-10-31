@@ -142,6 +142,9 @@ public class CorruptedCoreEntity extends HostileEntity {
             // Boost nearby entities
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20*10, 0));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 20*8, 1));
+
+            // Display particles around the entity
+            this.getWorld().addParticle(ParticleTypes.ENCHANT, entity.getX(), entity.getY(), entity.getZ(), 0.0D, 0.0D, 0.0D);
         }
         this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1, 1);
     }

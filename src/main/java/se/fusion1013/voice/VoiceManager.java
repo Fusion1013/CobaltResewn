@@ -110,9 +110,14 @@ public class VoiceManager {
             if (receiverPlayer.getUuid().equals(senderPlayer.getUuid())) continue; // Do not send to self
             // TODO: Check cross dimensional support
 
+            filteredAudio = getFilteredAudio(senderPlayer.isSubmergedInWater() || receiverPlayer.isSubmergedInWater() ? underwaterFilter : radioFilter, event, 1.2d);
+
             // Check if the receiving player is holding a walkie talkie
             ItemStack receiverWalkie = ItemUtil.getHeldItemOfType(receiverPlayer, CobaltItems.WALKIE_TALKIE);
             if (receiverWalkie == null) continue;
+
+            // Do not send audio if receiver can already hear the sender
+            if (receiverPlayer.distanceTo(senderPlayer) < api.getVoiceChatDistance()) continue;
 
             // Check if the walkie talkie is in range and set to the correct canal
             int receiverRange = WalkieTalkieItem.getRange(receiverWalkie);

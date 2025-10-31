@@ -25,17 +25,21 @@ public class CobaltArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> ADVENTURE = registerMaterial("adventure", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
     public static final RegistryEntry<ArmorMaterial> GUARD = registerMaterial("guard", 2, 3, 5, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
     public static final RegistryEntry<ArmorMaterial> HUNTER = registerMaterial("hunter", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
-    public static final RegistryEntry<ArmorMaterial> MECHANIC = registerMaterial("mechanic", 2, 3, 4, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
-    public static final RegistryEntry<ArmorMaterial> REINFORCED_MECHANIC = registerMaterial("reinforced_mechanic", 2, 3, 4, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> MECHANIC = registerMaterial("mechanic", 2, 3, 4, 2, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> REINFORCED_MECHANIC = registerMaterial("reinforced_mechanic", 2, 3, 4, 2, 2, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
     public static final RegistryEntry<ArmorMaterial> TINKER = registerMaterial("tinker", 2, 4, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
-    public static final RegistryEntry<ArmorMaterial> REINFORCED_TINKER = registerMaterial("reinforced_tinker", 2, 4, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
+    public static final RegistryEntry<ArmorMaterial> REINFORCED_TINKER = registerMaterial("reinforced_tinker", 2, 4, 5, 1, 1, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN);
     public static final RegistryEntry<ArmorMaterial> LUMBERJACK = registerMaterial("lumberjack", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
-    public static final RegistryEntry<ArmorMaterial> MINER = registerMaterial("miner", 1, 2, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> MINER = registerMaterial("miner", 3, 2, 5, 1, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
     public static final RegistryEntry<ArmorMaterial> PROSPECTOR = registerMaterial("prospector", 1, 2, 3, 2, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
-    public static final RegistryEntry<ArmorMaterial> DIVE = registerMaterial("dive", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-    public static final RegistryEntry<ArmorMaterial> CORRUPTED = registerMaterial("corrupted", 1, 2, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+    public static final RegistryEntry<ArmorMaterial> DIVE = registerMaterial("dive", 3, 6, 7, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> CORRUPTED = registerMaterial("corrupted", new ArmorInfo.Builder()
+            .setDefense(2, 6, 5, 2)
+            .setToughness(0)
+            .setEquipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER)
+            .build());
     public static final RegistryEntry<ArmorMaterial> EXOSKELETON = registerMaterial("exoskeleton", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-    public static final RegistryEntry<ArmorMaterial> ADVANCED_EXOSKELETON = registerMaterial("advanced_exoskeleton", 3, 6, 7, 3, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+    public static final RegistryEntry<ArmorMaterial> ADVANCED_EXOSKELETON = registerMaterial("advanced_exoskeleton", 3, 6, 7, 3, 1, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
     public static final RegistryEntry<ArmorMaterial> THERMAL_GEAR = registerMaterial("thermal_gear", 2, 5, 6, 2, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
 
 
@@ -49,7 +53,16 @@ public class CobaltArmorMaterials {
                 ArmorItem.Type.CHESTPLATE, defenseChestplate,
                 ArmorItem.Type.LEGGINGS, defenseLeggings,
                 ArmorItem.Type.BOOTS, defenseBoots
-        ), 0, equipSound, () -> Ingredient.ofItems(Items.BEDROCK), 0.0f, 0.0f, false);
+        ), 0, equipSound, () -> Ingredient.ofItems(Items.BEDROCK), toughness, 0.0f, false);
+    }
+
+    private static RegistryEntry<ArmorMaterial> registerMaterial(String id, ArmorInfo info) {
+        return registerMaterial(id, Map.of(
+                ArmorItem.Type.HELMET, info.defenseHelmet,
+                ArmorItem.Type.CHESTPLATE, info.defenseChestplate,
+                ArmorItem.Type.LEGGINGS, info.defenseLeggings,
+                ArmorItem.Type.BOOTS, info.defenseBoots
+        ), info.enchantability, info.equipSound, info.repairIngredientSupplier, info.toughness, info.knockbackResistance, false);
     }
 
     public static RegistryEntry<ArmorMaterial> registerMaterial(String id, Map<ArmorItem.Type, Integer> defensePoints, int enchantability, RegistryEntry<SoundEvent> equipSound, Supplier<Ingredient> repairIngredientSupplier, float toughness, float knockbackResistance, boolean dyeable) {
@@ -60,6 +73,94 @@ public class CobaltArmorMaterials {
         ArmorMaterial material = new ArmorMaterial(defensePoints, enchantability, equipSound, repairIngredientSupplier, layers, toughness, knockbackResistance);
         material = Registry.register(Registries.ARMOR_MATERIAL, Identifier.of(Main.MOD_NAMESPACE, id), material);
         return RegistryEntry.of(material);
+    }
+
+    private static class ArmorInfo {
+
+        public int defenseHelmet;
+        public int defenseChestplate;
+        public int defenseLeggings;
+        public int defenseBoots;
+
+        public int enchantability;
+
+        public int toughness;
+        public int knockbackResistance;
+
+        public RegistryEntry<SoundEvent> equipSound;
+        public Supplier<Ingredient> repairIngredientSupplier;
+
+        public boolean dyeable;
+
+        public static class Builder {
+
+            private int defenseHelmet;
+            private int defenseChestplate;
+            private int defenseLeggings;
+            private int defenseBoots;
+            private int enchantability;
+            private int toughness;
+            private int knockbackResistance;
+            private RegistryEntry<SoundEvent> equipSound;
+            private Supplier<Ingredient> repairIngredientSupplier;
+            private boolean dyeable;
+
+            public ArmorInfo build() {
+                ArmorInfo info = new ArmorInfo();
+
+                info.defenseHelmet = defenseHelmet;
+                info.defenseChestplate = defenseChestplate;
+                info.defenseLeggings = defenseLeggings;
+                info.defenseBoots = defenseBoots;
+                info.enchantability = enchantability;
+                info.toughness = toughness;
+                info.knockbackResistance = knockbackResistance;
+                info.equipSound = equipSound;
+                info.repairIngredientSupplier = repairIngredientSupplier;
+                info.dyeable = dyeable;
+
+                return info;
+            }
+
+            public Builder setDyeable(boolean dyeable) {
+                this.dyeable = dyeable;
+                return this;
+            }
+
+            public Builder setDefense(int helmet, int chestplate, int leggings, int boots) {
+                this.defenseHelmet = helmet;
+                this.defenseChestplate = chestplate;
+                this.defenseLeggings = leggings;
+                this.defenseBoots = boots;
+                return this;
+            }
+
+            public Builder setEnchantability(int enchantability) {
+                this.enchantability = enchantability;
+                return this;
+            }
+
+            public Builder setToughness(int toughness) {
+                this.toughness = toughness;
+                return this;
+            }
+
+            public Builder setKnockbackResistance(int knockbackResistance) {
+                this.knockbackResistance = knockbackResistance;
+                return this;
+            }
+
+            public Builder setEquipSound(RegistryEntry<SoundEvent> equipSound) {
+                this.equipSound = equipSound;
+                return this;
+            }
+
+            public Builder setRepairIngredientSupplier(Supplier<Ingredient> repairIngredientSupplier) {
+                this.repairIngredientSupplier = repairIngredientSupplier;
+                return this;
+            }
+        }
+
     }
 
     // PRE-1.21

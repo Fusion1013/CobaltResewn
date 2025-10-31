@@ -24,27 +24,20 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import se.fusion1013.entity.*;
-import se.fusion1013.items.armor.CobaltArmorItem;
-import se.fusion1013.items.armor.CobaltArmorSet;
-import se.fusion1013.items.armor.DivingArmorItem;
-import se.fusion1013.items.armor.sets.AdvancedExoskeletonArmorSet;
-import se.fusion1013.items.armor.sets.DivingArmorSet;
-import se.fusion1013.items.armor.sets.ExoskeletonArmorSet;
-import se.fusion1013.items.armor.sets.ThermalGearArmorSet;
+import se.fusion1013.items.armor.*;
+import se.fusion1013.items.armor.sets.*;
+import se.fusion1013.items.components.CobaltComponents;
 import se.fusion1013.items.consumable.CobaltDrinkItem;
 import se.fusion1013.items.consumable.CobaltHealingItem;
 import se.fusion1013.items.consumable.LiquidCourageItem;
 import se.fusion1013.items.consumable.MysteryMedicineItem;
 import se.fusion1013.items.crossbow.CobaltCrossbowItem;
 import se.fusion1013.items.materials.CobaltArmorMaterials;
-import se.fusion1013.items.misc.MiscTestItem;
-import se.fusion1013.items.misc.SlideReelItem;
+import se.fusion1013.items.misc.*;
 import se.fusion1013.items.tools.FlashlightItem;
 import se.fusion1013.items.trinket.CobaltTrinketItem;
 import se.fusion1013.items.trinket.MechanicSpectaclesTrinket;
 
-import se.fusion1013.items.misc.CorruptedPearlItem;
-import se.fusion1013.items.misc.WalkieTalkieItem;
 import se.fusion1013.items.sword.*;
 import se.fusion1013.items.tools.BasicDrillItem;
 import se.fusion1013.items.tools.CobaltAxeItem;
@@ -67,12 +60,7 @@ public class CobaltItems {
     // -- ARMOR
     public static final CobaltArmorSet ADVENTURE_ARMOR_SET;
     public static final CobaltArmorSet DIVING_ARMOR_SET;
-    /*
-    public static final ArmorItem DIVING_HELMET;
-    public static final ArmorItem DIVING_CHESTPLATE;
-    public static final ArmorItem DIVING_LEGGINGS;
-    public static final ArmorItem DIVING_BOOTS;
-     */
+    public static final CobaltArmorSet CORRUPTED_SET;
     public static final CobaltArmorSet LUMBERJACK_ARMOR_SET;
     public static final CobaltArmorSet GUARD_ARMOR_SET;
     public static final CobaltArmorSet HUNTER_ARMOR_SET;
@@ -153,6 +141,7 @@ public class CobaltItems {
     public static final Item DYNAMITE;
 
     public static final Item FLASHLIGHT;
+    public static final Item CORRUPTED_MATTER;
 
     public static final Item CORRUPTED_ZOMBIE_SPAWN_EGG;
     public static final Item CORRUPTED_SKELETON_SPAWN_EGG;
@@ -160,6 +149,7 @@ public class CobaltItems {
     public static final Item AUTOMATON_SPAWN_EGG;
     public static final Item RAT_SPAWN_EGG;
     public static final Item CORRUPTED_RAT_SPAWN_EGG;
+    public static final Item FROZEN_ZOMBIE_SPAWN_EGG;
 
     public static final Item SLIDE_REEL_TEST;
     public static final Item SLIDE_REEL_OUTER_WILDS;
@@ -184,6 +174,13 @@ public class CobaltItems {
                 new DivingArmorItem(ArmorItem.Type.LEGGINGS),
                 new DivingArmorItem(ArmorItem.Type.BOOTS),
                 new DivingArmorSet()
+        );
+        CORRUPTED_SET = registerSet("corrupted",
+                new CorruptedArmorItem(ArmorItem.Type.HELMET),
+                new CorruptedArmorItem(ArmorItem.Type.CHESTPLATE),
+                new CorruptedArmorItem(ArmorItem.Type.LEGGINGS),
+                new CorruptedArmorItem(ArmorItem.Type.BOOTS),
+                new CorruptedArmorSet()
         );
         LUMBERJACK_ARMOR_SET = registerSet("lumberjack",
                 new CobaltArmorItem(CobaltArmorMaterials.LUMBERJACK, ArmorItem.Type.HELMET, new CobaltItem.Settings().rarity(CobaltRarity.Average)),
@@ -221,7 +218,7 @@ public class CobaltItems {
                 null
         );
         MINER_ARMOR_SET = registerSet("miner",
-                new CobaltEquipmentItem(CobaltArmorMaterials.MINER, new CobaltItem.Settings().rarity(CobaltRarity.Good), EquipmentSlot.HEAD),
+                new MinerHelmetItem(CobaltArmorMaterials.MINER, new CobaltItem.Settings().rarity(CobaltRarity.Good)),
                 new CobaltArmorItem(CobaltArmorMaterials.MINER, ArmorItem.Type.CHESTPLATE, new CobaltItem.Settings().rarity(CobaltRarity.Good), AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "chestplate.speed"), -0.05, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), AttributeModifierSlot.CHEST).build()),
                 new CobaltArmorItem(CobaltArmorMaterials.MINER, ArmorItem.Type.LEGGINGS, new CobaltItem.Settings().rarity(CobaltRarity.Good)),
                 new CobaltArmorItem(CobaltArmorMaterials.MINER, ArmorItem.Type.BOOTS, new CobaltItem.Settings().rarity(CobaltRarity.Good)),
@@ -249,12 +246,18 @@ public class CobaltItems {
                 null
         );
         EXOSKELETON = registerSet("exoskeleton", CobaltArmorMaterials.EXOSKELETON, CobaltRarity.Outstanding, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER, new ExoskeletonArmorSet());
-        THERMAL_GEAR = registerSet("thermal_gear", CobaltArmorMaterials.THERMAL_GEAR, CobaltRarity.Outstanding, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER, new ThermalGearArmorSet());
+        THERMAL_GEAR = registerSet("thermal_gear",
+                new CobaltEquipmentItem(CobaltArmorMaterials.THERMAL_GEAR, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding), EquipmentSlot.HEAD, AttributeModifiersComponent.builder().build()),
+                new CobaltArmorItem(CobaltArmorMaterials.THERMAL_GEAR, ArmorItem.Type.CHESTPLATE, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding), AttributeModifiersComponent.builder().build()),
+                new CobaltArmorItem(CobaltArmorMaterials.THERMAL_GEAR, ArmorItem.Type.LEGGINGS, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding), AttributeModifiersComponent.builder().build()),
+                new CobaltArmorItem(CobaltArmorMaterials.THERMAL_GEAR, ArmorItem.Type.BOOTS, new CobaltItem.Settings().rarity(CobaltRarity.Outstanding), AttributeModifiersComponent.builder().build()),
+                new ThermalGearArmorSet()
+        );
         ADVANCED_EXOSKELETON = registerSet("advanced_exoskeleton", CobaltArmorMaterials.ADVANCED_EXOSKELETON, CobaltRarity.Perfect, CobaltArmorMaterials.GLOBAL_DURABILITY_MULTIPLIER, new AdvancedExoskeletonArmorSet());
 
         DAGGER = register("dagger", new CobaltSwordItem(1, 3, new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(1), AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(Identifier.of(MOD_NAMESPACE, "dagger.attack_damage"), .06, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), AttributeModifierSlot.OFFHAND).build()));
         ADVENTURE_SWORD = register("adventure_sword", new CobaltSwordItem(3, 1.6f, new CobaltItem.Settings().rarity(CobaltRarity.Average)));
-        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(-2+4, -4+1.6f, new CobaltItem.Settings(Formatting.DARK_PURPLE), 10, 60*20, ((world, user, hand) -> {
+        INFECTED_ADVENTURE_SWORD = register("infected_adventure_sword", new InfectedSwordItem(4, 1.6f, new CobaltItem.Settings(Formatting.DARK_PURPLE), 10, 60*20, ((world, user, hand) -> {
             user.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,1, 1);
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20*60, 0));
         })));
@@ -340,25 +343,27 @@ public class CobaltItems {
         BATTERY = register("battery", new CobaltItem(new CobaltItem.Settings().maxCount(24)));
         CORRUPTED_PEARL = register("corrupted_pearl", new CorruptedPearlItem());
         WALKIE_TALKIE = register("walkie_talkie", new WalkieTalkieItem(9999));
-        HAND_HELD_LANTERN = register("hand_held_lantern", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
+        HAND_HELD_LANTERN = register("hand_held_lantern", new FlashlightItem(new CobaltItem.Settings().rarity(CobaltRarity.Good)));
         RUNE_MODIFIER = register("rune_modifier", new CobaltItem(new CobaltItem.Settings()));
         FORGE_SIDE_CRYSTAL = register("forge_side_crystal", new CobaltItem(new CobaltItem.Settings().maxCount(1)));
-        LIGHT_SOUL = register("light_soul", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
+        LIGHT_SOUL = register("light_soul", new LightSoulItem(new CobaltItem.Settings()));
         LENS = register("lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
         RED_LENS = register("red_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
         GREEN_LENS = register("green_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
         BLUE_LENS = register("blue_lens", new CobaltItem(new CobaltItem.Settings().rarity(CobaltRarity.Quest).maxCount(1)));
         PRESSURE_GAUGE = register("pressure_gauge", new CobaltItem(new CobaltItem.Settings()));
+        CORRUPTED_MATTER = register("corrupted_matter", new CobaltItem(new CobaltItem.Settings()));
 
         SMOKE_BOMB = register("smoke_bomb", new ThrownItem(new CobaltItem.Settings().rarity(CobaltRarity.Good).maxCount(4), SmokeBombEntity::new, SmokeBombEntity::new));
         DYNAMITE = register("dynamite", new ThrownItem(new CobaltItem.Settings().rarity(CobaltRarity.Great).maxCount(4), DynamiteEntity::new, DynamiteEntity::new));
 
-        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 3790560, new CobaltItem.Settings()));
+        CORRUPTED_ZOMBIE_SPAWN_EGG = register("corrupted_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_ZOMBIE, 44975, 1001033, new CobaltItem.Settings()));
         CORRUPTED_SKELETON_SPAWN_EGG = register("corrupted_skeleton_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SKELETON, 0xC1C1C1, 3790560, new CobaltItem.Settings()));
         CORRUPTED_SPIDER_SPAWN_EGG = register("corrupted_spider_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_SPIDER, 3419431, 3790560, new CobaltItem.Settings()));
         AUTOMATON_SPAWN_EGG = register("automaton_spawn_egg", new SpawnEggItem(CobaltEntities.AUTOMATON, 0x909c3a, 0xcfd4a9, new CobaltItem.Settings()));
         RAT_SPAWN_EGG = register("rat_spawn_egg", new SpawnEggItem(CobaltEntities.RAT, 4996656, 986895, new CobaltItem.Settings()));
         CORRUPTED_RAT_SPAWN_EGG = register("corrupted_rat_spawn_egg", new SpawnEggItem(CobaltEntities.CORRUPTED_RAT, 4996656, 3790560, new CobaltItem.Settings()));
+        FROZEN_ZOMBIE_SPAWN_EGG = register("frozen_zombie_spawn_egg", new SpawnEggItem(CobaltEntities.FROZEN_ZOMBIE, 44975, 14543594, new CobaltItem.Settings()));
 
         MUSIC_DISC_ANCIENT_GATEWAY = register("music_disc_ancient_gateway", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ANCIENT_GETAWAY)));
         MUSIC_DISC_ERA_OF_PEACE = register("music_disc_era_of_peace", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE).jukeboxPlayable(CobaltJukeboxSongs.ERA_OF_PEACE)));

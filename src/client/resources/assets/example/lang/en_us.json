@@ -312,6 +312,12 @@
   "item.cobalt.diving_boots": "Diving Boots",
   "item.cobalt.diving_boots.tooltip": "Diving suit used by workers within EF002 to perform maintenance in underwater areas. This suit works by converting surrounding water into breathable air, providing an infinite amount of time underwater. It is also heavily insulated, providing protection from cold water environments.",
 
+  "item.cobalt.corrupted_helmet": "Corrupted Hood",
+  "item.cobalt.corrupted_chestplate": "Corrupted Carapace",
+  "item.cobalt.corrupted_leggings": "Corrupted Leggings",
+  "item.cobalt.corrupted_boots": "Corrupted Boots",
+  "item_set.cobalt.corrupted_armor.tooltip.damage": "Provides Strength II",
+  "item_set.cobalt.corrupted_armor.tooltip.healing": "Reduces effectiveness of healing items",
 
 
 
@@ -406,12 +412,15 @@
 
   "item.cobalt.walkie_talkie": "Walkie Talkie",
   "item.cobalt.walkie_talkie.tooltip": "Communicate over vast distances",
+  "item.cobalt.corrupted_matter": "Corrupted Matter",
+  "item.cobalt.corrupted_matter.tooltip": "Soft and squishy",
 
 
 
 
   "item.cobalt.hand_held_lantern": "Hand-Held Lantern",
   "item.cobalt.hand_held_lantern.tooltip": "A bright companion",
+  "item.cobalt.flashlight.ability": "Use: Toggle light",
 
 
 
@@ -471,6 +480,7 @@
   "item.cobalt.automaton_spawn_egg": "Automaton Spawn Egg",
   "item.cobalt.rat_spawn_egg": "Rat Spawn Egg",
   "item.cobalt.corrupted_rat_spawn_egg": "Corrupted Rat Spawn Egg",
+  "item.cobalt.frozen_zombie_spawn_egg": "Frozen Zombie Spawn Egg",
 
 
 
@@ -523,6 +533,7 @@
   "entity.cobalt.automaton": "Automaton",
   "entity.cobalt.rat": "Rat",
   "entity.cobalt.corrupted_rat": "Corrupted Rat",
+  "entity.cobalt.frozen_zombie": "Frozen Zombie",
 
 
 
@@ -536,6 +547,8 @@
   "effect.cobalt.infected": "Infected",
   "effect.cobalt.dark_shadows": "Dark Shadows",
   "effect.cobalt.dreaming": "Dreaming",
+  "effect.cobalt.reduced_healing": "Reduced Healing",
+  "effect.cobalt.burning": "Burning",
 
 
 
@@ -701,6 +714,9 @@
 
   "block.cobalt.projector_block": "Projector",
   "block.cobalt.ancient_healer": "Ancient Healer",
+  "block.cobalt.ancient_totem": "Ancient Totem",
+  "block.cobalt.dream_candle": "Dream Candle",
+  "block.cobalt.dream_lantern": "Dream Lantern",
 
   "block.cobalt.vessel_of_lambent_hue": "Vessel of Lambent Hue",
   "block.cobalt.vessel_of_lambent_hue.tooltip": "Lights flicker within..",

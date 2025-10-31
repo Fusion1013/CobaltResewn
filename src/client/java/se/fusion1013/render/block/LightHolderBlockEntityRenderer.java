@@ -15,9 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import se.fusion1013.Main;
-import se.fusion1013.block.LightContainerBlock;
-import se.fusion1013.block.entity.LightHolderBlockEntity;
+import se.fusion1013.block.dream.LightContainerBlock;
+import se.fusion1013.block.dream.LightHolderBlockEntity;
 import se.fusion1013.items.CobaltItems;
 
 import java.util.HashMap;

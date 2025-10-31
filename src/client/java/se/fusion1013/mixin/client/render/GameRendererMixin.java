@@ -55,7 +55,6 @@ public class GameRendererMixin {
         if (effect.isDurationBelow(OUT_DURATION)) return effect.getDuration() / (float)OUT_DURATION;
         else {
             float delta = effect.getFadeFactor(player, tickDelta);
-            Main.LOGGER.info("Tick Delta: " + delta);
             // TODO:
             // float delta = effect.getFactorCalculationData().get().lerp(player, tickDelta);
             return MathHelper.lerp(delta, 0f, 1f);

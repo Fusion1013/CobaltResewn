@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "cobalt:flashlight",
+    "cobalt:miner_helmet",
+    "cobalt:hand_held_lantern",
+    "cobalt:light_soul"
+  ]
+}

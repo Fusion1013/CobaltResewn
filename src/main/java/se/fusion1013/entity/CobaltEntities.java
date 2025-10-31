@@ -31,6 +31,8 @@ public class CobaltEntities {
     public static EntityType<SmokeCloudEntity> SMOKE_CLOUD;
     public static EntityType<DynamiteEntity> DYNAMITE;
 
+    public static EntityType<FrozenZombieEntity> FROZEN_ZOMBIE;
+
     public static EntityType<RatEntity> RAT;
     public static EntityType<RatEntity> CORRUPTED_RAT;
 
@@ -65,11 +67,21 @@ public class CobaltEntities {
         SMOKE_CLOUD = register("smoke_cloud", FabricEntityTypeBuilder.<SmokeCloudEntity>create(SpawnGroup.MISC, SmokeCloudEntity::new).dimensions(EntityDimensions.fixed(6f, 0.5f)).trackRangeBlocks(120).trackedUpdateRate(Integer.MAX_VALUE).fireImmune().build());
         DYNAMITE = register("dynamite", createThrownEntityType(DynamiteEntity::new));
 
+        FROZEN_ZOMBIE = register("frozen_zombie", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FrozenZombieEntity::new)
+                .dimensions(EntityDimensions.fixed(0.6f, 1.95f))
+                .build());
+        FabricDefaultAttributeRegistry.register(FROZEN_ZOMBIE, FrozenZombieEntity.createZombieAttributes());
 
-        RAT = register("rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).build());
+        RAT = register("rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new)
+                // .dimensions(EntityDimensions.fixed(0.45f, 0.35f))
+                .dimensions(EntityDimensions.fixed(0.5f, 0.4f))
+                .build());
         FabricDefaultAttributeRegistry.register(RAT, RatEntity.createSilverfishAttributes());
 
-        CORRUPTED_RAT = register("corrupted_rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new).dimensions(EntityDimensions.fixed(0.45f, 0.35f)).build());
+        CORRUPTED_RAT = register("corrupted_rat", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, RatEntity::new)
+                // .dimensions(EntityDimensions.fixed(0.45f, 0.35f))
+                .dimensions(EntityDimensions.fixed(0.5f, 0.4f))
+                .build());
         FabricDefaultAttributeRegistry.register(CORRUPTED_RAT, RatEntity.createSilverfishAttributes());
     }
 

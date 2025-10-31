@@ -19,13 +19,15 @@ import org.joml.Vector3f;
 import org.joml.Vector3fc;
 import se.fusion1013.Main;
 import se.fusion1013.block.DirectionalLightContainerBlock;
-import se.fusion1013.block.entity.DirectionalLightHolderBlockEntity;
+import se.fusion1013.block.dream.DirectionalLightHolderBlockEntity;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRenderer<DirectionalLightHolderBlockEntity> {
+
+    public static final HashMap<BlockPos, AreaLight> AREA_LIGHTS = new HashMap<>();
+    public static final HashMap<BlockPos, PointLight> POINT_LIGHTS = new HashMap<>();
 
     private static final Vector3f DEFAULT_LIGHT_COLOR = new Vector3f(50/255f, 123/255f, 168/255f);
 
@@ -82,12 +84,14 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
             updatePointLight(entity, state, tickDelta, isLit);
             updateAreaLight(entity, state, tickDelta, isLit);
         } else {
-            AreaLight areaLight = entity.getAreaLight();
+            AreaLight areaLight = AREA_LIGHTS.get(entity.getPos());
             if (areaLight != null) {
+                AREA_LIGHTS.remove(entity.getPos());
                 VeilRenderSystem.renderer().getLightRenderer().removeLight(areaLight);
             }
-            PointLight pointLight = entity.getPointLight();
+            PointLight pointLight = POINT_LIGHTS.get(entity.getPos());
             if (pointLight != null) {
+                POINT_LIGHTS.remove(entity.getPos());
                 VeilRenderSystem.renderer().getLightRenderer().removeLight(pointLight);
             }
         }
@@ -99,7 +103,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         Vec3d offsets = getOffsets(facing);
 
         // Get the area light
-        AreaLight areaLight = entity.getAreaLight();
+        AreaLight areaLight = AREA_LIGHTS.get(entity.getPos());
         if (areaLight == null) areaLight = createAreaLight(entity, facing, (float) offsets.x, (float) offsets.z);
 
         // Calculate values
@@ -121,7 +125,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
         Vec3d offsets = getOffsets(facing);
 
         // Get the point light
-        PointLight pointLight = entity.getPointLight();
+        PointLight pointLight = POINT_LIGHTS.get(entity.getPos());
         if (pointLight == null) pointLight = createPointLight(entity, (float) offsets.x, (float) offsets.z);
 
         // Calculate values
@@ -148,7 +152,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
                 .setPosition(blockCenter.x + (xOffset * 1.2), entity.getPos().getY() + 6/16f, blockCenter.z + (zOffset * 1.2))
                 .setRadius(1f);
         VeilRenderSystem.renderer().getLightRenderer().addLight(pointLight);
-        entity.setPointLight(pointLight);
+        POINT_LIGHTS.put(entity.getPos(), pointLight);
         return pointLight;
     }
 
@@ -164,7 +168,7 @@ public class DirectionalLightHolderBlockEntityRenderer implements BlockEntityRen
                 .setOrientation(new Quaternionf().rotationXYZ(0, rotation * ((float)Math.PI * 2) / 4, 0))
                 .setSize(.25, .25);
         VeilRenderSystem.renderer().getLightRenderer().addLight(areaLight);
-        entity.setAreaLight(areaLight);
+        AREA_LIGHTS.put(entity.getPos(), areaLight);
         return areaLight;
     }
 

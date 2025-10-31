@@ -3,6 +3,7 @@ package se.fusion1013.block;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
@@ -13,8 +14,12 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
+import se.fusion1013.block.dream.DreamCandleBlock;
+import se.fusion1013.block.dream.DreamLanternBlock;
+import se.fusion1013.block.dream.DreamLightExtinguishBlock;
+import se.fusion1013.block.dream.LightContainerBlock;
+import se.fusion1013.block.sculk.*;
 import se.fusion1013.items.CobaltItem;
-import se.fusion1013.effect.CobaltEffects;
 
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
@@ -122,6 +127,8 @@ public class CobaltBlocks {
     public static final Block ANCIENT_PILLAR = register("ancient_pillar", new AncientPillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
     public static final Block LIGHT_HOLDER = register("light_holder", new LightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
     public static final Block DIRECTIONAL_LIGHT_HOLDER = register("directional_light_holder", new DirectionalLightContainerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS).luminance(createLightLevelFromBooleanProperty(2, LightContainerBlock.LIT))));
+    public static final Block ANCIENT_TOTEM = register("ancient_totem", new DreamLightExtinguishBlock(FabricBlockSettings.copy(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block DREAM_LANTERN = register("dream_lantern", new DreamLanternBlock(FabricBlockSettings.copy(Blocks.SOUL_LANTERN).luminance(s -> 0)));
 
 
     // -- Sculk Blocks
@@ -172,6 +179,7 @@ public class CobaltBlocks {
     public static final Block CANDLESTICK = register("candlestick", new CandlestickBlock(AbstractBlock.Settings.copy(Blocks.LANTERN).luminance(state -> 10)));
     public static final Block JAR = register("jar", new JarBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
     public static final Block JAR_BRAIN = register("jar_brain", new JarBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
+    public static final Block DREAM_CANDLE = register("dream_candle", new DreamCandleBlock(AbstractBlock.Settings.create().nonOpaque().strength(0.1F).sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block HERB_JAR = register("herb_jar", new HerbJarBlock(Blocks.AIR));
     public static final Block HERB_JAR_TORCHFLOWER = register("herb_jar_torchflower", new HerbJarBlock(Blocks.TORCHFLOWER), false);

@@ -2,15 +2,11 @@ package se.fusion1013;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
@@ -20,7 +16,6 @@ import org.lwjgl.glfw.GLFW;
 import se.fusion1013.block.CobaltBlocks;
 import se.fusion1013.entity.CobaltEntities;
 import se.fusion1013.gui.ItemDisplayScreen;
-import se.fusion1013.items.CobaltItem;
 import se.fusion1013.model.CobaltPredicateProviderRegister;
 import se.fusion1013.networking.CobaltClientNetworking;
 import se.fusion1013.render.block.CobaltBlockEntityRenderers;
@@ -33,6 +28,7 @@ import net.minecraft.util.Identifier;
 import se.fusion1013.render.entity.model.CorruptedCoreEntityModel;
 import se.fusion1013.render.entity.model.CorruptedSpiderEntityModel;
 import se.fusion1013.render.entity.model.RatEntityModel;
+import se.fusion1013.render.light.ItemLightRenderer;
 import se.fusion1013.screen.CobaltScreenHandlers;
 
 public class MainClient implements ClientModInitializer {
@@ -64,6 +60,8 @@ public class MainClient implements ClientModInitializer {
 		EntityRendererRegistry.register(CobaltEntities.CORRUPTED_SPIDER, CorruptedSpiderEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_CORRUPTED_SPIDER_LAYER, CorruptedSpiderEntityModel::getTexturedModelData);
 
+		EntityRendererRegistry.register(CobaltEntities.FROZEN_ZOMBIE, FrozenZombieEntityRenderer::new);
+
 		EntityRendererRegistry.register(CobaltEntities.RAT, ctx -> new RatEntityRenderer(ctx, "rat"));
 		EntityModelLayerRegistry.registerModelLayer(MODEL_RAT_LAYER, RatEntityModel::getTexturedModelData);
 
@@ -89,10 +87,12 @@ public class MainClient implements ClientModInitializer {
 				CobaltBlocks.ICICLE_BLOCK,
 				CobaltBlocks.SCULK_BUBBLE,
 				CobaltBlocks.DIM_LANTERN,
+				CobaltBlocks.DREAM_LANTERN,
 				CobaltBlocks.SCULK_VINES,
 				CobaltBlocks.SCULK_VINES_PLANT,
 				CobaltBlocks.SCULK_ROSE,
 				CobaltBlocks.ANCIENT_HEALER,
+				CobaltBlocks.ANCIENT_TOTEM,
 				CobaltBlocks.HERB_JAR,
 				CobaltBlocks.HERB_JAR_TORCHFLOWER,
 				CobaltBlocks.HERB_JAR_OAK_SAPLING,
@@ -161,10 +161,11 @@ public class MainClient implements ClientModInitializer {
 		// Screens
 		HandledScreens.register(CobaltScreenHandlers.ITEM_DISPLAY_SCREEN_HANDLER, ItemDisplayScreen::new);
 
-
-
 		// Networking
 		CobaltClientNetworking.register();
+
+		// Lights
+		ItemLightRenderer.init();
 	}
 
 	private void registerItems() {

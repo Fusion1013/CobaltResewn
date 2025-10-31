@@ -20,6 +20,8 @@ public class CobaltBlockEntityRenderers {
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DISPLAY_BLOCK_ENTITY, DisplayBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.SPOTLIGHT_BLOCK_ENTITY, SpotlightBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(CobaltBlockEntityTypes.PROJECTOR_BLOCK_ENTITY, ProjectorBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DREAM_CANDLE_BLOCK_ENTITY, DreamCandleBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(CobaltBlockEntityTypes.DREAM_LANTERN_BLOCK_ENTITY, DreamLanternBlockEntityRenderer::new);
     }
 
 }

@@ -12,6 +12,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import se.fusion1013.effect.CobaltEffects;
 import se.fusion1013.items.CobaltItem;
 
 public class CobaltHealingItem extends CobaltDrinkItem {
@@ -42,14 +43,15 @@ public class CobaltHealingItem extends CobaltDrinkItem {
 
     private void applyHeal(PlayerEntity user, ItemStack stack) {
         // Do not heal if user is already at max health
-        // if (user.getHealth() >= user.getMaxHealth()) return;
+        if (user.getHealth() >= user.getMaxHealth()) return;
 
-        // Try to reduce the held itemstack
-        // stack.decrement(1);
-        // user.getInventory().getMainHandStack().decrement(1);
+        float effectiveness = 1f;
+
+        // If player has reduced healing, only apply 10% * level healing
+        if (user.hasStatusEffect(CobaltEffects.REDUCED_HEALING)) effectiveness *= 0.1f * user.getStatusEffect(CobaltEffects.REDUCED_HEALING).getAmplifier();
 
         // Heal the user
-        user.heal(healAmount);
+        user.heal(healAmount * effectiveness);
         user.playSoundToPlayer(SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.PLAYERS, 1, 1);
     }
 }

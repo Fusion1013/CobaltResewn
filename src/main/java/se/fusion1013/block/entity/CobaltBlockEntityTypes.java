@@ -1,5 +1,6 @@
 package se.fusion1013.block.entity;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityType;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -8,6 +9,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import se.fusion1013.Main;
 import se.fusion1013.block.CobaltBlocks;
+import se.fusion1013.block.dream.DirectionalLightHolderBlockEntity;
+import se.fusion1013.block.dream.DreamCandleBlockEntity;
+import se.fusion1013.block.dream.DreamLanternBlockEntity;
+import se.fusion1013.block.dream.LightHolderBlockEntity;
 
 /**
  * Handles registering custom {@link BlockEntityType}s.
@@ -30,6 +35,8 @@ public class CobaltBlockEntityTypes {
     public static final BlockEntityType<SpotlightBlockEntity>                     SPOTLIGHT_BLOCK_ENTITY;
     public static final BlockEntityType<ProjectorBlockEntity>                     PROJECTOR_BLOCK_ENTITY;
     public static final BlockEntityType<AncientHealerBlockEntity>                 ANCIENT_HEALER_BLOCK_ENTITY;
+    public static final BlockEntityType<DreamCandleBlockEntity>                   DREAM_CANDLE_BLOCK_ENTITY;
+    public static final BlockEntityType<DreamLanternBlockEntity>                  DREAM_LANTERN_BLOCK_ENTITY;
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Main.MOD_NAMESPACE, id), builder.build());
@@ -54,6 +61,8 @@ public class CobaltBlockEntityTypes {
         SPOTLIGHT_BLOCK_ENTITY = register("spotlight_block_entity", FabricBlockEntityTypeBuilder.create(SpotlightBlockEntity::new, CobaltBlocks.SPOTLIGHT));
         PROJECTOR_BLOCK_ENTITY = register("projector_block_entity", FabricBlockEntityTypeBuilder.create(ProjectorBlockEntity::new, CobaltBlocks.PROJECTOR_BLOCK));
         ANCIENT_HEALER_BLOCK_ENTITY = register("ancient_healer_block_entity", FabricBlockEntityTypeBuilder.create(AncientHealerBlockEntity::new, CobaltBlocks.ANCIENT_HEALER));
+        DREAM_CANDLE_BLOCK_ENTITY = register("dream_candle_block_entity", FabricBlockEntityTypeBuilder.create(DreamCandleBlockEntity::new, CobaltBlocks.DREAM_CANDLE));
+        DREAM_LANTERN_BLOCK_ENTITY = register("dream_lantern_block_entity", FabricBlockEntityTypeBuilder.create(DreamLanternBlockEntity::new, CobaltBlocks.DREAM_LANTERN));
     }
 
 }

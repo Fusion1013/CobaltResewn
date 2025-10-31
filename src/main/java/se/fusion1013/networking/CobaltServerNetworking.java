@@ -24,6 +24,10 @@ public class CobaltServerNetworking {
 
         PayloadTypeRegistry.playC2S().register(UpdateItemDisplayPayloadC2S.ID, UpdateItemDisplayPayloadC2S.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(UpdateItemDisplayPayloadC2S.ID, UpdateItemDisplayC2SPacket::receive);
+
+        PayloadTypeRegistry.playS2C().register(UpdateMechanicSpectaclesPayloadS2C.ID, UpdateMechanicSpectaclesPayloadS2C.CODEC);
+        PayloadTypeRegistry.playS2C().register(OpenWalkieTalkieScreenPayloadS2C.ID, OpenWalkieTalkieScreenPayloadS2C.CODEC);
+        PayloadTypeRegistry.playS2C().register(UpdateWalkieTalkiePayloadS2C.ID, UpdateWalkieTalkiePayloadS2C.CODEC);
     }
 
     // Send methods

@@ -468,6 +468,56 @@
     "block": {
         "sounds": []
     },
+    "block.dream_candle": {
+        "sounds": []
+    },
+    "block.dream_candle.extinguish": {
+        "sounds": [
+            {
+                "name": "cobalt:block/dream_candle/extinguish/extinguish"
+            }
+        ]
+    },
+    "block.dream_candle.extinguish.extinguish": {
+        "sounds": [
+            "cobalt:block/dream_candle/extinguish/extinguish"
+        ]
+    },
+    "block.dream_candle.light": {
+        "sounds": [
+            {
+                "name": "cobalt:block/dream_candle/light/light_1"
+            },
+            {
+                "name": "cobalt:block/dream_candle/light/light_2"
+            }
+        ]
+    },
+    "block.dream_candle.light.light_1": {
+        "sounds": [
+            "cobalt:block/dream_candle/light/light_1"
+        ]
+    },
+    "block.dream_candle.light.light_2": {
+        "sounds": [
+            "cobalt:block/dream_candle/light/light_2"
+        ]
+    },
+    "block.dream_totem": {
+        "sounds": []
+    },
+    "block.dream_totem.blow": {
+        "sounds": [
+            {
+                "name": "cobalt:block/dream_totem/blow/blow"
+            }
+        ]
+    },
+    "block.dream_totem.blow.blow": {
+        "sounds": [
+            "cobalt:block/dream_totem/blow/blow"
+        ]
+    },
     "block.light_holder": {
         "sounds": [
             {
@@ -644,6 +694,18 @@
                 "name": "cobalt:music/2wei-insomnia"
             },
             {
+                "name": "cobalt:music/blue_prince-foundation_a"
+            },
+            {
+                "name": "cobalt:music/blue_prince-those_in_the_shadows"
+            },
+            {
+                "name": "cobalt:music/blue_prince-vanitas_7"
+            },
+            {
+                "name": "cobalt:music/blue_prince-vanitas_maledicta"
+            },
+            {
                 "name": "cobalt:music/eote-eternal_halls"
             },
             {
@@ -675,6 +737,26 @@
     "music.2wei-insomnia": {
         "sounds": [
             "cobalt:music/2wei-insomnia"
+        ]
+    },
+    "music.blue_prince-foundation_a": {
+        "sounds": [
+            "cobalt:music/blue_prince-foundation_a"
+        ]
+    },
+    "music.blue_prince-those_in_the_shadows": {
+        "sounds": [
+            "cobalt:music/blue_prince-those_in_the_shadows"
+        ]
+    },
+    "music.blue_prince-vanitas_7": {
+        "sounds": [
+            "cobalt:music/blue_prince-vanitas_7"
+        ]
+    },
+    "music.blue_prince-vanitas_maledicta": {
+        "sounds": [
+            "cobalt:music/blue_prince-vanitas_maledicta"
         ]
     },
     "music.eote-eternal_halls": {

@@ -5,14 +5,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -20,10 +14,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import se.fusion1013.block.entity.AncientHealerBlockEntity;
 import se.fusion1013.block.entity.CobaltBlockEntityTypes;
-import se.fusion1013.items.CobaltItems;
-
-import static se.fusion1013.block.AbstractLightContainerBlock.tryInsertSoul;
-import static se.fusion1013.block.AbstractLightContainerBlock.tryTakeSoul;
 
 public class AncientHealerBlock extends BlockWithEntity {
 
@@ -36,11 +26,14 @@ public class AncientHealerBlock extends BlockWithEntity {
         setDefaultState(getDefaultState().with(LIT, false));
     }
 
+    /*
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+
         if (stack.getItem() == CobaltItems.LIGHT_SOUL) return tryInsertSoul(world, pos, player, hand);
         else return tryTakeSoul(world, pos, player, hand, this);
     }
+     */
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {

@@ -15,5 +15,6 @@ public class CobaltTags {
      */
     public static final TagKey<Item> REVEALS_RUNES = TagKey.of(RegistryKeys.ITEM, Identifier.of("cobalt", "reveals_runes"));
     public static final TagKey<Item> IS_SLIDE_REEL = TagKey.of(RegistryKeys.ITEM, Identifier.of("cobalt", "is_slide_reel"));
+    public static final TagKey<Item> PRODUCES_LIGHT = TagKey.of(RegistryKeys.ITEM, Identifier.of("cobalt", "produces_light"));
 
 }

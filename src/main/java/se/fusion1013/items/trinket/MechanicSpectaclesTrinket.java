@@ -25,7 +25,7 @@ public class MechanicSpectaclesTrinket extends CobaltTrinketItem {
         super.tick(stack, slot, entity);
 
         if (entity instanceof ServerPlayerEntity user) {
-            int power = getScoreboardValue("wf_power", "power");
+            int power = getScoreboardValue("wf_power", "power_total");
             int pressure = getScoreboardValue("wf_pressure", "pressure");
             CobaltServerNetworking.sendUpdateMechanicSpectacles(user, power, pressure);
         }
